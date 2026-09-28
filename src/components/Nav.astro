@@ -1,0 +1,86 @@
+---
+// Menú con anclas (design/canvas/Main.dc.html header, adaptado a
+// hamburguesa en celular como en design/canvas/Mobile.dc.html).
+import { lumaUrl } from "../lib/luma";
+import Button from "./ui/Button.astro";
+
+const enlaces = [
+  { href: "#cronograma", label: "Cronograma" },
+  { href: "#ponentes", label: "Ponentes" },
+  { href: "#stands", label: "Stands" },
+  { href: "#calendario", label: "Calendario de becas" },
+  { href: "#llegar", label: "Cómo llegar" },
+];
+---
+
+<header class="relative z-20 flex items-center justify-between px-4 py-3 sm:px-8 lg:px-[120px] lg:py-0 lg:h-[88px]">
+  <div class="flex items-center gap-2 text-paper font-extrabold text-sm sm:text-lg tracking-wide">
+    <span>LEAD</span>
+    <span class="rounded-md bg-paper px-2 py-0.5 font-display text-sky-deep tracking-[.08em]">UTP</span>
+    <span class="hidden font-semibold text-base opacity-90 sm:inline">Pilar de Excelencia Académica</span>
+  </div>
+
+  <nav class="hidden items-center gap-7 text-base font-bold text-paper lg:flex">
+    {enlaces.map((e) => (
+      <a href={e.href} class="no-underline hover:opacity-80">
+        {e.label}
+      </a>
+    ))}
+    <Button href={lumaUrl("nav")} variant="outline" size="sm">Inscríbete gratis</Button>
+  </nav>
+
+  <button
+    id="nav-toggle"
+    type="button"
+    aria-label="Abrir menú"
+    aria-expanded="false"
+    aria-controls="nav-panel"
+    class="grid h-11 w-11 place-items-center rounded-xl border-[3px] border-paper bg-transparent lg:hidden"
+  >
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FDFEFC" stroke-width="2.6" stroke-linecap="round" aria-hidden="true">
+      <path d="M4 7h16M4 12h16M4 17h16"></path>
+    </svg>
+  </button>
+
+  <div
+    id="nav-panel"
+    data-open="false"
+    class="absolute inset-x-4 top-[calc(100%+8px)] hidden flex-col gap-1 rounded-2xl border-2 border-lav bg-paper p-3 text-ink shadow-[0_10px_0_rgba(29,33,82,.16)] lg:hidden"
+  >
+    {enlaces.map((e) => (
+      <a href={e.href} class="rounded-lg px-3 py-2.5 font-bold no-underline text-ink hover:bg-paper-2">
+        {e.label}
+      </a>
+    ))}
+    <a
+      href={lumaUrl("nav-movil")}
+      class="mt-1 rounded-full bg-brand-gradient px-4 py-2.5 text-center font-display text-paper no-underline"
+    >
+      Inscríbete gratis
+    </a>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById("nav-toggle");
+  const panel = document.getElementById("nav-panel");
+  if (toggle && panel) {
+    toggle.addEventListener("click", () => {
+      const open = panel.dataset.open === "true";
+      panel.dataset.open = open ? "false" : "true";
+      panel.classList.toggle("hidden", open);
+      panel.classList.toggle("flex", !open);
+      toggle.setAttribute("aria-expanded", open ? "false" : "true");
+      toggle.setAttribute("aria-label", open ? "Abrir menú" : "Cerrar menú");
+    });
+    panel.querySelectorAll("a").forEach((a) =>
+      a.addEventListener("click", () => {
+        panel.dataset.open = "false";
+        panel.classList.add("hidden");
+        panel.classList.remove("flex");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-label", "Abrir menú");
+      }),
+    );
+  }
+</script>

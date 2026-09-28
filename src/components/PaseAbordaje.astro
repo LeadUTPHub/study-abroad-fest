@@ -1,0 +1,79 @@
+---
+// Pase de abordaje + FAQ (design/canvas/Main.dc.html). Lugar y horario
+// vienen de src/data/evento.ts (el canvas todavía dice "Casona UTP" /
+// "2:00 a 6:00 p.m.": se ignora ese texto fijo, ver instrucción de esta
+// fase).
+import evento from "../data/evento";
+import { formatoFechaCorta, formatoHora12 } from "../lib/fechas";
+
+const mapaUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  `${evento.lugar}, ${evento.direccion}`,
+)}`;
+---
+
+<section id="llegar" class="bg-paper-2 px-4 py-16 sm:px-8 lg:px-[120px] lg:py-24">
+  <div class="mb-9 flex max-w-[720px] flex-col gap-3 lg:mb-10">
+    <span class="font-mono text-[13px] font-semibold uppercase tracking-[.14em] text-violet">Cómo llegar</span>
+    <h2 class="m-0 font-display text-4xl leading-none text-ink sm:text-5xl lg:text-[64px]">Tu pase de abordaje</h2>
+  </div>
+
+  <div class="grid overflow-hidden rounded-[26px] bg-paper shadow-[0_8px_0_rgba(29,33,82,.14),0_20px_36px_-14px_rgba(29,33,82,.35)] lg:grid-cols-[minmax(0,1fr)_240px]">
+    <div class="flex flex-col gap-6 p-7 sm:p-9">
+      <div class="flex items-center justify-between gap-4 border-b-2 border-dashed border-lav pb-5">
+        <span class="font-mono text-[13px] font-semibold uppercase tracking-[.14em] text-violet">
+          Study Abroad Fest · 2026
+        </span>
+        <span class="font-display text-xl">LIMA → EL MUNDO</span>
+      </div>
+      <div class="grid grid-cols-2 gap-5 sm:grid-cols-4">
+        <div>
+          <div class="font-mono text-xs font-semibold uppercase tracking-[.14em] text-ink-2">Fecha</div>
+          <div class="text-lg font-extrabold sm:text-xl">{formatoFechaCorta(evento.fecha)}</div>
+        </div>
+        <div>
+          <div class="font-mono text-xs font-semibold uppercase tracking-[.14em] text-ink-2">Embarque</div>
+          <div class="text-lg font-extrabold sm:text-xl">{formatoHora12(evento.horaInicio)}</div>
+        </div>
+        <div>
+          <div class="font-mono text-xs font-semibold uppercase tracking-[.14em] text-ink-2">Llegada</div>
+          <div class="text-lg font-extrabold sm:text-xl">{formatoHora12(evento.horaFin)}</div>
+        </div>
+        <div>
+          <div class="font-mono text-xs font-semibold uppercase tracking-[.14em] text-ink-2">Tarifa</div>
+          <div class="text-lg font-extrabold sm:text-xl">{evento.gratuito ? "Gratis" : "Por confirmar"}</div>
+        </div>
+        <div class="col-span-2 sm:col-span-3">
+          <div class="font-mono text-xs font-semibold uppercase tracking-[.14em] text-ink-2">Puerta</div>
+          <div class="text-lg font-extrabold sm:text-xl">{evento.lugar} · {evento.direccion}</div>
+        </div>
+        <div>
+          <div class="font-mono text-xs font-semibold uppercase tracking-[.14em] text-ink-2">Requisito</div>
+          <div class="text-lg font-extrabold sm:text-xl">{evento.inscripcionPrevia ? "Inscripción en Luma" : "Ninguno"}</div>
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <a
+          href={mapaUrl}
+          target="_blank"
+          rel="noopener"
+          class="btn-lift inline-flex items-center gap-2 rounded-full border-[3px] border-violet px-5 py-2.5 font-extrabold text-violet no-underline"
+        >
+          Cómo llegar ↗
+        </a>
+        <a
+          href="/evento.ics"
+          class="btn-lift inline-flex items-center gap-2 rounded-full border-[3px] border-violet px-5 py-2.5 font-extrabold text-violet no-underline"
+        >
+          Agregar a mi calendario
+        </a>
+      </div>
+    </div>
+    <div class="flex flex-col items-center justify-center gap-3.5 border-t-[3px] border-dashed border-lav bg-[linear-gradient(170deg,var(--color-magenta),var(--color-violet))] p-8 text-center text-paper lg:border-l-[3px] lg:border-t-0">
+      <span class="font-mono text-xs font-semibold uppercase tracking-[.14em]">Asiento</span>
+      <span class="font-display text-5xl leading-[.9]">Tuyo</span>
+      <div class="h-10 w-36 [background:repeating-linear-gradient(90deg,#FDFEFC_0_2px,transparent_2px_4px,#FDFEFC_4px_7px,transparent_7px_9px,#FDFEFC_9px_10px,transparent_10px_13px)]"></div>
+    </div>
+  </div>
+
+  <slot />
+</section>

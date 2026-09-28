@@ -1,0 +1,47 @@
+---
+// Stands (design/canvas/Main.dc.html), ahora con 4 tarjetas en vez de 2.
+import stands from "../data/stands";
+import aliados from "../data/aliados";
+
+const standsConfirmados = stands.filter((s) => s.estado === "confirmado");
+const aliadosConfirmados = aliados.filter((a) => a.estado === "confirmado");
+
+const ACENTOS = ["#6258BB", "#AC0BAD", "#2F86C4", "#525F97"];
+---
+
+<section id="stands" class="bg-paper px-4 py-16 sm:px-8 lg:px-[120px] lg:py-24">
+  <div class="grid gap-10 lg:grid-cols-[420px_minmax(0,1fr)] lg:items-start">
+    <div class="flex flex-col gap-3">
+      <span class="font-mono text-[13px] font-semibold uppercase tracking-[.14em] text-violet">Stands de consulta</span>
+      <h2 class="m-0 font-display text-4xl leading-none text-ink sm:text-5xl lg:text-[58px]">
+        Información oficial, cara a cara
+      </h2>
+      <p class="m-0 text-lg text-ink-2">
+        Abiertos durante todo el evento. Llega con tus preguntas anotadas.
+      </p>
+    </div>
+
+    <div class="flex flex-col gap-6">
+      <div class="grid gap-6 sm:grid-cols-2">
+        {standsConfirmados.map((s, i) => (
+          <article
+            class="flex flex-col gap-3 rounded-[22px] border-2 border-lav bg-paper p-7 shadow-[0_6px_0_rgba(29,33,82,.12)]"
+            style={`border-top: 12px solid ${ACENTOS[i % ACENTOS.length]}`}
+          >
+            <h3 class="m-0 font-display text-3xl leading-none text-ink">{s.nombre}</h3>
+            <p class="m-0 text-lg leading-relaxed text-ink-2">
+              {s.descripcion ?? "Por anunciar."}
+            </p>
+          </article>
+        ))}
+      </div>
+
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="font-mono text-xs font-semibold uppercase tracking-[.14em] text-ink-2">Aliados</span>
+        {aliadosConfirmados.map((a) => (
+          <span class="rounded-xl border-2 border-lav px-4 py-2 font-extrabold text-ink">{a.nombre}</span>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

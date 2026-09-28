@@ -1,0 +1,33 @@
+---
+// CTA final + footer (design/canvas/Main.dc.html).
+import evento from "../data/evento";
+import { lumaUrl } from "../lib/luma";
+import Button from "./ui/Button.astro";
+---
+
+<section class="relative overflow-hidden bg-sky px-4 py-20 text-center text-paper sm:px-8 lg:px-[120px]">
+  <div class="cloud-drift pointer-events-none absolute left-10 top-16 hidden h-12 w-44 rounded-full bg-paper/90 lg:block" aria-hidden="true"></div>
+  <div class="cloud-drift-slow pointer-events-none absolute bottom-16 right-12 hidden h-14 w-56 rounded-full bg-paper/90 lg:block" aria-hidden="true"></div>
+
+  <div class="relative flex flex-col items-center gap-5">
+    <h2 class="m-0 font-display text-4xl leading-none [text-shadow:0_6px_0_rgba(29,33,82,.2)] sm:text-5xl lg:text-[72px]">
+      Tu camino empieza el 10 de octubre
+    </h2>
+    <p class="m-0 text-lg font-bold sm:text-xl">
+      Ven con curiosidad y sal con una oportunidad concreta a la que postular.
+    </p>
+    <Button href={lumaUrl("cta-final")} variant="gradient" size="lg">Inscríbete gratis</Button>
+  </div>
+</section>
+
+<footer class="flex flex-col items-center gap-2 bg-ink px-6 py-8 text-center text-[15px] text-paper/85 sm:flex-row sm:justify-between sm:px-[120px] sm:text-left">
+  <span>
+    Organiza <b class="text-paper">{evento.organizadores[0]}</b>
+    {evento.organizadores[1] && (
+      <>
+        , en alianza con <b class="text-paper">{evento.organizadores[1]}</b>
+      </>
+    )}
+  </span>
+  <span>{evento.nombre} {evento.fecha.slice(0, 4)}</span>
+</footer>

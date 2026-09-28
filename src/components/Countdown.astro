@@ -1,0 +1,68 @@
+---
+// Animación 7: el número que cambia hace un pequeño "tick" cada minuto.
+// Server-first: sin JS, muestra el valor calculado en el build/petición
+// (nunca queda vacío) y el script solo lo mantiene al día.
+import evento from "../data/evento";
+import { cuentaRegresiva } from "../lib/fechas";
+
+const cuenta = cuentaRegresiva(evento.fecha, evento.horaInicio);
+const pad = (n: number) => String(n).padStart(2, "0");
+const objetivoISO = `${evento.fecha}T${evento.horaInicio}:00-05:00`;
+---
+
+<div
+  id="countdown"
+  data-target={objetivoISO}
+  class="relative rounded-2xl bg-paper px-5 pb-3.5 pt-5 shadow-[0_6px_0_rgba(29,33,82,.16),0_14px_28px_-12px_rgba(29,33,82,.35)]"
+>
+  <span class="absolute -top-3 left-4 rounded-md bg-brand-gradient px-2.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-[.14em] text-paper">
+    Despegamos en
+  </span>
+  <div class="flex gap-4 [font-variant-numeric:tabular-nums]">
+    <div class="flex flex-col items-center">
+      <b data-cd="d" class="font-display text-3xl leading-none text-violet sm:text-4xl">{pad(cuenta.dias)}</b>
+      <span class="text-[11px] font-extrabold uppercase tracking-[.08em] text-ink-2">días</span>
+    </div>
+    <div class="flex flex-col items-center">
+      <b data-cd="h" class="font-display text-3xl leading-none text-violet sm:text-4xl">{pad(cuenta.horas)}</b>
+      <span class="text-[11px] font-extrabold uppercase tracking-[.08em] text-ink-2">horas</span>
+    </div>
+    <div class="flex flex-col items-center">
+      <b data-cd="m" class="font-display text-3xl leading-none text-violet sm:text-4xl">{pad(cuenta.minutos)}</b>
+      <span class="text-[11px] font-extrabold uppercase tracking-[.08em] text-ink-2">min</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  const raiz = document.getElementById("countdown");
+  if (raiz) {
+    const objetivo = new Date(raiz.dataset.target ?? "").getTime();
+    const pad = (n: number) => String(n).padStart(2, "0");
+    const reducido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const actualizar = () => {
+      const minutosTotales = Math.max(0, Math.floor((objetivo - Date.now()) / 60_000));
+      const valores = {
+        d: pad(Math.floor(minutosTotales / 1440)),
+        h: pad(Math.floor((minutosTotales % 1440) / 60)),
+        m: pad(minutosTotales % 60),
+      } as const;
+
+      (Object.keys(valores) as Array<keyof typeof valores>).forEach((clave) => {
+        const el = raiz.querySelector<HTMLElement>(`[data-cd="${clave}"]`);
+        if (!el || el.textContent === valores[clave]) return;
+        el.textContent = valores[clave];
+        if (!reducido) {
+          el.classList.remove("countdown-tick");
+          // Reinicia la animación aunque la clase ya estuviera puesta.
+          void el.offsetWidth;
+          el.classList.add("countdown-tick");
+        }
+      });
+    };
+
+    actualizar();
+    setInterval(actualizar, 30_000);
+  }
+</script>

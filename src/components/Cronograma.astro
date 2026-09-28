@@ -1,0 +1,194 @@
+---
+// Cronograma (design/canvas/Main.dc.html / Mobile.dc.html): camino de
+// papel con paradas y un avión que lo recorre (animación 2b). Ahora hay
+// 15 bloques con hora (09:00 a 13:31), así que se agrupan en paradas
+// temáticas compactas en vez de una tarjeta gigante por bloque: cada
+// bloque real conserva su hora exacta dentro de la lista compacta.
+import { bloques, carrilParalelo } from "../data/cronograma";
+import type { CronogramaBloque } from "../data/schema";
+import { formatoHora12 } from "../lib/fechas";
+import Pin from "./ui/Pin.astro";
+
+const porOrden = new Map(bloques.map((b) => [b.orden, b]));
+const tomar = (ordenes: number[]): CronogramaBloque[] =>
+  ordenes.map((o) => porOrden.get(o)).filter((b): b is CronogramaBloque => Boolean(b));
+
+const grupos = [
+  { titulo: "Bienvenida y voces internacionales", ordenes: [1, 2, 3] },
+  { titulo: "Conferencia, panel y Fulbright", ordenes: [4, 5, 6] },
+  { titulo: "Japón: Beca MEXT con APEBEMO", ordenes: [8, 9, 10] },
+  { titulo: "Europa: Erasmus+ y Erasmus Mundus", ordenes: [11, 12] },
+  { titulo: "Últimas ponencias y cierre", ordenes: [13, 14, 15] },
+].map((g) => {
+  const items = tomar(g.ordenes);
+  return {
+    ...g,
+    items,
+    horaInicio: items[0]?.horaInicio ?? null,
+    horaFin: items.at(-1)?.horaFin ?? null,
+  };
+});
+
+const receso = porOrden.get(7);
+
+const MODALIDAD_LABEL: Record<CronogramaBloque["modalidad"], string> = {
+  presencial: "Presencial",
+  "vlog-zoom": "Vlog + Zoom",
+  "zoom-vivo": "Vía Zoom",
+  receso: "",
+};
+const MODALIDAD_ES_ZOOM = (m: CronogramaBloque["modalidad"]) => m === "vlog-zoom" || m === "zoom-vivo";
+
+const rangoHoras = (inicio: string | null, fin: string | null) =>
+  inicio && fin ? `${formatoHora12(inicio)} a ${formatoHora12(fin)}` : "Por anunciar";
+---
+
+<section id="cronograma" class="bg-paper px-4 py-14 sm:px-8 lg:px-[120px] lg:py-[70px]">
+  <div class="mb-10 flex flex-col gap-4 lg:mb-12 lg:flex-row lg:items-end lg:justify-between lg:gap-10">
+    <div class="flex max-w-[720px] flex-col gap-3">
+      <span class="font-mono text-[13px] font-semibold uppercase tracking-[.14em] text-violet">
+        {rangoHoras(carrilParalelo.horaInicio, carrilParalelo.horaFin)}
+      </span>
+      <h2 class="m-0 font-display text-4xl leading-none text-ink sm:text-5xl lg:text-[64px]">
+        Cronograma: tu ruta de la mañana
+      </h2>
+      <p class="m-0 text-lg text-ink-2">
+        El programa y los stands funcionan en paralelo. Sigue la ruta o muévete entre ambos cuando quieras.
+      </p>
+    </div>
+    <div class="flex gap-3 text-sm font-bold">
+      <span class="inline-flex items-center gap-2 rounded-full bg-paper-2 px-3.5 py-2">
+        <span class="h-2.5 w-2.5 rounded-full bg-magenta" aria-hidden="true"></span>Presencial
+      </span>
+      <span class="inline-flex items-center gap-2 rounded-full bg-paper-2 px-3.5 py-2">
+        <span class="h-2.5 w-2.5 rounded-full bg-sky-deep" aria-hidden="true"></span>Vía Zoom
+      </span>
+    </div>
+  </div>
+
+  <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_340px]">
+    <!-- Camino con las paradas -->
+    <div class="relative">
+      <svg
+        class="motion-plane absolute inset-y-0 left-0 h-full w-12"
+        viewBox="0 0 120 1000"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <rect x="45" y="0" width="30" height="1000" rx="15" fill="#525F97"></rect>
+        <line class="road-dash" x1="60" y1="10" x2="60" y2="990" stroke="#FDFEFC" stroke-width="4" stroke-linecap="round"></line>
+        <g>
+          <path
+            d="M0 -13 L4 -4 L14 1 L14 5 L4 2 L3 10 L7 13 L7 15 L0 13 L-7 15 L-7 13 L-3 10 L-4 2 L-14 5 L-14 1 L-4 -4 Z"
+            fill="#FDFEFC"
+            stroke="#AC0BAD"
+            stroke-width="1.5"
+            transform="rotate(180)"
+          ></path>
+          <animateMotion dur="9s" repeatCount="indefinite" path="M60 20 L60 980"></animateMotion>
+        </g>
+      </svg>
+
+      <div class="flex flex-col gap-6">
+        {grupos.map((grupo, i) => (
+          <div
+            data-motion-stop
+            data-motion-delay={i * 150}
+            class="motion-armed grid grid-cols-[48px_minmax(0,1fr)] items-start gap-3 sm:gap-4"
+          >
+            <div class="pt-1">
+              <Pin number={i + 1} size={48} />
+            </div>
+            <div class="rounded-2xl border-2 border-lav bg-paper p-5 shadow-[0_6px_0_rgba(29,33,82,.1)]">
+              <div class="mb-3 flex flex-wrap items-baseline justify-between gap-2">
+                <h3 class="m-0 font-display text-xl leading-none text-ink sm:text-2xl">{grupo.titulo}</h3>
+                <span class="font-mono text-sm font-semibold text-violet">
+                  {rangoHoras(grupo.horaInicio, grupo.horaFin)}
+                </span>
+              </div>
+              <ul class="m-0 flex list-none flex-col gap-3 p-0">
+                {grupo.items.map((b) => (
+                  <li class="flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-lav/60 pt-3 first:border-t-0 first:pt-0">
+                    <span class="font-mono text-sm font-semibold text-ink-2">
+                      {b.horaInicio}–{b.horaFin}
+                    </span>
+                    <span class="font-extrabold text-ink">{b.titulo}</span>
+                    {b.quien && <span class="text-sm text-ink-2">{b.quien}</span>}
+                    {b.modalidad !== "receso" && (
+                      <span
+                        class:list={[
+                          "ml-auto rounded-full px-2.5 py-1 text-xs font-extrabold text-paper",
+                          MODALIDAD_ES_ZOOM(b.modalidad) ? "bg-sky-deep" : "bg-magenta",
+                        ]}
+                      >
+                        {MODALIDAD_LABEL[b.modalidad]}
+                      </span>
+                    )}
+                    {b.estado === "por-confirmar" && (
+                      <span class="rounded-full border-2 border-dashed border-violet px-2.5 py-1 text-xs font-extrabold text-violet">
+                        Por confirmar
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+
+        {receso && (
+          <div
+            data-motion-stop
+            data-motion-delay={grupos.length * 150}
+            class="motion-armed grid grid-cols-[48px_minmax(0,1fr)] items-center gap-3 sm:gap-4"
+          >
+            <div class="pt-1">
+              <Pin variant="ghost" size={48} />
+            </div>
+            <p class="m-0 rounded-full bg-paper-2 px-5 py-2.5 text-sm font-bold text-ink-2">
+              {receso.titulo} · {receso.horaInicio}–{receso.horaFin}
+            </p>
+          </div>
+        )}
+
+        <div
+          data-motion-stop
+          data-motion-delay={(grupos.length + 1) * 150}
+          class="motion-armed grid grid-cols-[48px_minmax(0,1fr)] items-center gap-3 sm:gap-4"
+        >
+          <div class="pt-1">
+            <Pin variant="ghost" size={48} />
+          </div>
+          <div class="flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-sky-soft px-5 py-4">
+            <div>
+              <div class="font-extrabold text-ink">Tu siguiente parada: los stands</div>
+              <div class="text-sm text-ink-2">Lleva tus dudas oficiales y sal con tu convocatoria elegida.</div>
+            </div>
+            <a href="#stands" class="whitespace-nowrap font-extrabold text-violet">Ver stands</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carril paralelo de stands -->
+    <aside class="flex flex-col gap-4 self-start rounded-3xl border-[6px] border-paper bg-[linear-gradient(170deg,var(--color-magenta),var(--color-violet))] p-7 text-paper shadow-[0_8px_0_rgba(29,33,82,.14)] lg:sticky lg:top-6">
+      <span class="font-mono text-xs font-semibold uppercase tracking-[.14em] opacity-90">Carril paralelo</span>
+      <div class="font-display text-3xl leading-none">{carrilParalelo.titulo}</div>
+      <div class="font-mono text-lg font-semibold">
+        {carrilParalelo.horaInicio} → {carrilParalelo.horaFin}
+      </div>
+      <div class="h-px bg-paper/40"></div>
+      <div class="flex flex-col gap-2.5 text-base font-bold">
+        {carrilParalelo.quienes.map((q) => (
+          <div class="rounded-xl bg-paper/15 px-3.5 py-3">{q}</div>
+        ))}
+      </div>
+      <p class="m-0 text-sm font-semibold leading-relaxed">{carrilParalelo.nota}</p>
+    </aside>
+  </div>
+</section>
+
+<script>
+  import { armMotionStops } from "../lib/motion";
+  armMotionStops();
+</script>

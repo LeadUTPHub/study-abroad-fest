@@ -1,0 +1,24 @@
+---
+// FAQ (design/canvas/Main.dc.html), dentro de la sección del pase de
+// abordaje. Acordeón nativo (<details>/<summary>), sin JS.
+import faq from "../data/faq";
+
+const faqConfirmadas = faq.filter((f) => f.estado === "confirmado" && f.respuesta);
+---
+
+{
+  faqConfirmadas.length > 0 && (
+    <div class="mt-11 grid grid-cols-1 gap-4 sm:grid-cols-2">
+      {faqConfirmadas.map((f) => (
+        <details class="group rounded-2xl border-2 border-lav bg-paper px-5 py-4 open:pb-4">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-3 font-extrabold text-ink marker:content-none">
+            {f.pregunta}
+            <span class="font-display text-magenta group-open:hidden">+</span>
+            <span class="hidden font-display text-magenta group-open:inline">–</span>
+          </summary>
+          <p class="mb-0 mt-2 text-base leading-relaxed text-ink-2">{f.respuesta}</p>
+        </details>
+      ))}
+    </div>
+  )
+}

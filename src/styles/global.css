@@ -74,12 +74,92 @@
   animation: cloud-drift 13s ease-in-out infinite alternate-reverse;
 }
 
+/* Animación 1 · key visual flotando (hero) */
+@keyframes hero-float {
+  0%, 100% { transform: rotate(2.5deg) translateY(0); }
+  50% { transform: rotate(1.2deg) translateY(-10px); }
+}
+.hero-float {
+  animation: hero-float 7s ease-in-out infinite;
+}
+
+/*
+  Animación 3 · paradas que se pegan como recortes, escalonadas.
+  Progressive enhancement: sin JS (o con prefers-reduced-motion) el
+  elemento se ve completo desde el inicio (regla de la guía: "las
+  secciones siempre se ven completas sin animación"). lib/motion.ts
+  agrega ".motion-armed" solo cuando puede observarlo y disparar la
+  animación; recién ahí el elemento pasa por el estado oculto.
+*/
+.motion-armed {
+  opacity: 0.001;
+  transform: translateY(18px) rotate(-2deg) scale(0.96);
+}
+.motion-armed.motion-visible {
+  animation: motion-pop 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+@keyframes motion-pop {
+  0% { opacity: 0.001; transform: translateY(18px) rotate(-2deg) scale(0.96); }
+  70% { opacity: 1; transform: translateY(-3px) rotate(0.4deg) scale(1.01); }
+  100% { opacity: 1; transform: none; }
+}
+
+/* Animación 4 · sello de pasaporte que "golpea" (tarjetas de ponentes) */
+@keyframes stamp-hit {
+  0% { transform: rotate(-8deg) scale(1); }
+  40% { transform: rotate(-14deg) scale(1.35); }
+  100% { transform: rotate(-8deg) scale(1); }
+}
+.speaker-tag:hover .stamp-mark,
+.speaker-tag:focus-within .stamp-mark {
+  animation: stamp-hit 0.45s ease;
+}
+
+/* Animación 7 · número de la cuenta regresiva que cambia (cada minuto) */
+@keyframes countdown-tick {
+  0% { transform: translateY(-6px); opacity: 0.3; }
+  100% { transform: none; opacity: 1; }
+}
+.countdown-tick {
+  animation: countdown-tick 0.4s ease;
+}
+
+/* Animación 9 · sellos cayendo sobre el pasaporte (en bucle suave) */
+@keyframes stamp-drop-a {
+  0%, 30% { opacity: 0.001; transform: rotate(30deg) scale(2); }
+  45% { opacity: 1; transform: rotate(6deg) scale(0.92); }
+  52%, 100% { opacity: 1; transform: rotate(8deg) scale(1); }
+}
+@keyframes stamp-drop-b {
+  0%, 60% { opacity: 0.001; transform: rotate(-30deg) scale(2); }
+  75% { opacity: 1; transform: rotate(-10deg) scale(0.92); }
+  82%, 100% { opacity: 1; transform: rotate(-12deg) scale(1); }
+}
+.stamp-drop-a {
+  animation: stamp-drop-a 5s cubic-bezier(0.2, 0.8, 0.2, 1) infinite both;
+}
+.stamp-drop-b {
+  animation: stamp-drop-b 5s cubic-bezier(0.2, 0.8, 0.2, 1) infinite both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .road-dash,
   .btn-lift,
   .cloud-drift,
-  .cloud-drift-slow {
+  .cloud-drift-slow,
+  .hero-float,
+  .motion-armed.motion-visible,
+  .speaker-tag:hover .stamp-mark,
+  .speaker-tag:focus-within .stamp-mark,
+  .countdown-tick,
+  .stamp-drop-a,
+  .stamp-drop-b {
     animation: none;
     transition: none;
+  }
+  /* El avión del cronograma es SVG/SMIL, no CSS: se oculta por completo
+     en vez de animarlo (animación 2b). */
+  .motion-plane {
+    display: none;
   }
 }

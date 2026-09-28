@@ -1,7 +1,34 @@
 ---
 import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+import Hero from "../components/Hero.astro";
+import Cronograma from "../components/Cronograma.astro";
+import Ponentes from "../components/Ponentes.astro";
+import Stands from "../components/Stands.astro";
+import PasaporteSeccion from "../components/PasaporteSeccion.astro";
+import PaseAbordaje from "../components/PaseAbordaje.astro";
+import Faq from "../components/Faq.astro";
+import CtaFinal from "../components/CtaFinal.astro";
+import DockMovil from "../components/DockMovil.astro";
+import RoadDivider from "../components/ui/RoadDivider.astro";
 ---
 
-<Base title="Study Abroad Fest 2026" description="Becas, intercambios y universidades del mundo en una sola mañana.">
-  <p>Study Abroad Fest 2026 · en construcción.</p>
+<Base
+  title="Study Abroad Fest 2026"
+  description="Becas, intercambios y universidades del mundo en una sola mañana. Sábado 10 de octubre, Convention Center UTP, Lima."
+>
+  <Nav />
+  <Hero />
+  <RoadDivider />
+  <Cronograma />
+  <Ponentes />
+  <Stands />
+  <PasaporteSeccion />
+  <PaseAbordaje>
+    <Faq />
+  </PaseAbordaje>
+  <CtaFinal />
+  {/* Reserva el espacio del dock fijo para que no tape el footer en celular. */}
+  <div class="h-[68px] lg:hidden" aria-hidden="true"></div>
+  <DockMovil />
 </Base>
