@@ -1,0 +1,63 @@
+---
+// Botón de marca (design/canvas/Main.dc.html): pastilla con borde grueso,
+// sombra de "papel levantado" y la animación 5 (se levanta al hover, se
+// hunde al clic) vía la clase global .btn-lift.
+//
+// Variantes:
+// - "gradient": degradado magenta→violeta + borde blanco (CTA principal, p. ej. "Inscríbete gratis")
+// - "outline":  transparente + borde blanco (sobre fondo celeste, p. ej. nav y "Agregar a mi calendario")
+// - "solid":    fondo blanco + texto ink (p. ej. "Agregar cierres a mi calendario")
+interface Props {
+  href?: string;
+  variant?: "gradient" | "outline" | "solid";
+  size?: "sm" | "md" | "lg";
+  block?: boolean;
+  class?: string;
+  type?: "button" | "submit" | "reset";
+}
+
+const {
+  href,
+  variant = "gradient",
+  size = "md",
+  block = false,
+  class: className,
+  type = "button",
+} = Astro.props;
+
+const base =
+  "btn-lift inline-flex items-center justify-center gap-2.5 rounded-full no-underline";
+
+const variants: Record<string, string> = {
+  gradient:
+    "bg-brand-gradient font-display text-paper border-4 border-paper shadow-[0_6px_0_rgba(29,33,82,.16),0_14px_28px_-12px_rgba(29,33,82,.35)]",
+  outline:
+    "bg-transparent font-sans font-extrabold text-paper border-[3px] border-paper",
+  solid:
+    "bg-paper font-sans font-extrabold text-ink shadow-[0_5px_0_rgba(29,33,82,.16)]",
+};
+
+const sizes: Record<string, string> = {
+  sm: variant === "gradient" ? "text-lg px-6 py-3" : "text-sm px-5 py-2.5",
+  md:
+    variant === "gradient"
+      ? "text-[21px] px-[26px] pt-[15px] pb-[13px]"
+      : "text-[17px] px-[22px] py-[14px]",
+  lg:
+    variant === "gradient"
+      ? "text-[22px] px-[30px] pt-4 pb-[14px]"
+      : "text-[18px] px-7 py-4",
+};
+
+const classes = [base, variants[variant], sizes[size], block ? "w-full" : "", className]
+  .filter(Boolean)
+  .join(" ");
+
+const Tag = href ? "a" : "button";
+---
+
+<Tag class={classes} href={href} type={href ? undefined : type}>
+  <slot name="icon-start" />
+  <slot />
+  <slot name="icon-end" />
+</Tag>

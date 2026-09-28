@@ -1,0 +1,37 @@
+---
+// Sello tipo pasaporte (design/canvas/Main.dc.html): la etiqueta de país en
+// las tarjetas de ponentes ("MX", "US"...). La forma "circulo" replica el
+// sello redondo más grande usado en el canje ("APROBADO", Canje-Mobile.dc.html).
+// La animación de "golpe" al hover (animación 4) se agrega junto con el
+// componente de ponentes, que es quien dispara el hover sobre este sello.
+interface Props {
+  shape?: "etiqueta" | "circulo";
+  color?: string;
+  rotate?: string;
+  size?: number;
+  class?: string;
+}
+
+const {
+  shape = "etiqueta",
+  color = "#AC0BAD",
+  rotate = shape === "circulo" ? "-12deg" : "-8deg",
+  size = 92,
+  class: className,
+} = Astro.props;
+
+const isCirculo = shape === "circulo";
+---
+
+<span
+  class={[
+    "saf-stampmark inline-flex items-center justify-center text-center font-mono font-semibold bg-[rgba(253,254,252,.9)]",
+    isCirculo ? "rounded-full leading-tight" : "rounded-md leading-none",
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ")}
+  style={`color:${color};border:${isCirculo ? 4 : 2}px solid ${color};transform:rotate(${rotate});font-size:${isCirculo ? 11 : 13}px;padding:${isCirculo ? "0" : "2px 7px"};${isCirculo ? `width:${size}px;height:${size}px;white-space:pre-line` : ""}`}
+>
+  <slot />
+</span>

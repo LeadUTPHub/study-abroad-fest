@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colores de marca (ver CLAUDE.md · Identidad visual) */
+  --color-sky: #3B99D8;
+  --color-sky-deep: #2F86C4;
+  --color-sky-soft: #CFE6F6;
+  --color-magenta: #AC0BAD;
+  --color-violet: #6258BB;
+  --color-paper: #FDFEFC;
+  --color-paper-2: #F1F3FA;
+  --color-road: #525F97;
+  --color-lav: #ABAEC8;
+  --color-ink: #1D2152;
+  --color-ink-2: #4A507C;
+
+  /* Tipografías (self-hosted con @fontsource) */
+  --font-display: "Lilita One", sans-serif;
+  --font-sans: "Figtree", "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+}
+
+@layer base {
+  body {
+    background: var(--color-sky);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+}
+
+@layer utilities {
+  /* Degradado de marca: para botones y el recuadro "FEST" */
+  .bg-brand-gradient {
+    background: linear-gradient(100deg, var(--color-magenta), var(--color-violet));
+  }
+}
+
+/*
+  Guía de animaciones (design/canvas/Animaciones.dc.html).
+  Curva base: cubic-bezier(.2, .8, .2, 1). Fase 1 implementa las
+  animaciones 2 (camino), 5 (botón) y 6 (nubes). El resto se agrega
+  junto con los componentes que las usan.
+*/
+
+/* Animación 2 · líneas del camino en movimiento (divisores y cronograma) */
+@keyframes road-dash-roll {
+  to { stroke-dashoffset: -36; }
+}
+.road-dash {
+  stroke-dasharray: 18 18;
+  animation: road-dash-roll 1.6s linear infinite;
+}
+
+/* Animación 5 · botón que se levanta (hover) y se hunde (clic) */
+.btn-lift {
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.btn-lift:hover {
+  transform: translateY(-3px) rotate(-1deg);
+}
+.btn-lift:active {
+  transform: translateY(1px) rotate(0deg);
+}
+
+/* Animación 6 · nubes a la deriva (hero, calendario, cierre) */
+@keyframes cloud-drift {
+  from { transform: translateX(0); }
+  to { transform: translateX(34px); }
+}
+.cloud-drift {
+  animation: cloud-drift 9s ease-in-out infinite alternate;
+}
+.cloud-drift-slow {
+  animation: cloud-drift 13s ease-in-out infinite alternate-reverse;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .road-dash,
+  .btn-lift,
+  .cloud-drift,
+  .cloud-drift-slow {
+    animation: none;
+    transition: none;
+  }
+}

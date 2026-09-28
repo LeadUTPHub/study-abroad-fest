@@ -1,0 +1,38 @@
+---
+// Divisor de camino ondulado entre secciones (design/canvas/Main.dc.html).
+// El camino gris con la línea blanca discontinua avanza siempre
+// (animación 2, clase global .road-dash).
+interface Props {
+  /** Color de la sección que empieza justo debajo del camino. */
+  fill?: string;
+  /** Color del camino (asfalto). */
+  road?: string;
+  class?: string;
+}
+
+const { fill = "#FDFEFC", road = "#525F97", class: className } = Astro.props;
+---
+
+<svg
+  class={className}
+  width="1440"
+  height="130"
+  viewBox="0 0 1440 130"
+  preserveAspectRatio="none"
+  style="display: block; width: 100%; height: auto"
+  role="presentation"
+  aria-hidden="true"
+>
+  <path d="M0 70 C 240 20, 420 120, 720 70 S 1200 20, 1440 70 L1440 130 L0 130 Z" fill={fill}></path>
+  <path d="M0 60 C 240 10, 420 110, 720 60 S 1200 10, 1440 60" fill="none" stroke={road} stroke-width="38"></path>
+  <path
+    class="road-dash"
+    d="M0 60 C 240 10, 420 110, 720 60 S 1200 10, 1440 60"
+    fill="none"
+    stroke="#FDFEFC"
+    stroke-width="4"
+    stroke-linecap="round"
+  ></path>
+  <path d="M0 39 C 240 -11, 420 89, 720 39 S 1200 -11, 1440 39" fill="none" stroke="#FDFEFC" stroke-width="5"></path>
+  <path d="M0 81 C 240 31, 420 131, 720 81 S 1200 31, 1440 81" fill="none" stroke="#FDFEFC" stroke-width="5"></path>
+</svg>

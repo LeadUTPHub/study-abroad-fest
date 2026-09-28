@@ -1,0 +1,45 @@
+---
+// Marcador circular de "parada" sobre el camino del cronograma
+// (design/canvas/Main.dc.html). Lleva un número (parada normal) o el
+// ícono de pin (última parada, "tu siguiente parada").
+//
+// Variantes:
+// - "gradient" (default): degradado magenta→violeta, paradas presenciales
+// - "accent":  azul sólido, paradas vía Zoom
+// - "ghost":   blanco con borde discontinuo violeta, parada final / CTA
+interface Props {
+  number?: string | number;
+  variant?: "gradient" | "accent" | "ghost";
+  size?: number;
+  class?: string;
+}
+
+const { number, variant = "gradient", size = 58, class: className } = Astro.props;
+
+const border = variant === "ghost" ? "border-[5px] border-dashed border-violet" : "border-[5px] border-paper";
+const bg =
+  variant === "gradient"
+    ? "bg-brand-gradient text-paper"
+    : variant === "accent"
+      ? "bg-sky-deep text-paper"
+      : "bg-paper text-violet";
+const shadow = variant === "ghost" ? "" : "shadow-[0_4px_0_rgba(29,33,82,.2)]";
+---
+
+<div
+  class={["relative z-10 grid place-items-center rounded-full", border, bg, shadow, className]
+    .filter(Boolean)
+    .join(" ")}
+  style={`width:${size}px;height:${size}px`}
+>
+  {
+    number !== undefined ? (
+      <b class="font-display text-2xl font-normal leading-none">{number}</b>
+    ) : (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 21s-7-6.1-7-11.5a7 7 0 0 1 14 0C19 14.9 12 21 12 21z"></path>
+        <circle cx="12" cy="9.5" r="2.5"></circle>
+      </svg>
+    )
+  }
+</div>
