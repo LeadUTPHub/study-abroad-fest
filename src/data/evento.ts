@@ -12,6 +12,9 @@ const evento: Evento = EventoSchema.parse({
   inscripcionPrevia: true,
   lumaUrl: "https://luma.com/txyuybq9?tk=pwCvrY",
   organizadores: ["LEAD UTP · Pilar de Excelencia Académica", "UTP Internacional"],
+  // Pendiente (PLAN.md, sección 8): a quién escribir si alguien pierde su
+  // código de canje después del evento.
+  contactoSoporte: null,
   estado: "confirmado",
 } satisfies Evento);
 

@@ -32,6 +32,10 @@ export const EventoSchema = z.object({
   inscripcionPrevia: z.boolean(),
   lumaUrl: z.url(),
   organizadores: z.array(z.string()).min(1),
+  /** Contacto para códigos de canje perdidos después del evento (PLAN.md,
+   *  sección 4 y sección 8: "Contacto para códigos perdidos..."). null
+   *  hasta que el equipo lo confirme. */
+  contactoSoporte: z.string().nullable(),
   estado: EstadoSchema,
 });
 export type Evento = z.infer<typeof EventoSchema>;

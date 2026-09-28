@@ -1,18 +1,19 @@
 ---
 // Fase 4: PDF del calendario de becas (design/canvas/Calendario-P1.dc.html
-// y Calendario-P2.dc.html), replicado en A4. `scripts/pdf.ts` construye el
-// sitio y corre `astro preview` LOCALMENTE (sin la variable de entorno
-// VERCEL) para imprimir esta ruta a `private/calendario-becas-saf2026.pdf`
-// con Playwright.
+// y Calendario-P2.dc.html), replicado en A4. `scripts/pdf.ts` corre
+// `astro dev` LOCALMENTE para imprimir esta ruta a
+// `private/calendario-becas-saf2026.pdf` con Playwright.
 //
 // Contenido protegido (CLAUDE.md, regla 10): esta página muestra fechas
-// de cierre y enlaces oficiales de las convocatorias. Por eso, además de
-// noindex, se bloquea por completo cuando el build corre en Vercel
-// (proceso.env.VERCEL, presente tanto en build como en runtime): el HTML
-// que termina desplegado nunca contiene el contenido protegido, sea cual
-// sea el estado de los datos. Solo un build LOCAL (el que hace
-// `npm run pdf`) produce la página completa, y ese resultado nunca se
-// despliega: se queda en el PDF de `private/`.
+// de cierre y enlaces oficiales de las convocatorias, así que además de
+// noindex queda bloqueada por completo en producción (404 real) en
+// cuanto detecta la variable de entorno VERCEL (presente tanto en build
+// como en runtime de Vercel, nunca en una máquina local). Desde que
+// mi-calendario.astro y api/* existen (Fase 5), el sitio entero corre en
+// modo "server" y @astrojs/vercel ya no soporta `astro preview` para
+// nada, así que no hay ninguna razón para mantener esta ruta
+// prerenderizada: on-demand da un 404 de verdad, sin parchear el
+// config.json del adaptador.
 import "../../styles/global.css";
 import "@fontsource/lilita-one/400.css";
 import "@fontsource/figtree/400.css";
@@ -28,17 +29,10 @@ import stands from "../../data/stands";
 import { formatoFechaCorta } from "../../lib/fechas";
 import { qrSvg } from "../../lib/qr";
 
-// No lleva `export const prerender = false`: el adaptador @astrojs/vercel
-// no soporta `astro preview` en cuanto el sitio tiene alguna ruta on-demand
-// ("The @astrojs/vercel adapter does not support the preview command"),
-// y `scripts/pdf.ts` depende de `astro preview` (ver PLAN.md, Fase 4). Por
-// eso esta página se queda prerenderizada, y el bloqueo real en Vercel se
-// completa con la regla que agrega scripts/bloquear-imprimir-en-vercel.mjs
-// después del build (Astro no traduce `Astro.response.status` a un status
-// real para páginas estáticas, solo para redirects 3xx).
-const bloqueado = Boolean(process.env.VERCEL);
-if (bloqueado) {
-  Astro.response.status = 404;
+export const prerender = false;
+
+if (process.env.VERCEL) {
+  return new Response(null, { status: 404 });
 }
 
 const anio = evento.fecha.slice(0, 4);
@@ -58,14 +52,12 @@ const fechaCorta = (iso: string) => {
   return `${d}/${m}/${y.slice(2)}`;
 };
 
-const filas = bloqueado
-  ? []
-  : await Promise.all(
-      postulaciones.map(async (p) => ({
-        p,
-        qr: p.urlOficial ? await qrSvg(p.urlOficial) : null,
-      })),
-    );
+const filas = await Promise.all(
+  postulaciones.map(async (p) => ({
+    p,
+    qr: p.urlOficial ? await qrSvg(p.urlOficial) : null,
+  })),
+);
 
 const institucionesUnicas = [...new Set(postulaciones.map((p) => p.institucion))];
 const confirmadasConFecha = postulaciones
@@ -94,12 +86,8 @@ const standsConfirmados = stands.filter((s) => s.estado === "confirmado");
     <title>Calendario de becas · Imprimir</title>
   </head>
   <body>
-    {
-      bloqueado ? (
-        <p>Not found.</p>
-      ) : (
-        <>
-          <!-- Página 1 -->
+    <>
+      <!-- Página 1 -->
           <section class="pagina flex flex-col bg-paper text-ink">
             <div class="relative h-[300px] shrink-0 bg-sky px-12 pt-11 text-paper">
               <div class="cloud-drift absolute right-[60px] top-[46px] h-8 w-[110px] rounded-full bg-paper opacity-90"></div>
@@ -269,8 +257,6 @@ const standsConfirmados = stands.filter((s) => s.estado === "confirmado");
             </div>
           </section>
         </>
-      )
-    }
     <style>
       @page {
         size: A4;

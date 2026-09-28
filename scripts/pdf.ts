@@ -1,9 +1,16 @@
-// PLAN.md, Fase 4: build -> astro preview -> imprime /calendario/imprimir
-// a private/calendario-becas-saf2026.pdf con Playwright, y cierra.
+// PLAN.md, Fase 4: astro dev -> imprime /calendario/imprimir a
+// private/calendario-becas-saf2026.pdf con Playwright, y cierra.
+//
+// Usa `astro dev` y no `astro preview`: desde la Fase 5 (mi-calendario y
+// api/* corren en el servidor) el sitio pasó a modo "server" y el
+// adaptador @astrojs/vercel ya no soporta el comando preview ("The
+// @astrojs/vercel adapter does not support the preview command"). No hace
+// falta `npm run build` antes: `astro dev` sirve calendario/imprimir.astro
+// directamente.
 //
 // Corre SIEMPRE localmente (nunca en Vercel): src/pages/calendario/imprimir.astro
 // se bloquea a sí misma (404) cuando detecta la variable de entorno
-// VERCEL, así que solo un build en esta máquina produce la página
+// VERCEL, así que solo un servidor en esta máquina sirve la página
 // completa que este script necesita imprimir.
 import { spawn, type ChildProcess } from "node:child_process";
 import { mkdir } from "node:fs/promises";
@@ -22,36 +29,31 @@ const NPM = "npm";
 // de inyección pese al shell.
 const CON_SHELL = process.platform === "win32";
 
-function ejecutar(args: string[]): Promise<void> {
-  return new Promise((resolve, reject) => {
-    const proc = spawn(NPM, args, { stdio: "inherit", shell: CON_SHELL });
-    proc.on("error", reject);
-    proc.on("exit", (codigo) => {
-      if (codigo === 0) resolve();
-      else reject(new Error(`"npm ${args.join(" ")}" salió con código ${codigo}`));
-    });
+function lanzarDev(): ChildProcess {
+  // --force: Astro solo permite un `astro dev` a la vez (por PID, no por
+  // puerto), así que sin esto el script fallaría cada vez que ya hay un
+  // `astro dev` abierto en otra terminal (el caso normal de trabajo).
+  return spawn(NPM, ["run", "dev", "--", "--port", String(PUERTO), "--force"], {
+    stdio: "inherit",
+    shell: CON_SHELL,
   });
-}
-
-function lanzarPreview(): ChildProcess {
-  return spawn(NPM, ["run", "preview", "--", "--port", String(PUERTO)], { stdio: "inherit", shell: CON_SHELL });
 }
 
 /**
  * Con `shell: true` en Windows, `child.kill()` solo mata el cmd.exe
- * envoltorio, no a npm ni a "astro preview" (quedan huérfanos con el
- * puerto abierto). `taskkill /t` sí mata todo el árbol de procesos.
+ * envoltorio, no a npm ni a "astro dev" (quedan huérfanos con el puerto
+ * abierto). `taskkill /t` sí mata todo el árbol de procesos.
  */
-function detenerPreview(preview: ChildProcess): Promise<void> {
+function detenerDev(dev: ChildProcess): Promise<void> {
   return new Promise((resolve) => {
-    if (preview.pid === undefined || preview.exitCode !== null) return resolve();
+    if (dev.pid === undefined || dev.exitCode !== null) return resolve();
     if (process.platform === "win32") {
-      spawn("taskkill", ["/pid", String(preview.pid), "/t", "/f"], { stdio: "ignore", shell: true }).on(
+      spawn("taskkill", ["/pid", String(dev.pid), "/t", "/f"], { stdio: "ignore", shell: true }).on(
         "exit",
         () => resolve(),
       );
     } else {
-      preview.kill("SIGTERM");
+      dev.kill("SIGTERM");
       resolve();
     }
   });
@@ -73,12 +75,9 @@ async function esperarServidor(url: string, intentos = 40): Promise<void> {
 async function main() {
   await mkdir(path.dirname(SALIDA), { recursive: true });
 
-  console.log("→ npm run build");
-  await ejecutar(["run", "build"]);
-
-  console.log("→ npm run preview");
-  const preview = lanzarPreview();
-  preview.on("error", (err) => {
+  console.log("→ npm run dev");
+  const dev = lanzarDev();
+  dev.on("error", (err) => {
     throw err;
   });
 
@@ -107,7 +106,7 @@ async function main() {
 
     console.log(`✓ PDF generado en ${SALIDA}`);
   } finally {
-    await detenerPreview(preview);
+    await detenerDev(dev);
   }
 }
 

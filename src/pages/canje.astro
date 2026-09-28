@@ -1,0 +1,19 @@
+---
+// Estática (PLAN.md, sección 3): la validación real ocurre en
+// POST /api/canje (on-demand). Mobile primero (design/canvas/Canje-Mobile.dc.html).
+import Base from "../layouts/Base.astro";
+import FormCodigo from "../components/canje/FormCodigo.astro";
+---
+
+<Base title="Canjea tu código · Study Abroad Fest" description="Canjea el código de tu pasaporte y desbloquea el Calendario de becas.">
+  <div class="min-h-screen bg-sky">
+    <header class="flex items-center justify-between px-4 py-4 text-paper sm:px-6">
+      <div class="flex items-center gap-2 text-sm font-extrabold">
+        <span>LEAD</span>
+        <span class="rounded-md bg-paper px-1.5 py-0.5 font-display text-sky-deep tracking-[.08em]">UTP</span>
+      </div>
+      <span class="font-mono text-[11px] font-semibold uppercase tracking-[.12em]">Canje · SAF 2026</span>
+    </header>
+    <FormCodigo />
+  </div>
+</Base>

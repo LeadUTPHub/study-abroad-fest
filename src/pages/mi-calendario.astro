@@ -1,0 +1,21 @@
+---
+// Servidor (PLAN.md, sección 3 y CLAUDE.md, convenciones técnicas: junto
+// con api/* es de las pocas rutas que corren en Vercel Functions). Sin
+// cookie válida, redirige a /canje.
+export const prerender = false;
+
+import Base from "../layouts/Base.astro";
+import CalendarioDesbloqueado from "../components/canje/CalendarioDesbloqueado.astro";
+import { COOKIE_SESION, verificarSesion } from "../server/canje";
+
+const sesion = verificarSesion(Astro.cookies.get(COOKIE_SESION)?.value);
+if (!sesion.valida) {
+  return Astro.redirect("/canje");
+}
+---
+
+<Base title="Mi calendario de becas · Study Abroad Fest" description="Tu Calendario de becas desbloqueado.">
+  <div class="min-h-screen bg-sky">
+    <CalendarioDesbloqueado ultimos4={sesion.ultimos4} />
+  </div>
+</Base>

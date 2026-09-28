@@ -1,0 +1,52 @@
+---
+// Tarjeta-acordeón de una convocatoria en /mi-calendario
+// (design/canvas/Canje-Mobile.dc.html). Acordeón nativo <details>, sin JS.
+import type { Postulacion, Tip } from "../../data/schema";
+import { formatoFechaCorta } from "../../lib/fechas";
+
+interface Props {
+  postulacion: Postulacion;
+  tip?: Tip;
+}
+
+const { postulacion, tip } = Astro.props;
+const tipsConfirmados = tip && tip.estado === "confirmado" ? tip.tips : null;
+---
+
+<details class="group rounded-2xl bg-paper shadow-[0_5px_0_rgba(29,33,82,.14)]">
+  <summary class="grid cursor-pointer list-none grid-cols-[52px_minmax(0,1fr)_24px] items-center gap-3 p-4 text-ink marker:content-none">
+    <span class="w-fit -rotate-6 rounded-md border-2 border-magenta px-1.5 py-0.5 font-mono text-[13px] font-semibold text-magenta">
+      {postulacion.codigoPais}
+    </span>
+    <span class="flex flex-col gap-0.5">
+      <span class="text-[17px] font-extrabold">{postulacion.programa}</span>
+      <span class="font-mono text-[13px] font-semibold text-violet">
+        Cierre {postulacion.cierre ? formatoFechaCorta(postulacion.cierre) : "por confirmar"}
+      </span>
+    </span>
+    <span class="font-display text-2xl text-magenta group-open:hidden">+</span>
+    <span class="hidden font-display text-2xl text-magenta group-open:inline">–</span>
+  </summary>
+  <div class="flex flex-col gap-2.5 px-4 pb-4.5">
+    {tipsConfirmados ? (
+      <>
+        <div class="font-mono text-xs font-semibold uppercase tracking-[.12em] text-ink-2">
+          Tips de {postulacion.institucion}
+        </div>
+        {tipsConfirmados.map((texto, i) => (
+          <div class="grid grid-cols-[22px_minmax(0,1fr)] gap-2 text-[15px] leading-relaxed">
+            <span class="font-extrabold text-magenta">{i + 1}</span>
+            <span>{texto}</span>
+          </div>
+        ))}
+      </>
+    ) : (
+      <p class="m-0 text-sm text-ink-2">Los tips de esta convocatoria se publican pronto.</p>
+    )}
+    {postulacion.urlOficial && (
+      <a href={postulacion.urlOficial} target="_blank" rel="noopener" class="font-extrabold text-[15px] text-violet">
+        Ir a la web oficial ↗
+      </a>
+    )}
+  </div>
+</details>

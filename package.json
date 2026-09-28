@@ -11,6 +11,8 @@
     "preview": "astro preview",
     "check": "astro check",
     "pdf": "tsx scripts/pdf.ts",
+    "codigos": "tsx scripts/codigos.ts",
+    "test": "vitest run",
     "astro": "astro"
   },
   "dependencies": {
@@ -19,7 +21,9 @@
     "@fontsource/ibm-plex-mono": "^5.3.0",
     "@fontsource/lilita-one": "^5.3.0",
     "@tailwindcss/vite": "^4.3.3",
+    "@upstash/redis": "^1.39.0",
     "astro": "^7.3.5",
+    "ics": "^3.12.0",
     "qrcode": "^1.5.4",
     "tailwindcss": "^4.3.3",
     "zod": "^4.6.5"
@@ -32,6 +36,7 @@
     "@types/qrcode": "^1.5.6",
     "playwright": "^1.63.0",
     "tsx": "^4.23.15",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.2"
   }
 }

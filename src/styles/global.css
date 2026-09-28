@@ -142,6 +142,28 @@
   animation: stamp-drop-b 5s cubic-bezier(0.2, 0.8, 0.2, 1) infinite both;
 }
 
+/* Animación 10 · sello "APROBADO" que cae al desbloquear (/mi-calendario) */
+@keyframes approved-stamp-drop {
+  0% { opacity: 0.001; transform: rotate(-30deg) scale(2.2); }
+  60% { opacity: 1; transform: rotate(-10deg) scale(0.92); }
+  100% { opacity: 1; transform: rotate(-12deg) scale(1); }
+}
+.approved-stamp {
+  animation: approved-stamp-drop 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* Animación 11 · campo que tiembla con código inválido (/canje) */
+@keyframes field-shake {
+  0%, 100% { transform: none; }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(7px); }
+  60% { transform: translateX(-5px); }
+  80% { transform: translateX(3px); }
+}
+.field-shake {
+  animation: field-shake 0.4s ease;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .road-dash,
   .btn-lift,
@@ -153,7 +175,9 @@
   .speaker-tag:focus-within .stamp-mark,
   .countdown-tick,
   .stamp-drop-a,
-  .stamp-drop-b {
+  .stamp-drop-b,
+  .approved-stamp,
+  .field-shake {
     animation: none;
     transition: none;
   }
