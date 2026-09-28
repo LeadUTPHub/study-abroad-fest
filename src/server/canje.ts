@@ -38,7 +38,18 @@ export function momentoActivacion(): Date {
   return fechaHoraLima(evento.fecha, evento.horaInicio);
 }
 
+/**
+ * Para probar el canje antes del horario real (por ejemplo, el ensayo del
+ * 6 de octubre en PLAN.md, sección 6, o pruebas locales): con
+ * `CANJE_FORZAR_ACTIVO=true` en el entorno, el canje queda activo sin
+ * importar la fecha. Nunca funciona en Vercel (mismo resguardo que
+ * calendario/imprimir.astro), así que no hay forma de que quede activado
+ * por accidente en producción aunque alguien deje la variable puesta.
+ */
 export function canjeActivo(ahora: Date = new Date()): boolean {
+  if (!process.env.VERCEL && process.env.CANJE_FORZAR_ACTIVO === "true") {
+    return true;
+  }
   return ahora.getTime() >= momentoActivacion().getTime();
 }
 

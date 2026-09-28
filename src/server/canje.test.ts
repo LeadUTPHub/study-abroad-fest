@@ -114,4 +114,20 @@ describe("canjeActivo", () => {
     expect(canjeActivo(new Date("2026-10-10T19:00:00Z"))).toBe(true); // 14:00 -05:00 = 19:00 UTC
     expect(canjeActivo(new Date("2026-10-11T00:00:00Z"))).toBe(true);
   });
+
+  it("CANJE_FORZAR_ACTIVO=true fuerza el canje activo antes de la fecha, salvo en Vercel", () => {
+    const antes = new Date("2026-10-10T13:59:59-05:00");
+    process.env.CANJE_FORZAR_ACTIVO = "true";
+    try {
+      expect(canjeActivo(antes)).toBe(true);
+      process.env.VERCEL = "1";
+      try {
+        expect(canjeActivo(antes)).toBe(false);
+      } finally {
+        delete process.env.VERCEL;
+      }
+    } finally {
+      delete process.env.CANJE_FORZAR_ACTIVO;
+    }
+  });
 });

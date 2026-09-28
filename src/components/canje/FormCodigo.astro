@@ -10,12 +10,17 @@
 // tempranos: el servidor responde igual con el error correcto).
 import evento from "../../data/evento";
 import stands from "../../data/stands";
-import { momentoActivacion } from "../../server/canje";
+import { canjeActivo, momentoActivacion } from "../../server/canje";
 import { fechaHoraLima, formatoFechaCorta, formatoHora12 } from "../../lib/fechas";
 import Button from "../ui/Button.astro";
 import Sello from "../ui/Sello.astro";
 
-const activacionISO = momentoActivacion().toISOString();
+// Si CANJE_FORZAR_ACTIVO ya activó el canje en el servidor (ver
+// server/canje.ts), el aviso "Disponible el día del evento" del cliente
+// (que solo compara la hora real contra el reloj del navegador, sin saber
+// nada de esa variable) también debe dejar pasar: se le manda una fecha
+// de activación ya vencida en vez de la real.
+const activacionISO = canjeActivo() ? new Date(0).toISOString() : momentoActivacion().toISOString();
 const finEventoISO = fechaHoraLima(evento.fecha, evento.horaFin).toISOString();
 const standsConfirmados = stands.filter((s) => s.estado === "confirmado");
 // #2771A5 en vez de #2F86C4 (sky-deep): sobre el sello, ese azul más claro
