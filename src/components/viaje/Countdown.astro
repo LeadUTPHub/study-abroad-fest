@@ -1,0 +1,72 @@
+---
+// Cuenta regresiva del hero. Objetivo 2026-10-10T14:00:00-05:00, formato
+// días / horas / minutos, se actualiza cada 30 s y se detiene en 00.
+// Server-first: el HTML ya trae el valor calculado; el script solo lo
+// mantiene al día. Sin librerías.
+import evento from "../../data/evento";
+import { cuentaRegresiva } from "../../lib/fechas";
+import { pad2 } from "../../lib/viaje";
+
+const cuenta = cuentaRegresiva(evento.fecha, evento.horaInicio);
+const objetivo = `${evento.fecha}T${evento.horaInicio}:00-05:00`;
+const unidades = [
+  { key: "d", valor: cuenta.dias, label: "días" },
+  { key: "h", valor: cuenta.horas, label: "horas" },
+  { key: "m", valor: cuenta.minutos, label: "min" },
+] as const;
+---
+
+<div
+  data-countdown
+  data-target={objetivo}
+  role="timer"
+  aria-label="Cuenta regresiva para el despegue"
+  class="relative -rotate-3 rounded-2xl bg-paper px-4 pt-5 pb-2.5 shadow-[0_5px_0_rgb(29_33_82/0.16),0_12px_22px_-10px_rgb(29_33_82/0.35)] lg:-rotate-4 lg:rounded-[18px] lg:px-[22px] lg:pt-[22px] lg:pb-3.5 lg:shadow-[0_6px_0_rgb(29_33_82/0.16),0_14px_28px_-12px_rgb(29_33_82/0.35)]"
+>
+  <span
+    data-cd-label
+    class="absolute -top-[11px] left-3 rounded-[5px] bg-brand-gradient px-2 py-[3px] font-mono text-[10px] font-semibold tracking-[.12em] whitespace-nowrap text-paper uppercase lg:-top-[13px] lg:left-4 lg:rounded-md lg:px-2.5 lg:py-1 lg:text-xs lg:tracking-[.14em]"
+  >Despegamos en</span>
+  <div class="flex gap-3.5 [font-variant-numeric:tabular-nums] lg:gap-[18px]">
+    {unidades.map((u) => (
+      <div class="flex flex-col items-center">
+        <b data-cd={u.key} class="font-display text-[30px] leading-none font-normal text-violet lg:text-[40px]">{pad2(u.valor)}</b>
+        <span class="text-[10px] font-extrabold tracking-[.08em] text-ink-2 uppercase lg:text-xs">{u.label}</span>
+      </div>
+    ))}
+  </div>
+</div>
+
+<script>
+  const root = document.querySelector<HTMLElement>("[data-countdown]");
+  if (root) {
+    const objetivo = new Date(root.dataset.target ?? "").getTime();
+    const pad = (n: number) => String(n).padStart(2, "0");
+    const reducido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let timer = 0;
+
+    const actualizar = () => {
+      const total = Math.max(0, Math.floor((objetivo - Date.now()) / 60_000));
+      const valores = { d: pad(Math.floor(total / 1440)), h: pad(Math.floor((total % 1440) / 60)), m: pad(total % 60) };
+      (Object.keys(valores) as Array<keyof typeof valores>).forEach((k) => {
+        const el = root.querySelector<HTMLElement>(`[data-cd="${k}"]`);
+        if (!el || el.textContent === valores[k]) return;
+        el.textContent = valores[k];
+        if (!reducido) {
+          el.classList.remove("v-tickn");
+          void el.offsetWidth; // reinicia la animación
+          el.classList.add("v-tickn");
+        }
+      });
+      if (total === 0) {
+        clearInterval(timer);
+        // TODO(confirmar): texto tras la hora de inicio ("Ya estamos en vuelo" es una propuesta).
+        const label = root.querySelector("[data-cd-label]");
+        if (label) label.textContent = "Ya estamos en vuelo";
+        document.querySelectorAll("[data-live-badge]").forEach((b) => (b.textContent = "Ya estamos en vuelo"));
+      }
+    };
+    actualizar();
+    timer = window.setInterval(actualizar, 30_000);
+  }
+</script>

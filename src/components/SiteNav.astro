@@ -155,5 +155,15 @@ const linkBase =
       { rootMargin: "-40% 0px -55% 0px" },
     );
     targets.forEach((t) => io.observe(t.el));
+    // Sobre el hero (despegue) ningún enlace queda activo.
+    const hero = document.querySelector("#hero");
+    if (hero) {
+      new IntersectionObserver(
+        ([e]) => {
+          if (e?.isIntersecting) targets.forEach((t) => t.a.removeAttribute("aria-current"));
+        },
+        { rootMargin: "0px 0px -60% 0px" },
+      ).observe(hero);
+    }
   }
 </script>

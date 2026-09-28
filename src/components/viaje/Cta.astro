@@ -1,0 +1,23 @@
+---
+// Botón del concepto Viaje: brillo diagonal + elevación al hover (.v-btn).
+// "primary" = degradado con borde paper; "outline" = borde paper transparente.
+interface Props {
+  href: string;
+  variant?: "primary" | "outline";
+  class?: string;
+}
+const { href, variant = "primary", class: className } = Astro.props;
+
+const variants = {
+  primary:
+    "bg-brand-gradient border-4 border-paper font-display text-paper shadow-[0_6px_0_rgb(29_33_82/0.16),0_14px_28px_-12px_rgb(29_33_82/0.35)]",
+  outline: "border-[3px] border-paper font-extrabold text-paper",
+} as const;
+---
+
+<a
+  href={href}
+  class:list={["v-btn inline-flex items-center justify-center gap-2.5 rounded-full no-underline", variants[variant], className]}
+>
+  <slot />
+</a>
