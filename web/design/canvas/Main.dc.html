@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Study Abroad Fest · Desktop</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&amp;family=Figtree:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@500;600&amp;display=swap">
+<style>
+body{margin:0;font-family:"Figtree","Segoe UI",sans-serif;color:#1D2152;background:#3B99D8}
+a{color:#6258BB}a:hover{color:#AC0BAD}
+@keyframes saf-float{0%,100%{transform:rotate(2.5deg) translateY(0)}50%{transform:rotate(1.2deg) translateY(-10px)}}
+@keyframes saf-drift{from{transform:translateX(0)}to{transform:translateX(34px)}}
+@keyframes saf-roll{to{stroke-dashoffset:-36}}
+@keyframes saf-pop{0%{opacity:.001;transform:translateY(18px) rotate(-2deg) scale(.96)}70%{transform:translateY(-3px) rotate(.4deg) scale(1.01)}100%{opacity:1;transform:none}}
+@keyframes saf-stamp{0%{transform:rotate(-8deg) scale(1)}40%{transform:rotate(-14deg) scale(1.35)}100%{transform:rotate(-8deg) scale(1)}}
+@keyframes saf-pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,227,107,.55)}50%{box-shadow:0 0 0 8px rgba(255,227,107,0)}}
+@keyframes saf-tick{0%{transform:translateY(-6px);opacity:.3}100%{transform:none;opacity:1}}
+.saf-float{animation:saf-float 7s ease-in-out infinite}
+.saf-drift{animation:saf-drift 9s ease-in-out infinite alternate}
+.saf-drift-slow{animation:saf-drift 13s ease-in-out infinite alternate-reverse}
+.saf-dash{stroke-dasharray:18 18;animation:saf-roll 1.6s linear infinite}
+.saf-pop{animation:saf-pop .7s cubic-bezier(.2,.8,.2,1) both}
+.saf-d1{animation-delay:.1s}.saf-d2{animation-delay:.25s}.saf-d3{animation-delay:.4s}.saf-d4{animation-delay:.55s}.saf-d5{animation-delay:.7s}.saf-d6{animation-delay:.85s}
+.saf-btn{transition:transform .18s ease,box-shadow .18s ease}
+.saf-btn:hover{transform:translateY(-3px) rotate(-1deg);box-shadow:0 9px 0 rgba(29,33,82,.2),0 18px 30px -12px rgba(29,33,82,.45)}
+.saf-tag{transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+.saf-tag:hover{transform:rotate(0deg) translateY(-8px) !important}
+.saf-tag:hover .saf-stampmark{animation:saf-stamp .45s ease}
+.saf-live{animation:saf-pulse 2s ease-in-out infinite}
+.saf-tickn{animation:saf-tick .4s ease both}
+.saf-row{transition:background .2s ease}
+.saf-row:hover{background:#F1F3FA}
+@media (prefers-reduced-motion:reduce){.saf-float,.saf-drift,.saf-drift-slow,.saf-dash,.saf-pop,.saf-live,.saf-tickn{animation:none}}
+</style>
+</helmet>
+<div style="width: 1440px; height: 6160px; display: flex; flex-direction: column; background: #3B99D8; overflow: hidden; position: relative">
+
+  <!-- NAV -->
+  <header style="height: 88px; padding: 0 120px; display: flex; align-items: center; justify-content: space-between; box-sizing: border-box">
+    <div style="display: flex; align-items: center; gap: 12px; color: #FDFEFC; font-weight: 800; font-size: 18px; letter-spacing: .02em">
+      <span>LEAD</span>
+      <span style="background: #FDFEFC; color: #2F86C4; font-family: 'Lilita One', sans-serif; padding: 3px 9px 1px; border-radius: 5px; letter-spacing: .08em">UTP</span>
+      <span style="font-weight: 600; font-size: 15px; opacity: .9">Pilar de Excelencia Académica</span>
+    </div>
+    <nav style="display: flex; align-items: center; gap: 28px; font-weight: 700; font-size: 16px">
+      <a href="#cronograma" style="color: #FDFEFC; text-decoration: none">Cronograma</a>
+      <a href="#ponentes" style="color: #FDFEFC; text-decoration: none">Ponentes</a>
+      <a href="#stands" style="color: #FDFEFC; text-decoration: none">Stands</a>
+      <a href="#calendario" style="color: #FDFEFC; text-decoration: none">Calendario de becas</a>
+      <a href="#llegar" style="color: #FDFEFC; text-decoration: none">Cómo llegar</a>
+      <a class="saf-btn" href="https://luma.com/txyuybq9?tk=pwCvrY" style="color: #FDFEFC; text-decoration: none; border: 3px solid #FDFEFC; border-radius: 999px; padding: 10px 20px">Inscríbete gratis</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section style="height: 720px; position: relative; padding: 40px 120px 0; box-sizing: border-box; display: grid; grid-template-columns: 1.05fr .95fr; gap: 64px; align-items: center">
+    <div class="saf-drift" style="position: absolute; left: 60px; top: 30px; width: 170px; height: 46px; background: #FDFEFC; border-radius: 999px; opacity: .9"></div>
+    <div class="saf-drift-slow" style="position: absolute; left: 640px; top: 560px; width: 120px; height: 36px; background: #FDFEFC; border-radius: 999px; opacity: .7"></div>
+    <div style="display: flex; flex-direction: column; gap: 24px; position: relative">
+      <span style="align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; background: rgba(29,33,82,.22); color: #FDFEFC; font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; padding: 8px 16px; border-radius: 999px">
+        <span class="saf-live" style="width: 9px; height: 9px; border-radius: 50%; background: #FFE36B"></span>Feria de oportunidades internacionales
+      </span>
+      <h1 style="margin: 0; font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 104px; line-height: .98; color: #FDFEFC; text-shadow: 0 6px 0 rgba(29,33,82,.22)">Study Abroad<br><span style="display: inline-block; margin-top: 12px; font-size: 66px; letter-spacing: .08em; background: linear-gradient(100deg,#AC0BAD,#6258BB); border: 6px solid #FDFEFC; border-radius: 16px; padding: 4px 34px 0; transform: rotate(-2.5deg); box-shadow: 0 6px 0 rgba(29,33,82,.16),0 14px 28px -12px rgba(29,33,82,.35); text-shadow: none">FEST</span></h1>
+      <p style="margin: 0; color: #FDFEFC; font-size: 24px; font-weight: 700; line-height: 1.35; max-width: 30ch">Becas, intercambios y universidades del mundo en una sola tarde. Sal con tu siguiente paso claro.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px">
+        <span style="background: #FDFEFC; font-weight: 800; font-size: 16px; padding: 9px 15px; border-radius: 10px; transform: rotate(-1.2deg); box-shadow: 0 4px 0 rgba(29,33,82,.15)"><span style="color: #6258BB">Sáb 10 oct</span> 2026</span>
+        <span style="background: #FDFEFC; font-weight: 800; font-size: 16px; padding: 9px 15px; border-radius: 10px; transform: rotate(1deg); box-shadow: 0 4px 0 rgba(29,33,82,.15)">2:00 a 6:00 p.m.</span>
+        <span style="background: #FDFEFC; font-weight: 800; font-size: 16px; padding: 9px 15px; border-radius: 10px; transform: rotate(-1deg); box-shadow: 0 4px 0 rgba(29,33,82,.15)">Casona UTP</span>
+        <span style="background: #FDFEFC; font-weight: 800; font-size: 16px; padding: 9px 15px; border-radius: 10px; transform: rotate(1.2deg); box-shadow: 0 4px 0 rgba(29,33,82,.15)"><span style="color: #6258BB">Gratis</span> con inscripción</span>
+      </div>
+      <div style="display: flex; gap: 14px; align-items: center; margin-top: 6px">
+        <a class="saf-btn" href="https://luma.com/txyuybq9?tk=pwCvrY" style="display: inline-flex; align-items: center; gap: 10px; font-family: 'Lilita One', sans-serif; font-size: 22px; letter-spacing: .02em; color: #FDFEFC; text-decoration: none; background: linear-gradient(100deg,#AC0BAD,#6258BB); border: 4px solid #FDFEFC; border-radius: 999px; padding: 16px 30px 14px; box-shadow: 0 6px 0 rgba(29,33,82,.16),0 14px 28px -12px rgba(29,33,82,.35)">Inscríbete gratis
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"></path></svg></a>
+        <a class="saf-btn" href="#calendario" style="display: inline-flex; align-items: center; gap: 8px; font-weight: 800; font-size: 17px; color: #FDFEFC; text-decoration: none; border: 3px solid #FDFEFC; border-radius: 999px; padding: 14px 22px">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg>Agregar a mi calendario</a>
+      </div>
+    </div>
+    <div style="position: relative; justify-self: center; width: 500px">
+      <div class="saf-float" style="border: 10px solid #FDFEFC; border-radius: 24px; overflow: hidden; background: #FDFEFC; box-shadow: 0 8px 0 rgba(29,33,82,.16),0 22px 40px -14px rgba(29,33,82,.45)">
+        <img src="/_blob/34a0459086a2c1b5eb02e9aff676052b" alt="Key visual de Study Abroad Fest" style="display: block; width: 480px; height: 480px; object-fit: cover">
+      </div>
+      <div style="position: absolute; left: -34px; bottom: -34px; background: #FDFEFC; border-radius: 18px; padding: 20px 22px 14px; transform: rotate(-4deg); box-shadow: 0 6px 0 rgba(29,33,82,.16),0 14px 28px -12px rgba(29,33,82,.35)">
+        <span style="position: absolute; top: -13px; left: 16px; background: linear-gradient(100deg,#AC0BAD,#6258BB); color: #FDFEFC; font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; padding: 4px 10px; border-radius: 6px">Despegamos en</span>
+        <div style="display: flex; gap: 18px; font-variant-numeric: tabular-nums">
+          <div style="display: flex; flex-direction: column; align-items: center"><b class="saf-tickn" style="font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 40px; line-height: 1; color: #6258BB">{{cd.d}}</b><span style="font-size: 12px; font-weight: 800; color: #4A507C; text-transform: uppercase; letter-spacing: .08em">días</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center"><b style="font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 40px; line-height: 1; color: #6258BB">{{cd.h}}</b><span style="font-size: 12px; font-weight: 800; color: #4A507C; text-transform: uppercase; letter-spacing: .08em">horas</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center"><b style="font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 40px; line-height: 1; color: #6258BB">{{cd.m}}</b><span style="font-size: 12px; font-weight: 800; color: #4A507C; text-transform: uppercase; letter-spacing: .08em">min</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROAD DIVIDER -->
+  <svg width="1440" height="130" viewBox="0 0 1440 130" style="display: block; flex-shrink: 0">
+    <path d="M0 70 C 240 20, 420 120, 720 70 S 1200 20, 1440 70 L1440 130 L0 130 Z" fill="#FDFEFC"></path>
+    <path d="M0 60 C 240 10, 420 110, 720 60 S 1200 10, 1440 60" fill="none" stroke="#525F97" stroke-width="38"></path>
+    <path class="saf-dash" d="M0 60 C 240 10, 420 110, 720 60 S 1200 10, 1440 60" fill="none" stroke="#FDFEFC" stroke-width="4" stroke-linecap="round"></path>
+    <path d="M0 39 C 240 -11, 420 89, 720 39 S 1200 -11, 1440 39" fill="none" stroke="#FDFEFC" stroke-width="5"></path>
+    <path d="M0 81 C 240 31, 420 131, 720 81 S 1200 31, 1440 81" fill="none" stroke="#FDFEFC" stroke-width="5"></path>
+  </svg>
+
+  <!-- CRONOGRAMA -->
+  <section id="cronograma" style="background: #FDFEFC; padding: 70px 120px 100px; box-sizing: border-box; height: 1180px">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; margin-bottom: 48px">
+      <div style="display: flex; flex-direction: column; gap: 14px; max-width: 720px">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: #6258BB">Sábado 10 de octubre · 2:00 a 6:00 p.m.</span>
+        <h2 style="margin: 0; font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 64px; line-height: 1; color: #1D2152">Cronograma: tu ruta de la tarde</h2>
+        <p style="margin: 0; font-size: 19px; color: #4A507C; line-height: 1.5">El auditorio y los stands funcionan en paralelo. Sigue la ruta o muévete entre ambos cuando quieras.</p>
+      </div>
+      <div style="display: flex; gap: 12px; font-size: 14px; font-weight: 700">
+        <span style="display: inline-flex; align-items: center; gap: 8px; background: #F1F3FA; padding: 8px 14px; border-radius: 999px"><span style="width: 10px; height: 10px; border-radius: 50%; background: #AC0BAD"></span>Presencial</span>
+        <span style="display: inline-flex; align-items: center; gap: 8px; background: #F1F3FA; padding: 8px 14px; border-radius: 999px"><span style="width: 10px; height: 10px; border-radius: 50%; background: #2F86C4"></span>Vía Zoom</span>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 48px">
+      <!-- timeline -->
+      <div style="position: relative">
+        <svg width="120" height="880" viewBox="0 0 120 880" style="position: absolute; left: 0; top: 0">
+          <rect x="30" y="0" width="60" height="880" rx="30" fill="#525F97"></rect>
+          <line x1="30" y1="0" x2="30" y2="880" stroke="#FDFEFC" stroke-width="5"></line>
+          <line x1="90" y1="0" x2="90" y2="880" stroke="#FDFEFC" stroke-width="5"></line>
+          <line class="saf-dash" x1="60" y1="10" x2="60" y2="870" stroke="#FDFEFC" stroke-width="4" stroke-linecap="round"></line>
+          <g>
+            <path d="M0 -13 L4 -4 L14 1 L14 5 L4 2 L3 10 L7 13 L7 15 L0 13 L-7 15 L-7 13 L-3 10 L-4 2 L-14 5 L-14 1 L-4 -4 Z" fill="#FDFEFC" stroke="#AC0BAD" stroke-width="1.5" transform="rotate(180)"></path>
+            <animateMotion dur="9s" repeatCount="indefinite" path="M60 20 L60 860"></animateMotion>
+          </g>
+        </svg>
+
+        <div style="display: flex; flex-direction: column; gap: 22px; padding-left: 0">
+          <div class="saf-pop saf-d1" style="display: grid; grid-template-columns: 120px minmax(0,1fr); gap: 24px; align-items: center">
+            <div style="justify-self: center; width: 58px; height: 58px; border-radius: 50%; background: linear-gradient(100deg,#AC0BAD,#6258BB); border: 5px solid #FDFEFC; box-shadow: 0 4px 0 rgba(29,33,82,.2); display: grid; place-items: center; color: #FDFEFC; font-family: 'Lilita One', sans-serif; font-size: 24px; position: relative; z-index: 1">1</div>
+            <div style="background: #FDFEFC; border: 2px solid #ABAEC8; border-radius: 18px; padding: 20px 24px; box-shadow: 0 6px 0 rgba(29,33,82,.1); display: grid; grid-template-columns: 130px minmax(0,1fr) auto; gap: 20px; align-items: center">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 20px; color: #6258BB">[HORA]</div>
+              <div><div style="font-weight: 800; font-size: 21px">Apertura</div><div style="color: #4A507C; font-size: 16px">LEAD UTP · Pilar de Excelencia Académica</div></div>
+              <span style="font-size: 13px; font-weight: 800; color: #FDFEFC; background: #AC0BAD; padding: 6px 12px; border-radius: 999px">Auditorio</span>
+            </div>
+          </div>
+          <div class="saf-pop saf-d2" style="display: grid; grid-template-columns: 120px minmax(0,1fr); gap: 24px; align-items: center">
+            <div style="justify-self: center; width: 58px; height: 58px; border-radius: 50%; background: linear-gradient(100deg,#AC0BAD,#6258BB); border: 5px solid #FDFEFC; box-shadow: 0 4px 0 rgba(29,33,82,.2); display: grid; place-items: center; color: #FDFEFC; font-family: 'Lilita One', sans-serif; font-size: 24px; position: relative; z-index: 1">2</div>
+            <div style="background: #FDFEFC; border: 2px solid #ABAEC8; border-radius: 18px; padding: 20px 24px; box-shadow: 0 6px 0 rgba(29,33,82,.1); display: grid; grid-template-columns: 130px minmax(0,1fr) auto; gap: 20px; align-items: center">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 20px; color: #6258BB">[HORA]</div>
+              <div><div style="font-weight: 800; font-size: 21px">Conferencia magistral · UTP Internacional</div><div style="color: #4A507C; font-size: 16px">Convenios vigentes, requisitos y procesos de movilidad</div></div>
+              <span style="font-size: 13px; font-weight: 800; color: #FDFEFC; background: #AC0BAD; padding: 6px 12px; border-radius: 999px">Auditorio</span>
+            </div>
+          </div>
+          <div class="saf-pop saf-d3" style="display: grid; grid-template-columns: 120px minmax(0,1fr); gap: 24px; align-items: center">
+            <div style="justify-self: center; width: 58px; height: 58px; border-radius: 50%; background: linear-gradient(100deg,#AC0BAD,#6258BB); border: 5px solid #FDFEFC; box-shadow: 0 4px 0 rgba(29,33,82,.2); display: grid; place-items: center; color: #FDFEFC; font-family: 'Lilita One', sans-serif; font-size: 24px; position: relative; z-index: 1">3</div>
+            <div style="background: #FDFEFC; border: 2px solid #ABAEC8; border-radius: 18px; padding: 20px 24px; box-shadow: 0 6px 0 rgba(29,33,82,.1); display: grid; grid-template-columns: 130px minmax(0,1fr) auto; gap: 20px; align-items: center">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 20px; color: #6258BB">[HORA]</div>
+              <div><div style="font-weight: 800; font-size: 21px">Beca Fulbright · EducationUSA</div><div style="color: #4A507C; font-size: 16px">Oportunidades de beca para estudiar en Estados Unidos</div></div>
+              <span style="font-size: 13px; font-weight: 800; color: #FDFEFC; background: #AC0BAD; padding: 6px 12px; border-radius: 999px">Auditorio</span>
+            </div>
+          </div>
+          <div class="saf-pop saf-d4" style="display: grid; grid-template-columns: 120px minmax(0,1fr); gap: 24px; align-items: center">
+            <div style="justify-self: center; width: 58px; height: 58px; border-radius: 50%; background: #2F86C4; border: 5px solid #FDFEFC; box-shadow: 0 4px 0 rgba(29,33,82,.2); display: grid; place-items: center; color: #FDFEFC; font-family: 'Lilita One', sans-serif; font-size: 24px; position: relative; z-index: 1">4</div>
+            <div style="background: #FDFEFC; border: 2px solid #ABAEC8; border-radius: 18px; padding: 20px 24px; box-shadow: 0 6px 0 rgba(29,33,82,.1); display: grid; grid-template-columns: 130px minmax(0,1fr) auto; gap: 20px; align-items: center">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 20px; color: #6258BB">[HORA]</div>
+              <div style="display: flex; flex-direction: column; gap: 10px">
+                <div><div style="font-weight: 800; font-size: 21px">Ponencias internacionales</div><div style="color: #4A507C; font-size: 16px">Vlog de cada ponente + preguntas en vivo</div></div>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px; font-size: 14px; font-weight: 700">
+                  <span style="background: #CFE6F6; padding: 5px 10px; border-radius: 8px">MX · Tec de Monterrey</span>
+                  <span style="background: #CFE6F6; padding: 5px 10px; border-radius: 8px">US · Purdue</span>
+                  <span style="background: #CFE6F6; padding: 5px 10px; border-radius: 8px">EU · Erasmus</span>
+                  <span style="background: #CFE6F6; padding: 5px 10px; border-radius: 8px">US · UC Berkeley</span>
+                </div>
+              </div>
+              <span style="font-size: 13px; font-weight: 800; color: #FDFEFC; background: #2F86C4; padding: 6px 12px; border-radius: 999px">Vía Zoom</span>
+            </div>
+          </div>
+          <div class="saf-pop saf-d5" style="display: grid; grid-template-columns: 120px minmax(0,1fr); gap: 24px; align-items: center">
+            <div style="justify-self: center; width: 58px; height: 58px; border-radius: 50%; background: linear-gradient(100deg,#AC0BAD,#6258BB); border: 5px solid #FDFEFC; box-shadow: 0 4px 0 rgba(29,33,82,.2); display: grid; place-items: center; color: #FDFEFC; font-family: 'Lilita One', sans-serif; font-size: 24px; position: relative; z-index: 1">5</div>
+            <div style="background: #FDFEFC; border: 2px solid #ABAEC8; border-radius: 18px; padding: 20px 24px; box-shadow: 0 6px 0 rgba(29,33,82,.1); display: grid; grid-template-columns: 130px minmax(0,1fr) auto; gap: 20px; align-items: center">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 20px; color: #6258BB">[HORA]</div>
+              <div><div style="font-weight: 800; font-size: 21px">Panel de ex-becarios</div><div style="color: #4A507C; font-size: 16px">Leslie (UC Berkeley) y Lizbeth Dávila (ELAP · SIAS). Historias reales de quienes ya estudiaron fuera.</div></div>
+              <span style="font-size: 13px; font-weight: 800; color: #FDFEFC; background: #AC0BAD; padding: 6px 12px; border-radius: 999px">Auditorio</span>
+            </div>
+          </div>
+          <div class="saf-pop saf-d6" style="display: grid; grid-template-columns: 120px minmax(0,1fr); gap: 24px; align-items: center">
+            <div style="justify-self: center; width: 58px; height: 58px; border-radius: 50%; background: #FDFEFC; border: 5px dashed #6258BB; display: grid; place-items: center; color: #6258BB; position: relative; z-index: 1">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.1-7-11.5a7 7 0 0 1 14 0C19 14.9 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>
+            </div>
+            <div style="background: #CFE6F6; border-radius: 18px; padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; gap: 20px">
+              <div><div style="font-weight: 800; font-size: 21px">Tu siguiente parada: los stands</div><div style="color: #4A507C; font-size: 16px">Lleva tus dudas oficiales y sal con tu convocatoria elegida.</div></div>
+              <a href="#stands" style="font-weight: 800; white-space: nowrap">Ver stands</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- parallel lane -->
+      <aside style="background: linear-gradient(170deg,#AC0BAD,#6258BB); color: #FDFEFC; border-radius: 24px; padding: 30px 28px; display: flex; flex-direction: column; gap: 18px; border: 6px solid #FDFEFC; outline: 2px solid #ABAEC8; box-shadow: 0 8px 0 rgba(29,33,82,.14); align-self: stretch">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; opacity: .9">Carril paralelo</span>
+        <div style="font-family: 'Lilita One', sans-serif; font-size: 40px; line-height: 1">Stands abiertos</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 22px">2:00 → 6:00 p.m.</div>
+        <div style="height: 2px; background: rgba(253,254,252,.4)"></div>
+        <div style="display: flex; flex-direction: column; gap: 12px; font-size: 17px; font-weight: 700">
+          <div style="background: rgba(253,254,252,.16); border-radius: 12px; padding: 12px 14px">UTP Internacional</div>
+          <div style="background: rgba(253,254,252,.16); border-radius: 12px; padding: 12px 14px">EducationUSA</div>
+        </div>
+        <p style="margin: 0; font-size: 16px; line-height: 1.5; font-weight: 600">Requisitos, promedios, convalidación, visados y fechas de postulación. Aquí se resuelve lo oficial.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- PONENTES -->
+  <section id="ponentes" style="background: #F1F3FA; padding: 100px 120px; box-sizing: border-box; height: 980px">
+    <div style="display: flex; flex-direction: column; gap: 14px; max-width: 720px; margin-bottom: 48px">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: #6258BB">Ponentes</span>
+      <h2 style="margin: 0; font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 64px; line-height: 1; color: #1D2152">Voces desde cuatro destinos</h2>
+      <p style="margin: 0; font-size: 19px; color: #4A507C">Estudiantes y becarios que hoy están, o estuvieron, en México, Estados Unidos, Europa y China.</p>
+    </div>
+    <div style="display: grid; grid-template-columns: 4fr 2fr; gap: 48px">
+      <div style="display: flex; flex-direction: column; gap: 18px">
+        <div style="display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 18px">Ponencias internacionales <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #FDFEFC; background: #2F86C4; padding: 5px 11px; border-radius: 999px">Vlog + Zoom en vivo</span></div>
+        <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px">
+          <sc-for list="{{virtuales}}" as="p" hint-placeholder-count="4">
+            <article class="saf-tag" style="position: relative; background: #FDFEFC; border: 2px solid #ABAEC8; border-radius: 18px; padding: 36px 16px 18px; box-shadow: 0 6px 0 rgba(29,33,82,.14),0 14px 28px -14px rgba(29,33,82,.35); display: flex; flex-direction: column; gap: 12px; transform: {{p.rot}}">
+              <span style="position: absolute; top: 12px; left: 50%; margin-left: -9px; width: 18px; height: 18px; border-radius: 50%; background: #F1F3FA; border: 3px solid #ABAEC8"></span>
+              <div style="position: relative; height: 180px; border-radius: 12px; background: #CFE6F6; display: grid; place-items: center">
+                <b style="font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 46px; color: #2F86C4">{{p.ini}}</b>
+                <span class="saf-stampmark" style="position: absolute; right: 10px; bottom: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; color: #AC0BAD; border: 2px solid #AC0BAD; border-radius: 6px; padding: 2px 7px; transform: rotate(-8deg); background: rgba(253,254,252,.9)">{{p.code}}</span>
+              </div>
+              <div style="font-weight: 800; font-size: 19px; line-height: 1.2">{{p.name}}</div>
+              <div style="font-weight: 700; font-size: 16px; color: #6258BB">{{p.inst}}</div>
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: #4A507C">{{p.meta}}</div>
+            </article>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 18px">
+        <div style="display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 18px">Panel de ex-becarios <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #FDFEFC; background: #AC0BAD; padding: 5px 11px; border-radius: 999px">Presencial</span></div>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px">
+          <sc-for list="{{panel}}" as="p" hint-placeholder-count="2">
+            <article class="saf-tag" style="position: relative; background: #FDFEFC; border: 2px solid #ABAEC8; border-radius: 18px; padding: 36px 16px 18px; box-shadow: 0 6px 0 rgba(29,33,82,.14),0 14px 28px -14px rgba(29,33,82,.35); display: flex; flex-direction: column; gap: 12px; transform: {{p.rot}}">
+              <span style="position: absolute; top: 12px; left: 50%; margin-left: -9px; width: 18px; height: 18px; border-radius: 50%; background: #F1F3FA; border: 3px solid #ABAEC8"></span>
+              <div style="position: relative; height: 180px; border-radius: 12px; background: #F3DDF3; display: grid; place-items: center">
+                <b style="font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 46px; color: #AC0BAD">{{p.ini}}</b>
+                <span class="saf-stampmark" style="position: absolute; right: 10px; bottom: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; color: #6258BB; border: 2px solid #6258BB; border-radius: 6px; padding: 2px 7px; transform: rotate(-8deg); background: rgba(253,254,252,.9)">{{p.code}}</span>
+              </div>
+              <div style="font-weight: 800; font-size: 19px; line-height: 1.2">{{p.name}}</div>
+              <div style="font-weight: 700; font-size: 16px; color: #6258BB">{{p.inst}}</div>
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: #4A507C">{{p.meta}}</div>
+            </article>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top: 44px; display: flex; justify-content: space-between; align-items: center; gap: 24px">
+      <div style="display: flex; gap: 14px; align-items: center; background: #CFE6F6; border-radius: 16px; padding: 18px 22px; font-weight: 700; font-size: 17px; max-width: 760px">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#6258BB" stroke-width="2.2" stroke-linecap="round" style="flex-shrink: 0"><circle cx="12" cy="12" r="10"></circle><path d="M12 11v6M12 7.2v.1"></path></svg>
+        El panel comparte experiencias personales. Las dudas sobre requisitos y convocatorias se resuelven en los stands.
+      </div>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #4A507C">Más ponentes por anunciar</span>
+    </div>
+  </section>
+
+  <!-- STANDS -->
+  <section id="stands" style="background: #FDFEFC; padding: 100px 120px; box-sizing: border-box; height: 640px">
+    <div style="display: grid; grid-template-columns: 420px minmax(0, 1fr); gap: 64px; align-items: start">
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: #6258BB">Stands de consulta</span>
+        <h2 style="margin: 0; font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 58px; line-height: 1; color: #1D2152">Información oficial, cara a cara</h2>
+        <p style="margin: 0; font-size: 19px; color: #4A507C">Abiertos de 2:00 a 6:00 p.m. Llega con tus preguntas anotadas.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 24px">
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px">
+          <article style="background: #FDFEFC; border-radius: 22px; border: 2px solid #ABAEC8; border-top: 12px solid #6258BB; padding: 28px; box-shadow: 0 6px 0 rgba(29,33,82,.12); display: flex; flex-direction: column; gap: 12px">
+            <div style="height: 64px; border-radius: 12px; border: 2px dashed #ABAEC8; display: grid; place-items: center; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4A507C">[LOGO UTP INTERNACIONAL]</div>
+            <h3 style="margin: 0; font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 32px">UTP Internacional</h3>
+            <p style="margin: 0; color: #4A507C; font-size: 17px; line-height: 1.5">Convenios, promedios requeridos, convalidación de cursos y visados.</p>
+          </article>
+          <article style="background: #FDFEFC; border-radius: 22px; border: 2px solid #ABAEC8; border-top: 12px solid #AC0BAD; padding: 28px; box-shadow: 0 6px 0 rgba(29,33,82,.12); display: flex; flex-direction: column; gap: 12px">
+            <div style="height: 64px; border-radius: 12px; border: 2px dashed #ABAEC8; display: grid; place-items: center; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4A507C">[LOGO EDUCATIONUSA]</div>
+            <h3 style="margin: 0; font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 32px">EducationUSA</h3>
+            <p style="margin: 0; color: #4A507C; font-size: 17px; line-height: 1.5">Universidades, admisiones y becas para estudiar en Estados Unidos.</p>
+          </article>
+        </div>
+        <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #4A507C">Aliados</span>
+          <span style="font-weight: 800; border: 2px solid #ABAEC8; border-radius: 12px; padding: 9px 16px">UTP Internacional</span>
+          <span style="font-weight: 800; border: 2px solid #ABAEC8; border-radius: 12px; padding: 9px 16px">EducationUSA</span>
+          <span style="font-weight: 800; border: 2px solid #ABAEC8; border-radius: 12px; padding: 9px 16px">Erasmus+</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALENDARIO -->
+  <section id="calendario" style="background: #3B99D8; padding: 100px 120px; box-sizing: border-box; height: 960px; position: relative">
+    <div class="saf-drift" style="position: absolute; right: 90px; top: 50px; width: 150px; height: 42px; background: #FDFEFC; border-radius: 999px; opacity: .85"></div>
+    <div style="display: grid; grid-template-columns: 440px minmax(0, 1fr); gap: 56px; align-items: start">
+      <div style="display: flex; flex-direction: column; gap: 20px; color: #FDFEFC">
+        <span style="align-self: flex-start; font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; background: rgba(29,33,82,.22); padding: 7px 14px; border-radius: 999px">Descargable para asistentes</span>
+        <h2 style="margin: 0; font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 62px; line-height: 1; text-shadow: 0 5px 0 rgba(29,33,82,.2)">Calendario de becas</h2>
+        <p style="margin: 0; font-size: 21px; font-weight: 700; line-height: 1.4">Las convocatorias del evento con sus fechas de cierre, enlace oficial y dónde preguntar. Llévatelo y no se te pasa ninguna.</p>
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 4px">
+          <a class="saf-btn" href="#calendario" style="display: inline-flex; justify-content: center; align-items: center; gap: 10px; font-family: 'Lilita One', sans-serif; font-size: 21px; color: #FDFEFC; text-decoration: none; background: linear-gradient(100deg,#AC0BAD,#6258BB); border: 4px solid #FDFEFC; border-radius: 999px; padding: 15px 26px 13px; box-shadow: 0 6px 0 rgba(29,33,82,.16)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg>Descargar PDF</a>
+          <a class="saf-btn" href="#calendario" style="display: inline-flex; justify-content: center; align-items: center; gap: 10px; font-weight: 800; font-size: 17px; color: #1D2152; text-decoration: none; background: #FDFEFC; border-radius: 999px; padding: 15px 22px; box-shadow: 0 5px 0 rgba(29,33,82,.16)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6258BB" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"></rect><path d="M3 10h18M8 3v4M16 3v4M12 13v5M9.5 15.5h5"></path></svg>Agregar cierres a mi calendario</a>
+        </div>
+        <div style="position: relative; height: 250px; margin-top: 10px">
+          <div style="position: absolute; left: 30px; top: 16px; width: 170px; height: 230px; background: #F1F3FA; border-radius: 8px; transform: rotate(-8deg); box-shadow: 0 6px 0 rgba(29,33,82,.15)"></div>
+          <div style="position: absolute; left: 110px; top: 0; width: 176px; height: 240px; background: #FDFEFC; border-radius: 8px; transform: rotate(4deg); box-shadow: 0 8px 0 rgba(29,33,82,.16),0 18px 30px -12px rgba(29,33,82,.4); padding: 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 8px; color: #1D2152">
+            <div style="height: 50px; border-radius: 6px; background: linear-gradient(100deg,#AC0BAD,#6258BB)"></div>
+            <div style="font-family: 'Lilita One', sans-serif; font-size: 18px; line-height: 1">Calendario de becas</div>
+            <div style="height: 6px; background: #ABAEC8; border-radius: 3px; width: 90%"></div>
+            <div style="height: 6px; background: #ABAEC8; border-radius: 3px; width: 70%"></div>
+            <div style="height: 6px; background: #ABAEC8; border-radius: 3px; width: 80%"></div>
+            <div style="flex-grow: 1"></div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #4A507C">PDF · A4 · 2 páginas</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background: #FDFEFC; border-radius: 26px; padding: 30px; box-shadow: 0 8px 0 rgba(29,33,82,.16),0 22px 40px -14px rgba(29,33,82,.4); display: flex; flex-direction: column; gap: 20px">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap">
+          <div style="font-weight: 800; font-size: 20px">Próximos cierres</div>
+          <div style="display: flex; gap: 8px">
+            <sc-for list="{{chips}}" as="c" hint-placeholder-count="4">
+              <button onClick="{{c.pick}}" style="{{c.style}}">{{c.label}}</button>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 70px minmax(0,1.6fr) minmax(0,1fr) 150px 120px; gap: 16px; padding: 0 16px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #4A507C">
+          <span>Destino</span><span>Convocatoria</span><span>Dónde preguntar</span><span>Cierre</span><span></span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <sc-for list="{{rows}}" as="r" hint-placeholder-count="3">
+            <div class="saf-row" style="display: grid; grid-template-columns: 70px minmax(0,1.6fr) minmax(0,1fr) 150px 120px; gap: 16px; align-items: center; border: 2px solid #ABAEC8; border-radius: 16px; padding: 16px">
+              <span style="justify-self: start; font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 14px; color: #AC0BAD; border: 2px solid #AC0BAD; border-radius: 6px; padding: 3px 8px; transform: rotate(-6deg)">{{r.code}}</span>
+              <div><div style="font-weight: 800; font-size: 18px">{{r.prog}}</div><div style="font-size: 15px; color: #4A507C">{{r.dest}}</div></div>
+              <div style="font-size: 15px; font-weight: 700; color: #1D2152">{{r.where}}</div>
+              <div style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 15px; color: #6258BB; background: #F1F3FA; border-radius: 8px; padding: 8px 10px; text-align: center">[FECHA]</div>
+              <a href="#calendario" style="font-weight: 800; font-size: 15px">Web oficial ↗</a>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: center; background: #F1F3FA; border-radius: 14px; padding: 14px 18px; font-size: 15px; color: #4A507C; font-weight: 600">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6258BB" stroke-width="2.2" stroke-linecap="round" style="flex-shrink: 0"><circle cx="12" cy="12" r="10"></circle><path d="M12 7v5l3 2"></path></svg>
+          Fechas en confirmación con UTP Internacional y EducationUSA. Verifica siempre en la web oficial de cada convocatoria.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PASE + FAQ -->
+  <section id="llegar" style="background: #F1F3FA; padding: 100px 120px; box-sizing: border-box; height: 900px">
+    <div style="display: flex; flex-direction: column; gap: 14px; max-width: 720px; margin-bottom: 40px">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: #6258BB">Cómo llegar</span>
+      <h2 style="margin: 0; font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 64px; line-height: 1; color: #1D2152">Tu pase de abordaje</h2>
+    </div>
+    <div style="display: grid; grid-template-columns: minmax(0,1fr) 240px; background: #FDFEFC; border-radius: 26px; overflow: hidden; box-shadow: 0 8px 0 rgba(29,33,82,.14),0 20px 36px -14px rgba(29,33,82,.35)">
+      <div style="padding: 36px 40px; display: flex; flex-direction: column; gap: 26px">
+        <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 20px; border-bottom: 2px dashed #ABAEC8">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: #6258BB">Study Abroad Fest · 2026</span>
+          <span style="font-family: 'Lilita One', sans-serif; font-size: 32px; display: flex; align-items: center; gap: 14px">LIMA
+            <svg width="34" height="34" viewBox="0 0 24 24"><path fill="#AC0BAD" d="M21.5 15.2v-1.8L13.6 8.5V3.3a1.6 1.6 0 1 0-3.2 0v5.2l-7.9 4.9v1.8l7.9-2.4v5.1l-2 1.5V21l3.6-1 3.6 1v-1.6l-2-1.5v-5.1z" transform="rotate(90 12 12)"></path></svg>
+            EL MUNDO</span>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px 28px">
+          <div><div style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #4A507C">Fecha</div><div style="font-weight: 800; font-size: 21px">Sáb 10 oct 2026</div></div>
+          <div><div style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #4A507C">Embarque</div><div style="font-weight: 800; font-size: 21px">2:00 p.m.</div></div>
+          <div><div style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #4A507C">Llegada</div><div style="font-weight: 800; font-size: 21px">6:00 p.m.</div></div>
+          <div><div style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #4A507C">Tarifa</div><div style="font-weight: 800; font-size: 21px">Gratis</div></div>
+          <div style="grid-column: span 3"><div style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #4A507C">Puerta</div><div style="font-weight: 800; font-size: 21px">Auditorio Casona UTP · Calle José Velarde, frente a Torre Arequipa</div></div>
+          <div><div style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #4A507C">Requisito</div><div style="font-weight: 800; font-size: 21px">Inscripción en Luma</div></div>
+        </div>
+        <div style="display: flex; gap: 12px">
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=Casona+UTP+Calle+Jos%C3%A9+Velarde+Lima" style="display: inline-flex; align-items: center; gap: 8px; font-weight: 800; font-size: 16px; color: #6258BB; text-decoration: none; border: 3px solid #6258BB; border-radius: 999px; padding: 11px 20px">Cómo llegar ↗</a>
+          <a href="#hero" style="display: inline-flex; align-items: center; gap: 8px; font-weight: 800; font-size: 16px; color: #6258BB; text-decoration: none; border: 3px solid #6258BB; border-radius: 999px; padding: 11px 20px">Agregar a mi calendario</a>
+        </div>
+      </div>
+      <div style="background: linear-gradient(170deg,#AC0BAD,#6258BB); color: #FDFEFC; border-left: 3px dashed #FDFEFC; padding: 30px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 14px; text-align: center">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 12px; letter-spacing: .14em; text-transform: uppercase">Asiento</span>
+        <span style="font-family: 'Lilita One', sans-serif; font-size: 58px; line-height: .9">Tuyo</span>
+        <div style="width: 140px; height: 42px; background: repeating-linear-gradient(90deg,#FDFEFC 0 2px,transparent 2px 4px,#FDFEFC 4px 7px,transparent 7px 9px,#FDFEFC 9px 10px,transparent 10px 13px)"></div>
+      </div>
+    </div>
+    <div style="margin-top: 44px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 24px">
+      <div style="background: #FDFEFC; border: 2px solid #ABAEC8; border-radius: 16px; padding: 18px 22px"><div style="font-weight: 800; font-size: 18px; display: flex; justify-content: space-between">¿Para quién es el evento? <span style="font-family: 'Lilita One', sans-serif; color: #AC0BAD">–</span></div><p style="margin: 8px 0 0; color: #4A507C; font-size: 16px; line-height: 1.5">Para estudiantes UTP, pensado principalmente para quienes están desde 5.º ciclo.</p></div>
+      <div style="background: #FDFEFC; border: 2px solid #ABAEC8; border-radius: 16px; padding: 18px 22px"><div style="font-weight: 800; font-size: 18px; display: flex; justify-content: space-between">¿Tiene costo? <span style="font-family: 'Lilita One', sans-serif; color: #AC0BAD">+</span></div></div>
+      <div style="background: #FDFEFC; border: 2px solid #ABAEC8; border-radius: 16px; padding: 18px 22px"><div style="font-weight: 800; font-size: 18px; display: flex; justify-content: space-between">¿Los ponentes internacionales van en persona? <span style="font-family: 'Lilita One', sans-serif; color: #AC0BAD">+</span></div></div>
+      <div style="background: #FDFEFC; border: 2px solid #ABAEC8; border-radius: 16px; padding: 18px 22px"><div style="font-weight: 800; font-size: 18px; display: flex; justify-content: space-between">¿Dónde pregunto por requisitos de una beca? <span style="font-family: 'Lilita One', sans-serif; color: #AC0BAD">+</span></div></div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section style="background: #3B99D8; padding: 110px 120px; box-sizing: border-box; height: 470px; text-align: center; color: #FDFEFC; position: relative">
+    <div class="saf-drift" style="position: absolute; left: 110px; top: 90px; width: 180px; height: 50px; background: #FDFEFC; border-radius: 999px; opacity: .9"></div>
+    <div class="saf-drift-slow" style="position: absolute; right: 120px; bottom: 80px; width: 220px; height: 56px; background: #FDFEFC; border-radius: 999px; opacity: .9"></div>
+    <div style="position: relative; display: flex; flex-direction: column; align-items: center; gap: 22px">
+      <h2 style="margin: 0; font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 72px; line-height: 1; text-shadow: 0 6px 0 rgba(29,33,82,.2)">Tu camino empieza el 10 de octubre</h2>
+      <p style="margin: 0; font-size: 22px; font-weight: 700">Ven con curiosidad y sal con una oportunidad concreta a la que postular.</p>
+      <a class="saf-btn" href="https://luma.com/txyuybq9?tk=pwCvrY" style="display: inline-flex; align-items: center; gap: 10px; font-family: 'Lilita One', sans-serif; font-size: 24px; color: #FDFEFC; text-decoration: none; background: linear-gradient(100deg,#AC0BAD,#6258BB); border: 4px solid #FDFEFC; border-radius: 999px; padding: 18px 34px 16px; box-shadow: 0 6px 0 rgba(29,33,82,.16),0 14px 28px -12px rgba(29,33,82,.35)">Inscríbete gratis</a>
+    </div>
+  </section>
+
+  <footer style="background: #1D2152; color: #D9DBF0; padding: 30px 120px; box-sizing: border-box; flex-grow: 1; display: flex; justify-content: space-between; font-size: 15px">
+    <span>Organiza <b style="color: #FDFEFC">LEAD UTP</b> · Pilar de Excelencia Académica, en alianza con <b style="color: #FDFEFC">UTP Internacional</b></span>
+    <span>Study Abroad Fest 2026</span>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":6160}}'>
+class Component extends DCLogic {
+  componentDidMount() { this._t = setInterval(() => this.forceUpdate(), 30000); }
+  componentWillUnmount() { clearInterval(this._t); }
+  renderVals() {
+    const target = new Date('2026-10-10T14:00:00-05:00').getTime();
+    const mins = Math.max(0, Math.floor((target - Date.now()) / 60000));
+    const pad = (n) => String(n).padStart(2, '0');
+    const filtro = (this.state && this.state.filtro) || 'todos';
+    const all = [
+      { code: 'UTP', prog: 'Movilidad UTP Internacional', dest: 'Universidades con convenio', where: 'Stand UTP Internacional', k: 'utp' },
+      { code: 'US', prog: 'Beca Fulbright', dest: 'Estados Unidos', where: 'Stand EducationUSA', k: 'us' },
+      { code: 'EU', prog: 'Erasmus+', dest: 'Europa', where: '[POR CONFIRMAR]', k: 'eu' }
+    ];
+    const opts = [['todos', 'Todos'], ['utp', 'Convenios UTP'], ['us', 'EE. UU.'], ['eu', 'Europa']];
+    const on = 'font: 700 14px Figtree, sans-serif; color: #FDFEFC; background: #6258BB; border: 2px solid #6258BB; border-radius: 999px; padding: 8px 14px; cursor: pointer';
+    const off = 'font: 700 14px Figtree, sans-serif; color: #1D2152; background: #FDFEFC; border: 2px solid #ABAEC8; border-radius: 999px; padding: 8px 14px; cursor: pointer';
+    const rot = ['rotate(-1.4deg)', 'rotate(1.2deg)', 'rotate(-0.8deg)', 'rotate(1.4deg)'];
+    return {
+      cd: { d: pad(Math.floor(mins / 1440)), h: pad(Math.floor((mins % 1440) / 60)), m: pad(mins % 60) },
+      chips: opts.map(([k, label]) => ({ label, style: filtro === k ? on : off, pick: () => this.setState({ filtro: k }) })),
+      rows: all.filter((r) => filtro === 'todos' || r.k === filtro),
+      virtuales: [
+        { ini: 'C', code: 'MX', name: 'Carmen', inst: 'Tecnológico de Monterrey', meta: 'México' },
+        { ini: 'FI', code: 'US', name: 'Fernando Injoque', inst: 'Purdue University', meta: 'Estados Unidos' },
+        { ini: 'GA', code: 'EU', name: 'Guillermo Alfaro', inst: 'Erasmus', meta: 'Europa' },
+        { ini: 'DM', code: 'US', name: 'Diego Mendoza', inst: 'UC Berkeley', meta: 'Estados Unidos' }
+      ].map((p, i) => ({ ...p, rot: rot[i] })),
+      panel: [
+        { ini: 'L', code: 'US', name: 'Leslie', inst: 'UC Berkeley', meta: 'Beca culminada' },
+        { ini: 'LD', code: 'CN', name: 'Lizbeth Dávila', inst: 'ELAP · SIAS', meta: 'China' }
+      ].map((p, i) => ({ ...p, rot: rot[i] }))
+    };
+  }
+}
+</script>
+</body>
+</html>

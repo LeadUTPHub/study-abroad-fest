@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Calendario de becas · Página 1</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&amp;family=Figtree:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@500;600&amp;display=swap">
+<style>
+body{margin:0;font-family:"Figtree","Segoe UI",sans-serif;color:#1D2152;background:#FDFEFC}
+</style>
+</helmet>
+<div style="width: 794px; height: 1123px; background: #FDFEFC; display: flex; flex-direction: column; position: relative; overflow: hidden">
+  <div style="height: 300px; background: #3B99D8; position: relative; padding: 44px 48px 0; box-sizing: border-box; color: #FDFEFC">
+    <div style="position: absolute; right: 60px; top: 46px; width: 110px; height: 32px; background: #FDFEFC; border-radius: 999px; opacity: .9"></div>
+    <div style="display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 14px">
+      <span>LEAD</span><span style="background: #FDFEFC; color: #2F86C4; font-family: 'Lilita One', sans-serif; padding: 2px 7px 0; border-radius: 4px; letter-spacing: .08em">UTP</span>
+      <span style="font-weight: 600">× UTP Internacional</span>
+    </div>
+    <div style="margin-top: 26px; font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 12px; letter-spacing: .14em; text-transform: uppercase">Study Abroad Fest 2026 · Descargable</div>
+    <h1 style="margin: 8px 0 0; font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 60px; line-height: 1; text-shadow: 0 4px 0 rgba(29,33,82,.2)">Calendario de becas</h1>
+    <p style="margin: 10px 0 0; font-size: 17px; font-weight: 700; max-width: 46ch">Las convocatorias presentadas en el evento, con su cierre, su web oficial y dónde preguntar.</p>
+    <svg width="794" height="70" viewBox="0 0 794 70" style="position: absolute; left: 0; bottom: -1px">
+      <path d="M0 40 C 200 10, 400 70, 794 26 L794 70 L0 70 Z" fill="#FDFEFC"></path>
+      <path d="M0 34 C 200 4, 400 64, 794 20" fill="none" stroke="#525F97" stroke-width="22"></path>
+      <path d="M0 34 C 200 4, 400 64, 794 20" fill="none" stroke="#FDFEFC" stroke-width="3" stroke-dasharray="14 12"></path>
+    </svg>
+  </div>
+
+  <div style="padding: 26px 48px 0; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex; justify-content: space-between; align-items: baseline">
+      <h2 style="margin: 0; font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 26px">Tu año de postulaciones</h2>
+      <span style="font-size: 13px; color: #4A507C; font-weight: 600">Marca con un círculo el mes de cada cierre</span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 6px">
+      <sc-for list="{{months}}" as="m" hint-placeholder-count="12">
+        <div style="border: 1.5px solid #ABAEC8; border-radius: 8px; height: 58px; display: flex; flex-direction: column; justify-content: space-between; padding: 6px; box-sizing: border-box">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 11px; color: #6258BB">{{m.m}}</span>
+          <span style="font-size: 11px; color: #4A507C; font-weight: 700">{{m.y}}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="padding: 26px 48px 0; display: flex; flex-direction: column; gap: 12px">
+    <h2 style="margin: 0; font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 26px">Convocatorias</h2>
+    <div style="display: grid; grid-template-columns: 52px minmax(0,1.5fr) 92px 92px minmax(0,1fr) 72px; gap: 12px; padding: 0 12px 8px; border-bottom: 1.5px solid #1D2152; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #4A507C">
+      <span>Destino</span><span>Convocatoria</span><span>Apertura</span><span>Cierre</span><span>Dónde preguntar</span><span>Web</span>
+    </div>
+    <sc-for list="{{rows}}" as="r" hint-placeholder-count="4">
+      <div style="display: grid; grid-template-columns: 52px minmax(0,1.5fr) 92px 92px minmax(0,1fr) 72px; gap: 12px; align-items: center; padding: 12px; border-bottom: 1px solid #ABAEC8">
+        <span style="justify-self: start; font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 12px; color: #AC0BAD; border: 1.5px solid #AC0BAD; border-radius: 5px; padding: 2px 6px">{{r.code}}</span>
+        <div><div style="font-weight: 800; font-size: 15px">{{r.prog}}</div><div style="font-size: 13px; color: #4A507C">{{r.dest}}</div></div>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4A507C">[FECHA]</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 13px; color: #6258BB; background: #F1F3FA; border-radius: 6px; padding: 5px 6px; text-align: center">[FECHA]</span>
+        <span style="font-size: 13px; font-weight: 700">{{r.where}}</span>
+        <div style="width: 64px; height: 64px; border: 1.5px dashed #ABAEC8; border-radius: 6px; display: grid; place-items: center; font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #4A507C">QR</div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="flex-grow: 1"></div>
+  <div style="margin: 0 48px 40px; padding-top: 14px; border-top: 1.5px solid #ABAEC8; display: flex; justify-content: space-between; gap: 20px; font-size: 12px; color: #4A507C; line-height: 1.5">
+    <span>Fechas verificadas el [FECHA] con UTP Internacional y EducationUSA. Confirma siempre en la web oficial de cada convocatoria antes de postular.</span>
+    <span style="font-family: 'IBM Plex Mono', monospace; white-space: nowrap">1 / 2</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":794,"height":1123}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const ms = ['OCT','NOV','DIC','ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SET'];
+    return {
+      months: ms.map((m, i) => ({ m, y: i < 3 ? '2026' : '2027' })),
+      rows: [
+        { code: 'UTP', prog: 'Movilidad UTP Internacional', dest: 'Universidades con convenio', where: 'UTP Internacional' },
+        { code: 'US', prog: 'Beca Fulbright', dest: 'Estados Unidos', where: 'EducationUSA' },
+        { code: 'EU', prog: 'Erasmus+', dest: 'Europa', where: '[POR CONFIRMAR]' },
+        { code: '··', prog: '[CONVOCATORIA]', dest: '[DESTINO]', where: '[INSTITUCIÓN]' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Canje del calendario · Mobile</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&amp;family=Figtree:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@500;600&amp;display=swap">
+<style>
+body{margin:0;font-family:"Figtree","Segoe UI",sans-serif;color:#1D2152;background:#3B99D8}
+a{color:#6258BB}
+@keyframes c-shake{0%,100%{transform:none}20%{transform:translateX(-8px)}40%{transform:translateX(7px)}60%{transform:translateX(-5px)}80%{transform:translateX(3px)}}
+@keyframes c-stamp{0%{opacity:.001;transform:rotate(-30deg) scale(2.2)}60%{opacity:1;transform:rotate(-10deg) scale(.92)}100%{transform:rotate(-12deg) scale(1)}}
+@keyframes c-pop{0%{opacity:.001;transform:translateY(16px)}100%{opacity:1;transform:none}}
+@keyframes c-float{0%,100%{transform:rotate(-3deg) translateY(0)}50%{transform:rotate(-1deg) translateY(-8px)}}
+.c-shake{animation:c-shake .4s ease}
+.c-stamp{animation:c-stamp .6s cubic-bezier(.2,.8,.2,1) both}
+.c-pop{animation:c-pop .5s cubic-bezier(.2,.8,.2,1) both}
+.c-float{animation:c-float 6s ease-in-out infinite}
+input:focus{outline:3px solid #6258BB;outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.c-shake,.c-stamp,.c-pop,.c-float{animation:none}}
+</style>
+</helmet>
+<div style="width: 390px; height: 1760px; background: #3B99D8; display: flex; flex-direction: column; overflow: hidden">
+  <header style="height: 60px; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; color: #FDFEFC">
+    <div style="display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 14px"><span>LEAD</span><span style="background: #FDFEFC; color: #2F86C4; font-family: 'Lilita One', sans-serif; padding: 2px 6px 0; border-radius: 4px; letter-spacing: .08em">UTP</span></div>
+    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase">Canje · SAF 2026</span>
+  </header>
+
+  <sc-if value="{{locked}}" hint-placeholder-val="{{true}}">
+    <div style="padding: 20px 16px 40px; display: flex; flex-direction: column; gap: 22px; color: #FDFEFC">
+      <div class="c-float" style="align-self: center; width: 250px; height: 180px; background: #FDFEFC; border-radius: 16px; box-shadow: 0 6px 0 rgba(29,33,82,.18); position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; padding: 18px; box-sizing: border-box">
+        <div style="border-radius: 50%; border: 3px solid #6258BB; display: grid; place-items: center; transform: rotate(-12deg); font-family: 'Lilita One', sans-serif; color: #6258BB; font-size: 15px; align-self: center; aspect-ratio: 1">UTP</div>
+        <div style="border-radius: 10px; border: 3px solid #AC0BAD; display: grid; place-items: center; transform: rotate(8deg); font-family: 'Lilita One', sans-serif; color: #AC0BAD; font-size: 12px; align-self: center; aspect-ratio: 1">EdUSA</div>
+        <div style="border-radius: 50%; border: 2px dashed #ABAEC8; align-self: center; aspect-ratio: 1"></div>
+        <div style="grid-column: span 3; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #4A507C; text-align: center">Pasaporte con sellos → código</div>
+      </div>
+      <h1 style="margin: 0; font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 44px; line-height: 1; text-shadow: 0 4px 0 rgba(29,33,82,.2)">Canjea tu Calendario de becas</h1>
+      <p style="margin: 0; font-size: 18px; font-weight: 700; line-height: 1.4">Ingresa el código que te dieron en la mesa de canje al completar tu pasaporte.</p>
+      <div class="{{shakeClass}}" style="background: #FDFEFC; color: #1D2152; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 6px 0 rgba(29,33,82,.16)">
+        <label for="codigo" style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #4A507C">Tu código</label>
+        <input id="codigo" value="{{code}}" onChange="{{onCode}}" placeholder="SAF-XXXX-XXXX" autocomplete="off" style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 22px; letter-spacing: .08em; text-transform: uppercase; color: #1D2152; border: 2px solid {{inputBorder}}; border-radius: 12px; padding: 14px; box-sizing: border-box; width: 100%; background: #F1F3FA">
+        <sc-if value="{{error}}" hint-placeholder-val="{{false}}">
+          <div style="font-size: 14px; font-weight: 700; color: #B0126F">Ese código no es válido. Revisa que esté completo, con el formato SAF-XXXX-XXXX.</div>
+        </sc-if>
+        <button onClick="{{submit}}" style="font-family: 'Lilita One', sans-serif; font-size: 20px; color: #FDFEFC; background: linear-gradient(100deg,#AC0BAD,#6258BB); border: 0; border-radius: 999px; padding: 15px 20px 13px; cursor: pointer; box-shadow: 0 5px 0 rgba(29,33,82,.2)">Desbloquear calendario</button>
+        <div style="font-size: 13px; color: #4A507C; text-align: center">Tip: escanea el QR de tu pasaporte y el código se llena solo.</div>
+      </div>
+      <div style="background: rgba(29,33,82,.22); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 8px">
+        <div style="font-weight: 800; font-size: 16px">¿Aún no tienes código?</div>
+        <div style="font-size: 15px; line-height: 1.45">Pide tu pasaporte al ingresar al evento, visita cada stand y ve a la mesa de canje con todos los sellos.</div>
+      </div>
+      <div style="font-size: 13px; opacity: .9; text-align: center">Prueba el diseño con cualquier código de 12 caracteres.</div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{unlocked}}" hint-placeholder-val="{{false}}">
+    <div style="padding: 16px 16px 40px; display: flex; flex-direction: column; gap: 18px">
+      <div style="position: relative; background: #FDFEFC; border-radius: 20px; padding: 22px 20px; box-shadow: 0 6px 0 rgba(29,33,82,.16); display: flex; flex-direction: column; gap: 10px; overflow: hidden">
+        <div class="c-stamp" style="position: absolute; right: 14px; top: 14px; width: 92px; height: 92px; border-radius: 50%; border: 4px solid #AC0BAD; display: grid; place-items: center; text-align: center; font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 11px; color: #AC0BAD; line-height: 1.3; transform: rotate(-12deg)">APROBADO<br>SAF 2026</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #6258BB">Código {{codeShown}}</div>
+        <h1 style="margin: 0; font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 36px; line-height: 1; max-width: 9em">Tu calendario está listo</h1>
+        <p style="margin: 0; font-size: 15px; color: #4A507C; line-height: 1.45">Guárdalo ahora. Tu código funciona en hasta 3 dispositivos.</p>
+        <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 6px">
+          <a href="#pdf" style="display: flex; justify-content: center; align-items: center; gap: 8px; font-family: 'Lilita One', sans-serif; font-size: 19px; color: #FDFEFC; text-decoration: none; background: linear-gradient(100deg,#AC0BAD,#6258BB); border-radius: 999px; padding: 14px 18px 12px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg>Descargar PDF</a>
+          <a href="#ics" style="display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 16px; color: #6258BB; text-decoration: none; border: 3px solid #6258BB; border-radius: 999px; padding: 12px 18px">Agregar cierres a mi calendario</a>
+        </div>
+      </div>
+
+      <div style="color: #FDFEFC; font-family: 'Lilita One', sans-serif; font-size: 26px; margin-top: 6px">Convocatorias y tips</div>
+      <sc-for list="{{items}}" as="it" hint-placeholder-count="3">
+        <div class="c-pop" style="background: #FDFEFC; border-radius: 18px; box-shadow: 0 5px 0 rgba(29,33,82,.14); overflow: hidden">
+          <button onClick="{{it.toggle}}" aria-expanded="{{it.open}}" style="width: 100%; border: 0; background: transparent; padding: 16px; display: grid; grid-template-columns: 52px minmax(0,1fr) 24px; gap: 12px; align-items: center; text-align: left; cursor: pointer; font-family: inherit; color: #1D2152">
+            <span style="justify-self: start; font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 13px; color: #AC0BAD; border: 2px solid #AC0BAD; border-radius: 6px; padding: 2px 7px; transform: rotate(-6deg)">{{it.code}}</span>
+            <span style="display: flex; flex-direction: column; gap: 3px"><span style="font-weight: 800; font-size: 17px">{{it.prog}}</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #6258BB; font-weight: 600">Cierre [FECHA]</span></span>
+            <span style="font-family: 'Lilita One', sans-serif; font-size: 22px; color: #AC0BAD">{{it.sign}}</span>
+          </button>
+          <sc-if value="{{it.open}}" hint-placeholder-val="{{false}}">
+            <div style="padding: 0 16px 18px; display: flex; flex-direction: column; gap: 10px">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #4A507C">Tips de {{it.from}}</div>
+              <div style="display: grid; grid-template-columns: 22px minmax(0,1fr); gap: 8px; font-size: 15px; line-height: 1.4"><span style="color: #AC0BAD; font-weight: 800">1</span><span>[TIP OFICIAL]</span></div>
+              <div style="display: grid; grid-template-columns: 22px minmax(0,1fr); gap: 8px; font-size: 15px; line-height: 1.4"><span style="color: #AC0BAD; font-weight: 800">2</span><span>[TIP OFICIAL]</span></div>
+              <div style="display: grid; grid-template-columns: 22px minmax(0,1fr); gap: 8px; font-size: 15px; line-height: 1.4"><span style="color: #AC0BAD; font-weight: 800">3</span><span>[TIP OFICIAL]</span></div>
+              <a href="#oficial" style="font-weight: 800; font-size: 15px">Ir a la web oficial ↗</a>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+      <button onClick="{{reset}}" style="align-self: center; margin-top: 8px; font-family: inherit; font-weight: 700; font-size: 14px; color: #FDFEFC; background: transparent; border: 2px solid #FDFEFC; border-radius: 999px; padding: 10px 16px; cursor: pointer">Ver pantalla de código otra vez</button>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1760}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const code = s.code || '';
+    const open = s.open || 'us';
+    const list = [
+      { k: 'utp', code: 'UTP', prog: 'Movilidad UTP Internacional', from: 'UTP Internacional' },
+      { k: 'us', code: 'US', prog: 'Beca Fulbright', from: 'EducationUSA' },
+      { k: 'eu', code: 'EU', prog: 'Erasmus+', from: '[POR CONFIRMAR]' }
+    ];
+    return {
+      code,
+      locked: !s.ok,
+      unlocked: !!s.ok,
+      error: !!s.error,
+      shakeClass: s.error ? 'c-shake' : '',
+      inputBorder: s.error ? '#B0126F' : '#ABAEC8',
+      codeShown: code.toUpperCase() || 'SAF-XXXX-XXXX',
+      onCode: (e) => this.setState({ code: e.target.value.toUpperCase(), error: false }),
+      submit: () => {
+        const clean = code.replace(/[^A-Za-z0-9]/g, '');
+        if (clean.length >= 11) this.setState({ ok: true, error: false });
+        else this.setState({ error: true });
+      },
+      reset: () => this.setState({ ok: false, error: false }),
+      items: list.map((it) => ({ ...it, open: open === it.k, sign: open === it.k ? '–' : '+', toggle: () => this.setState({ open: open === it.k ? '' : it.k }) }))
+    };
+  }
+}
+</script>
+</body>
+</html>

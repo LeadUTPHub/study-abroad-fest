@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Guía de animaciones</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&amp;family=Figtree:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@500;600&amp;display=swap">
+<style>
+body{margin:0;font-family:"Figtree","Segoe UI",sans-serif;color:#1D2152;background:#F1F3FA}
+@keyframes a-float{0%,100%{transform:rotate(2.5deg) translateY(0)}50%{transform:rotate(1.2deg) translateY(-10px)}}
+@keyframes a-roll{to{stroke-dashoffset:-36}}
+@keyframes a-pop{0%,15%{opacity:.001;transform:translateY(18px) rotate(-2deg) scale(.96)}30%{transform:translateY(-3px) rotate(.4deg) scale(1.01)}36%,85%{opacity:1;transform:none}100%{opacity:.001;transform:none}}
+@keyframes a-stamp{0%,55%,100%{transform:rotate(-8deg) scale(1)}65%{transform:rotate(-14deg) scale(1.35)}}
+@keyframes a-lift{0%,40%,100%{transform:none;box-shadow:0 6px 0 rgba(29,33,82,.16)}55%,85%{transform:translateY(-3px) rotate(-1deg);box-shadow:0 9px 0 rgba(29,33,82,.2)}}
+@keyframes a-drift{from{transform:translateX(0)}to{transform:translateX(40px)}}
+@keyframes a-plane{0%{transform:translateX(0)}100%{transform:translateX(250px)}}
+@keyframes a-tick{0%,80%{transform:none;opacity:1}90%{transform:translateY(-8px);opacity:.2}91%{transform:translateY(8px);opacity:.2}100%{transform:none;opacity:1}}
+.a-float{animation:a-float 7s ease-in-out infinite}
+.a-dash{stroke-dasharray:18 18;animation:a-roll 1.6s linear infinite}
+.a-pop{animation:a-pop 3.2s cubic-bezier(.2,.8,.2,1) infinite both}
+.a-p2{animation-delay:.15s}.a-p3{animation-delay:.3s}
+.a-stamp{animation:a-stamp 2.4s ease infinite}
+.a-lift{animation:a-lift 2.4s ease infinite}
+.a-drift{animation:a-drift 4s ease-in-out infinite alternate}
+.a-plane{animation:a-plane 4s linear infinite}
+.a-tick{animation:a-tick 2s ease infinite}
+@media (prefers-reduced-motion:reduce){.a-float,.a-dash,.a-pop,.a-stamp,.a-lift,.a-drift,.a-plane,.a-tick{animation:none}}
+</style>
+</helmet>
+<div style="width: 1440px; height: 1180px; box-sizing: border-box; padding: 64px 80px; background: #F1F3FA; display: flex; flex-direction: column; gap: 36px">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px">
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: #6258BB">Motion · Study Abroad Fest</span>
+      <h1 style="margin: 0; font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 60px; line-height: 1">Todo se mueve como papel</h1>
+      <p style="margin: 0; font-size: 18px; color: #4A507C; max-width: 70ch">Movimientos cortos, con un pequeño rebote, como recortes que se acomodan sobre la mesa. Solo CSS y SVG. Con "reducir movimiento" activado, todo queda quieto.</p>
+    </div>
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4A507C; text-align: right; line-height: 1.7">Curva base<br><b style="color: #1D2152">cubic-bezier(.2, .8, .2, 1)</b></div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px">
+
+    <div style="background: #FDFEFC; border-radius: 20px; border: 2px solid #ABAEC8; overflow: hidden; display: flex; flex-direction: column">
+      <div style="height: 210px; background: #3B99D8; display: grid; place-items: center">
+        <div class="a-float" style="width: 130px; height: 130px; border: 7px solid #FDFEFC; border-radius: 16px; overflow: hidden; box-shadow: 0 6px 0 rgba(29,33,82,.16)"><img src="/_blob/34a0459086a2c1b5eb02e9aff676052b" alt="" style="display: block; width: 116px; height: 116px; object-fit: cover"></div>
+      </div>
+      <div style="padding: 18px 20px; display: flex; flex-direction: column; gap: 6px">
+        <div style="font-weight: 800; font-size: 18px">1 · Key visual flotando</div>
+        <div style="font-size: 15px; color: #4A507C">Hero. Sube 10 px y gira 1°. En bucle.</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #6258BB">7s · ease-in-out · infinito</div>
+      </div>
+    </div>
+
+    <div style="background: #FDFEFC; border-radius: 20px; border: 2px solid #ABAEC8; overflow: hidden; display: flex; flex-direction: column">
+      <div style="height: 210px; background: #FDFEFC; display: grid; place-items: center; position: relative">
+        <svg width="300" height="80" viewBox="0 0 300 80">
+          <rect x="0" y="22" width="300" height="36" fill="#525F97"></rect>
+          <line x1="0" y1="22" x2="300" y2="22" stroke="#ABAEC8" stroke-width="3"></line>
+          <line x1="0" y1="58" x2="300" y2="58" stroke="#ABAEC8" stroke-width="3"></line>
+          <line class="a-dash" x1="0" y1="40" x2="300" y2="40" stroke="#FDFEFC" stroke-width="4" stroke-linecap="round"></line>
+        </svg>
+        <svg class="a-plane" width="30" height="30" viewBox="0 0 24 24" style="position: absolute; left: 20px; top: 90px"><path fill="#AC0BAD" d="M21.5 15.2v-1.8L13.6 8.5V3.3a1.6 1.6 0 1 0-3.2 0v5.2l-7.9 4.9v1.8l7.9-2.4v5.1l-2 1.5V21l3.6-1 3.6 1v-1.6l-2-1.5v-5.1z" transform="rotate(90 12 12)"></path></svg>
+      </div>
+      <div style="padding: 18px 20px; display: flex; flex-direction: column; gap: 6px">
+        <div style="font-weight: 800; font-size: 18px">2 · El camino avanza</div>
+        <div style="font-size: 15px; color: #4A507C">Líneas del camino en movimiento y un avión que recorre el cronograma.</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #6258BB">Líneas 1.6s lineal · avión 9s</div>
+      </div>
+    </div>
+
+    <div style="background: #FDFEFC; border-radius: 20px; border: 2px solid #ABAEC8; overflow: hidden; display: flex; flex-direction: column">
+      <div style="height: 210px; background: #FDFEFC; padding: 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px; justify-content: center">
+        <div class="a-pop" style="height: 38px; border-radius: 10px; border: 2px solid #ABAEC8; display: flex; align-items: center; gap: 10px; padding: 0 12px; font-weight: 800; font-size: 14px"><span style="width: 18px; height: 18px; border-radius: 50%; background: #AC0BAD"></span>Apertura</div>
+        <div class="a-pop a-p2" style="height: 38px; border-radius: 10px; border: 2px solid #ABAEC8; display: flex; align-items: center; gap: 10px; padding: 0 12px; font-weight: 800; font-size: 14px"><span style="width: 18px; height: 18px; border-radius: 50%; background: #AC0BAD"></span>UTP Internacional</div>
+        <div class="a-pop a-p3" style="height: 38px; border-radius: 10px; border: 2px solid #ABAEC8; display: flex; align-items: center; gap: 10px; padding: 0 12px; font-weight: 800; font-size: 14px"><span style="width: 18px; height: 18px; border-radius: 50%; background: #2F86C4"></span>Ponencias</div>
+      </div>
+      <div style="padding: 18px 20px; display: flex; flex-direction: column; gap: 6px">
+        <div style="font-weight: 800; font-size: 18px">3 · Paradas que aparecen</div>
+        <div style="font-size: 15px; color: #4A507C">Al entrar en pantalla, cada parada del cronograma se pega como un recorte, una tras otra.</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #6258BB">0.7s · escalonado 150 ms · una vez</div>
+      </div>
+    </div>
+
+    <div style="background: #FDFEFC; border-radius: 20px; border: 2px solid #ABAEC8; overflow: hidden; display: flex; flex-direction: column">
+      <div style="height: 210px; background: #F1F3FA; display: grid; place-items: center">
+        <div style="position: relative; width: 120px; height: 150px; background: #FDFEFC; border: 2px solid #ABAEC8; border-radius: 14px; transform: rotate(-2deg); box-shadow: 0 6px 0 rgba(29,33,82,.12)">
+          <div style="position: absolute; left: 12px; right: 12px; top: 20px; height: 84px; border-radius: 8px; background: #CFE6F6"></div>
+          <span class="a-stamp" style="position: absolute; right: 16px; top: 80px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; color: #AC0BAD; border: 2px solid #AC0BAD; border-radius: 5px; padding: 1px 6px; background: #FDFEFC">MX</span>
+        </div>
+      </div>
+      <div style="padding: 18px 20px; display: flex; flex-direction: column; gap: 6px">
+        <div style="font-weight: 800; font-size: 18px">4 · Sello de pasaporte</div>
+        <div style="font-size: 15px; color: #4A507C">Al pasar el cursor por un ponente, la etiqueta se endereza y el sello del país "golpea".</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #6258BB">Hover · 0.45s · en celular al tocar</div>
+      </div>
+    </div>
+
+    <div style="background: #FDFEFC; border-radius: 20px; border: 2px solid #ABAEC8; overflow: hidden; display: flex; flex-direction: column">
+      <div style="height: 210px; background: #3B99D8; display: grid; place-items: center">
+        <span class="a-lift" style="font-family: 'Lilita One', sans-serif; font-size: 20px; color: #FDFEFC; background: linear-gradient(100deg,#AC0BAD,#6258BB); border: 4px solid #FDFEFC; border-radius: 999px; padding: 13px 24px 11px">Inscríbete gratis</span>
+      </div>
+      <div style="padding: 18px 20px; display: flex; flex-direction: column; gap: 6px">
+        <div style="font-weight: 800; font-size: 18px">5 · Botón que se levanta</div>
+        <div style="font-size: 15px; color: #4A507C">Todos los CTA suben 3 px y giran 1°, como una tarjeta que despegas.</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #6258BB">Hover · 0.18s · al hacer clic se hunde 2 px</div>
+      </div>
+    </div>
+
+    <div style="background: #FDFEFC; border-radius: 20px; border: 2px solid #ABAEC8; overflow: hidden; display: flex; flex-direction: column">
+      <div style="height: 210px; background: #3B99D8; position: relative; overflow: hidden">
+        <div class="a-drift" style="position: absolute; left: 30px; top: 50px; width: 120px; height: 36px; background: #FDFEFC; border-radius: 999px"></div>
+        <div class="a-drift" style="position: absolute; left: 130px; top: 130px; width: 90px; height: 28px; background: #FDFEFC; border-radius: 999px; opacity: .8; animation-direction: alternate-reverse"></div>
+      </div>
+      <div style="padding: 18px 20px; display: flex; flex-direction: column; gap: 6px">
+        <div style="font-weight: 800; font-size: 18px">6 · Nubes a la deriva</div>
+        <div style="font-size: 15px; color: #4A507C">Nubes de papel que se desplazan despacio en el hero, el calendario y el cierre.</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #6258BB">9 a 13s · ida y vuelta · infinito</div>
+      </div>
+    </div>
+
+    <div style="background: #FDFEFC; border-radius: 20px; border: 2px solid #ABAEC8; overflow: hidden; display: flex; flex-direction: column">
+      <div style="height: 210px; background: #FDFEFC; display: grid; place-items: center">
+        <div style="display: flex; gap: 14px; font-variant-numeric: tabular-nums">
+          <div style="display: flex; flex-direction: column; align-items: center"><b style="font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 46px; line-height: 1; color: #6258BB">12</b><span style="font-size: 12px; font-weight: 800; color: #4A507C">DÍAS</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center"><b style="font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 46px; line-height: 1; color: #6258BB">23</b><span style="font-size: 12px; font-weight: 800; color: #4A507C">HORAS</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center"><b class="a-tick" style="font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 46px; line-height: 1; color: #6258BB">04</b><span style="font-size: 12px; font-weight: 800; color: #4A507C">MIN</span></div>
+        </div>
+      </div>
+      <div style="padding: 18px 20px; display: flex; flex-direction: column; gap: 6px">
+        <div style="font-weight: 800; font-size: 18px">7 · Cuenta regresiva</div>
+        <div style="font-size: 15px; color: #4A507C">El número que cambia sale hacia arriba y entra desde abajo. Se actualiza cada minuto.</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #6258BB">0.4s · al cambiar el valor</div>
+      </div>
+    </div>
+
+    <div style="background: #FDFEFC; border-radius: 20px; border: 2px solid #ABAEC8; overflow: hidden; display: flex; flex-direction: column">
+      <div style="height: 210px; background: #3B99D8; position: relative; overflow: hidden">
+        <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 90px; background: #525F97"></div>
+        <div style="position: absolute; left: 40px; bottom: 60px; width: 60px; height: 110px; background: #FDFEFC; border-radius: 8px 8px 0 0; opacity: .9"></div>
+        <div class="a-drift" style="position: absolute; left: 150px; bottom: 50px; width: 70px; height: 130px; background: #CFE6F6; border-radius: 30px 30px 0 0; border: 4px solid #FDFEFC"></div>
+        <div style="position: absolute; left: 20px; right: 20px; bottom: 16px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #FDFEFC">capas: cielo · monumentos · caminos</div>
+      </div>
+      <div style="padding: 18px 20px; display: flex; flex-direction: column; gap: 6px">
+        <div style="font-weight: 800; font-size: 18px">8 · Parallax del hero</div>
+        <div style="font-size: 15px; color: #4A507C">Con las capas separadas del key visual, cada capa se mueve a distinta velocidad al hacer scroll.</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #6258BB">Opcional · depende de las capas de Diseño</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1180}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Pasaporte · Interior</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&amp;family=Figtree:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@500;600&amp;display=swap">
+<style>
+body{margin:0;font-family:"Figtree","Segoe UI",sans-serif;color:#1D2152;background:#FDFEFC}
+</style>
+</helmet>
+<div style="width: 794px; height: 559px; box-sizing: border-box; padding: 40px; background: #FDFEFC; display: flex; flex-direction: column; gap: 18px; position: relative; overflow: hidden">
+  <div style="position: absolute; left: 0; right: 0; top: 0; bottom: 0; background: repeating-linear-gradient(135deg, rgba(98,88,187,.035) 0 2px, transparent 2px 14px)"></div>
+  <div style="position: relative; display: flex; justify-content: space-between; align-items: flex-end">
+    <div>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #6258BB">Visados · Study Abroad Fest 2026</div>
+      <div style="font-family: 'Lilita One', sans-serif; font-size: 34px; line-height: 1; margin-top: 4px">Junta todos los sellos</div>
+    </div>
+    <div style="font-size: 13px; color: #4A507C; font-weight: 600; text-align: right; max-width: 30ch">Pide tu sello en cada stand después de conversar con su equipo.</div>
+  </div>
+
+  <div style="position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; flex-grow: 1">
+    <!-- slot stamped -->
+    <div style="border: 1.5px solid #ABAEC8; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 10px; background: #FDFEFC">
+      <div style="display: flex; justify-content: space-between; align-items: center"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; color: #4A507C">01</span><span style="font-size: 11px; font-weight: 800; color: #6258BB">SELLADO</span></div>
+      <div style="flex-grow: 1; display: grid; place-items: center">
+        <svg width="170" height="170" viewBox="0 0 170 170" style="transform: rotate(-12deg); opacity: .88">
+          <defs><path id="ring1" d="M85 85 m-62 0 a62 62 0 1 1 124 0 a62 62 0 1 1 -124 0"></path></defs>
+          <circle cx="85" cy="85" r="78" fill="none" stroke="#6258BB" stroke-width="4"></circle>
+          <circle cx="85" cy="85" r="50" fill="none" stroke="#6258BB" stroke-width="2"></circle>
+          <text font-family="IBM Plex Mono, monospace" font-size="13" font-weight="600" fill="#6258BB" letter-spacing="3"><textPath href="#ring1">UTP INTERNACIONAL · SAF 2026 ·</textPath></text>
+          <text x="85" y="80" text-anchor="middle" font-family="Lilita One, sans-serif" font-size="22" fill="#6258BB">UTP</text>
+          <text x="85" y="102" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" fill="#6258BB">10.10.26</text>
+        </svg>
+      </div>
+      <div style="font-weight: 800; font-size: 15px">UTP Internacional</div>
+    </div>
+    <!-- slot stamped 2 -->
+    <div style="border: 1.5px solid #ABAEC8; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 10px; background: #FDFEFC">
+      <div style="display: flex; justify-content: space-between; align-items: center"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; color: #4A507C">02</span><span style="font-size: 11px; font-weight: 800; color: #AC0BAD">SELLADO</span></div>
+      <div style="flex-grow: 1; display: grid; place-items: center">
+        <svg width="170" height="170" viewBox="0 0 170 170" style="transform: rotate(9deg); opacity: .88">
+          <defs><path id="ring2" d="M85 85 m-62 0 a62 62 0 1 1 124 0 a62 62 0 1 1 -124 0"></path></defs>
+          <rect x="10" y="30" width="150" height="110" rx="14" fill="none" stroke="#AC0BAD" stroke-width="4"></rect>
+          <rect x="20" y="40" width="130" height="90" rx="8" fill="none" stroke="#AC0BAD" stroke-width="2" stroke-dasharray="6 4"></rect>
+          <text x="85" y="78" text-anchor="middle" font-family="Lilita One, sans-serif" font-size="20" fill="#AC0BAD">EducationUSA</text>
+          <text x="85" y="102" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" fill="#AC0BAD">SAF 2026 · 10.10.26</text>
+        </svg>
+      </div>
+      <div style="font-weight: 800; font-size: 15px">EducationUSA</div>
+    </div>
+    <!-- empty slot -->
+    <div style="border: 2px dashed #ABAEC8; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; justify-content: space-between; align-items: center"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; color: #4A507C">03</span><span style="font-size: 11px; font-weight: 800; color: #4A507C">PENDIENTE</span></div>
+      <div style="flex-grow: 1; display: grid; place-items: center">
+        <div style="width: 150px; height: 150px; border-radius: 50%; border: 2px dashed #ABAEC8; display: grid; place-items: center; text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #4A507C; line-height: 1.5">Sello<br>aquí</div>
+      </div>
+      <div style="font-weight: 800; font-size: 15px">[STAND POR CONFIRMAR]</div>
+    </div>
+  </div>
+
+  <div style="position: relative; display: flex; justify-content: space-between; align-items: center; gap: 16px; background: #CFE6F6; border-radius: 12px; padding: 10px 14px; font-size: 13px; font-weight: 700">
+    <span>¿Completo? Ve a la <b>mesa de canje</b> por tu código.</span>
+    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #4A507C">Un código por pasaporte</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":794,"height":559}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

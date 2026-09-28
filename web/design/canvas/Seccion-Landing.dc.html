@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Sección del calendario en la landing</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&amp;family=Figtree:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@500;600&amp;display=swap">
+<style>
+body{margin:0;font-family:"Figtree","Segoe UI",sans-serif;color:#1D2152;background:#3B99D8}
+a{color:#6258BB}
+@keyframes l-stamp{0%,60%{opacity:.001;transform:rotate(-30deg) scale(2)}75%{opacity:1;transform:rotate(-10deg) scale(.92)}82%,100%{opacity:1;transform:rotate(-12deg) scale(1)}}
+@keyframes l-stamp2{0%,30%{opacity:.001;transform:rotate(30deg) scale(2)}45%{opacity:1;transform:rotate(6deg) scale(.92)}52%,100%{opacity:1;transform:rotate(8deg) scale(1)}}
+@keyframes l-drift{from{transform:translateX(0)}to{transform:translateX(30px)}}
+@keyframes l-lock{0%,85%{transform:none}90%{transform:rotate(-8deg)}95%{transform:rotate(8deg)}100%{transform:none}}
+.l-s1{animation:l-stamp2 5s cubic-bezier(.2,.8,.2,1) infinite both}
+.l-s2{animation:l-stamp 5s cubic-bezier(.2,.8,.2,1) infinite both}
+.l-drift{animation:l-drift 10s ease-in-out infinite alternate}
+.l-lock{animation:l-lock 5s ease infinite}
+@media (prefers-reduced-motion:reduce){.l-s1,.l-s2,.l-drift,.l-lock{animation:none}}
+</style>
+</helmet>
+<div style="width: 1440px; height: 820px; box-sizing: border-box; padding: 90px 120px; background: #3B99D8; position: relative; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1fr) 560px; gap: 72px; align-items: center">
+  <div class="l-drift" style="position: absolute; left: 70px; top: 40px; width: 160px; height: 44px; background: #FDFEFC; border-radius: 999px; opacity: .85"></div>
+
+  <div style="position: relative; display: flex; flex-direction: column; gap: 22px; color: #FDFEFC">
+    <span style="align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; background: rgba(29,33,82,.25); padding: 8px 14px; border-radius: 999px">
+      <svg class="l-lock" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFE36B" stroke-width="2.6" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>Exclusivo para asistentes</span>
+    <h2 style="margin: 0; font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 66px; line-height: 1; text-shadow: 0 5px 0 rgba(29,33,82,.2)">Tu Calendario de becas se gana en el evento</h2>
+    <p style="margin: 0; font-size: 21px; font-weight: 700; line-height: 1.4; max-width: 40ch">Fechas de cierre, web oficial y tips de cada stand para cada convocatoria. Solo para quienes vienen el 10 de octubre.</p>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 6px">
+      <div style="background: #FDFEFC; color: #1D2152; border-radius: 18px; padding: 18px; display: flex; flex-direction: column; gap: 8px; transform: rotate(-1.2deg); box-shadow: 0 6px 0 rgba(29,33,82,.16)">
+        <span style="font-family: 'Lilita One', sans-serif; font-size: 30px; color: #6258BB; line-height: 1">1</span>
+        <b style="font-size: 17px">Recoge tu pasaporte</b><span style="font-size: 14px; color: #4A507C">Al ingresar al auditorio.</span>
+      </div>
+      <div style="background: #FDFEFC; color: #1D2152; border-radius: 18px; padding: 18px; display: flex; flex-direction: column; gap: 8px; transform: rotate(1deg); box-shadow: 0 6px 0 rgba(29,33,82,.16)">
+        <span style="font-family: 'Lilita One', sans-serif; font-size: 30px; color: #6258BB; line-height: 1">2</span>
+        <b style="font-size: 17px">Junta los sellos</b><span style="font-size: 14px; color: #4A507C">Uno por cada stand que visites.</span>
+      </div>
+      <div style="background: #FDFEFC; color: #1D2152; border-radius: 18px; padding: 18px; display: flex; flex-direction: column; gap: 8px; transform: rotate(-.8deg); box-shadow: 0 6px 0 rgba(29,33,82,.16)">
+        <span style="font-family: 'Lilita One', sans-serif; font-size: 30px; color: #6258BB; line-height: 1">3</span>
+        <b style="font-size: 17px">Canjea tu código</b><span style="font-size: 14px; color: #4A507C">Y descarga tu calendario aquí.</span>
+      </div>
+    </div>
+    <div style="display: flex; gap: 14px; align-items: center; margin-top: 8px">
+      <a href="https://luma.com/txyuybq9?tk=pwCvrY" style="display: inline-flex; align-items: center; gap: 10px; font-family: 'Lilita One', sans-serif; font-size: 21px; color: #FDFEFC; text-decoration: none; background: linear-gradient(100deg,#AC0BAD,#6258BB); border: 4px solid #FDFEFC; border-radius: 999px; padding: 15px 28px 13px; box-shadow: 0 6px 0 rgba(29,33,82,.16)">Inscríbete para ir</a>
+      <a href="Canje-Mobile.dc.html" style="display: inline-flex; align-items: center; gap: 8px; font-weight: 800; font-size: 17px; color: #FDFEFC; text-decoration: none; border: 3px solid #FDFEFC; border-radius: 999px; padding: 14px 22px">Ya tengo mi código</a>
+    </div>
+  </div>
+
+  <div style="position: relative; height: 560px">
+    <div style="position: absolute; left: 40px; top: 30px; width: 460px; height: 330px; background: #FDFEFC; border-radius: 20px; transform: rotate(-4deg); box-shadow: 0 10px 0 rgba(29,33,82,.16),0 26px 44px -16px rgba(29,33,82,.5); padding: 26px; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end"><span style="font-family: 'Lilita One', sans-serif; font-size: 28px">Pasaporte</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #4A507C">SAF 2026</span></div>
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; flex-grow: 1">
+        <div style="border: 1.5px solid #ABAEC8; border-radius: 12px; display: grid; place-items: center">
+          <div class="l-s1" style="width: 104px; height: 104px; border-radius: 50%; border: 4px solid #6258BB; display: grid; place-items: center; text-align: center; font-family: 'Lilita One', sans-serif; color: #6258BB; font-size: 20px; line-height: 1">UTP<br><span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px">10.10.26</span></div>
+        </div>
+        <div style="border: 1.5px solid #ABAEC8; border-radius: 12px; display: grid; place-items: center">
+          <div class="l-s2" style="width: 108px; height: 84px; border-radius: 10px; border: 4px solid #AC0BAD; display: grid; place-items: center; text-align: center; font-family: 'Lilita One', sans-serif; color: #AC0BAD; font-size: 15px; line-height: 1.1">Education<br>USA</div>
+        </div>
+        <div style="border: 2px dashed #ABAEC8; border-radius: 12px; display: grid; place-items: center; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #4A507C">[STAND]</div>
+      </div>
+    </div>
+    <div style="position: absolute; right: 0; bottom: 20px; width: 280px; background: linear-gradient(100deg,#AC0BAD,#6258BB); color: #FDFEFC; border: 5px solid #FDFEFC; border-radius: 18px; padding: 18px 20px; transform: rotate(3deg); box-shadow: 0 8px 0 rgba(29,33,82,.18); display: flex; flex-direction: column; gap: 8px">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .14em; text-transform: uppercase">Tu código</span>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 24px; letter-spacing: .06em">SAF-····-····</span>
+      <span style="font-size: 13px; font-weight: 700">Calendario + tips desbloqueados</span>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":820}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
