@@ -5,6 +5,7 @@ const aliadosRaw: Aliado[] = [
   { nombre: "UTP Internacional", estado: "confirmado" },
   { nombre: "EducationUSA", estado: "confirmado" },
   { nombre: "Erasmus+", estado: "confirmado" },
+  { nombre: "Erasmus Mundus (EMA Perú)", estado: "confirmado" },
 ];
 
 const aliados: Aliado[] = aliadosRaw.map((a) => AliadoSchema.parse(a));

@@ -44,21 +44,38 @@ export const ModalidadSchema = z.enum([
   // Vlog pregrabado + preguntas en vivo por Zoom. Nunca "presencial"
   // (CLAUDE.md, regla 6).
   "vlog-zoom",
+  // Charla en vivo por Zoom, sin vlog pregrabado (distinto de "vlog-zoom").
+  "zoom-vivo",
+  // Receso del programa: sin ponente ni modalidad real.
+  "receso",
 ]);
 export type Modalidad = z.infer<typeof ModalidadSchema>;
 
 export const EspacioSchema = z.enum(["auditorio", "zona-stands"]);
 export type Espacio = z.infer<typeof EspacioSchema>;
 
-export const CronogramaBloqueSchema = z.object({
-  orden: z.number().int().positive(),
-  titulo: z.string(),
-  quien: z.string(),
-  espacio: EspacioSchema,
-  modalidad: ModalidadSchema,
-  hora: HoraSchema.nullable(),
-  estado: EstadoSchema,
-});
+export const CronogramaBloqueSchema = z
+  .object({
+    orden: z.number().int().positive(),
+    titulo: z.string(),
+    /** null solo para bloques "receso" (PLAN.md, sección "Cronograma: datos confirmados"). */
+    quien: z.string().nullable(),
+    /** El documento fuente ya no distingue espacio por bloque; null = no especificado. */
+    espacio: EspacioSchema.nullable(),
+    modalidad: ModalidadSchema,
+    horaInicio: HoraSchema.nullable(),
+    horaFin: HoraSchema.nullable(),
+    estado: EstadoSchema,
+  })
+  .superRefine((data, ctx) => {
+    if (data.modalidad !== "receso" && data.quien === null) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["quien"],
+        message: 'solo un bloque "receso" puede tener "quien" en null',
+      });
+    }
+  });
 export type CronogramaBloque = z.infer<typeof CronogramaBloqueSchema>;
 
 /** El carril paralelo de stands, que corre junto al cronograma del auditorio. */
@@ -84,10 +101,11 @@ export type GrupoPonente = z.infer<typeof GrupoPonenteSchema>;
 export const PonenteSchema = z.object({
   id: z.string(),
   nombre: z.string(),
-  institucion: z.string(),
-  codigoPais: CodigoSchema,
+  /** null cuando la fuente solo da el nombre y el país (p. ej. "Mila (Japón)"). */
+  institucion: z.string().nullable(),
+  codigoPais: CodigoSchema.nullable(),
   /** Nota corta bajo el nombre: país, o algo como "Beca culminada". */
-  meta: z.string(),
+  meta: z.string().nullable(),
   grupo: GrupoPonenteSchema,
   /** Ruta relativa dentro de src/assets/ponentes/. Ausente = placeholder. */
   imagen: z.string().optional(),
@@ -101,7 +119,8 @@ export type Ponente = z.infer<typeof PonenteSchema>;
 export const StandSchema = z.object({
   id: z.string(),
   nombre: z.string(),
-  descripcion: z.string(),
+  /** null cuando el stand aún no entrega una descripción (se muestra "Por anunciar"). */
+  descripcion: z.string().nullable(),
   /** Ruta relativa dentro de src/assets/aliados/. Ausente = placeholder. */
   logo: z.string().optional(),
   estado: EstadoSchema,

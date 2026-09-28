@@ -8,8 +8,8 @@ Lee `PLAN.md` antes de empezar cualquier fase. **El diseño final está en `desi
 
 - **Nombre:** Study Abroad Fest
 - **Organiza:** LEAD UTP · Pilar de Excelencia Académica, en alianza con UTP Internacional
-- **Fecha:** sábado 10 de octubre de 2026, 2:00 a 6:00 p.m. (hora de Lima, UTC-5)
-- **Lugar:** Auditorio Casona UTP, calle José Velarde (frente a Torre Arequipa), Lima
+- **Fecha:** sábado 10 de octubre de 2026, 9:00 a.m. a 1:31 p.m. (hora de Lima, UTC-5)
+- **Lugar:** Convention Center UTP, Jr. Hernán Velarde 260, Lima
 - **Ingreso:** gratuito con inscripción previa en Luma: https://luma.com/txyuybq9?tk=pwCvrY
 - **Público:** estudiantes UTP, principalmente desde 5.º ciclo
 - **Principio:** convertir el interés de un estudiante por estudiar en el extranjero en un camino concreto hacia una oportunidad real
@@ -25,7 +25,7 @@ Lee `PLAN.md` antes de empezar cualquier fase. **El diseño final está en `desi
 1. **No inventar datos.** Nada de horarios, fechas de convocatorias, cargos, cifras, aforos, logos o testimonios que no estén en `src/data/`. Si falta un dato, se muestra "Por anunciar" o no se muestra.
 2. **Cada dato en `src/data/` lleva un `estado`:** `confirmado` | `por-confirmar`. Solo lo `confirmado` se publica, salvo que el componente muestre explícitamente "Por anunciar".
 3. **No mostrar el aforo** ni ninguna cifra de capacidad.
-4. **Embajada de Japón en el Perú: no aparece** en la web hasta nuevo aviso (no está confirmada).
+4. **Embajada de Japón en el Perú: no aparece** como stand ni organizador. La Beca MEXT sí se presenta en el cronograma, a cargo de **APEBEMO** (Asociación Peruana de Becarios del Gobierno de Japón).
 5. **Panel de ex-becarios:** comparten solo experiencia personal. Toda copy que los mencione debe redirigir las dudas oficiales (requisitos, procesos, convocatorias) a los stands. No escribir que en el panel se resuelven requisitos.
 6. **Ponencias internacionales:** vlog pregrabado + preguntas en vivo vía Zoom. No describirlas como "presenciales".
 7. **Nunca usar el guion largo (—) ni el guion medio como separador** en la copy. Usar punto, coma, dos puntos o "·".

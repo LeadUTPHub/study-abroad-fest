@@ -11,7 +11,7 @@ Plan para ejecutar en Claude Code, fase por fase. Cada fase trae su prompt listo
 - **6 oct:** sistema de canje probado de punta a punta con códigos reales.
 - **7 oct:** pasaportes y stickers de código impresos.
 - **8 oct:** contenido congelado (horarios, convocatorias, tips).
-- **10 oct:** evento. Canje activo desde las 2:00 p.m.
+- **10 oct:** evento. Canje activo desde las 9:00 a.m.
 
 ---
 
@@ -58,7 +58,7 @@ Plan para ejecutar en Claude Code, fase por fase. Cada fase trae su prompt listo
 | Dispositivos por código | Hasta **3** activaciones | Propuesto |
 | Duración de la sesión | Cookie de 60 días | Propuesto |
 | Intentos fallidos | Máximo 10 por IP cada 10 minutos | Propuesto |
-| Cuándo se activa el canje | Desde el 10 oct, 2:00 p.m. (antes, `/canje` muestra "Disponible el día del evento") | Propuesto |
+| Cuándo se activa el canje | Desde el 10 oct, 9:00 a.m. (antes, `/canje` muestra "Disponible el día del evento") | Propuesto |
 | Contenido protegido | Tabla de convocatorias con fechas, tips, PDF y .ics de cierres | Propuesto |
 | Contenido público | Nombres de las convocatorias y la mecánica | Propuesto |
 
@@ -138,7 +138,7 @@ study-abroad-fest/
 | 1 | **Hero** | Título, bajada, fecha/hora/lugar, gratis, CTA Luma, "Agregar a mi calendario" (.ics del evento), cuenta regresiva, key visual | Confirmado |
 | 2 | **Cronograma** (pieza central) | Camino de papel con paradas y avión que lo recorre. Cada parada: hora, título, quién, espacio, modalidad. Carril paralelo "Stands abiertos 2:00 → 6:00" | Estructura confirmada, **horas pendientes** |
 | 3 | **Ponentes** | Etiquetas de equipaje con sello de país. Grupo Zoom y grupo presencial. Nota: dudas oficiales en stands | Confirmado, fotos pendientes |
-| 4 | **Stands y aliados** | UTP Internacional, EducationUSA. Aliados: + Erasmus+ | Confirmado (Japón fuera) |
+| 4 | **Stands y aliados** | UTP Internacional, EducationUSA, APEBEMO, Migajeando Becas. Aliados: + Erasmus+/Erasmus Mundus (EMA Perú) | Confirmado (Embajada de Japón como institución no participa; MEXT vía APEBEMO) |
 | 5 | **Calendario de becas: se gana en el evento** | Mecánica en 3 pasos (pasaporte, sellos, código), visual del pasaporte sellándose, CTA "Inscríbete para ir" y "Ya tengo mi código" → `/canje` | Confirmado |
 | 6 | **Pase de abordaje + FAQ** | Fecha, hora, lugar, cómo llegar, gratis. FAQ con una pregunta nueva: "¿Cómo consigo el Calendario de becas?" | Confirmado |
 | 7 | **CTA final + footer** | Inscripción y organizadores | Confirmado |
@@ -151,17 +151,30 @@ Diseño: `design/canvas/Canje-Mobile.dc.html`. Mobile primero, porque el canje o
 - **Error:** el campo tiembla y muestra "Ese código no es válido. Revisa que esté completo, con el formato SAF-XXXX-XXXX." Si ya se usó en 3 dispositivos: "Este código ya se activó en 3 dispositivos. Acércate a la mesa de canje." Después del evento: "Escríbenos a [CONTACTO]".
 - **Desbloqueado:** sello "APROBADO" que cae, botones Descargar PDF y Agregar cierres a mi calendario, y acordeón por convocatoria con fecha de cierre, 3 tips de su stand y enlace oficial.
 
-### Cronograma: datos de partida
-Solo el orden está confirmado. Las horas quedan en `null` ("Por anunciar"). El brochure no es fuente.
+### Cronograma: datos confirmados (según documento "STUDY ABROAD FEST 2026")
 
-| Orden | Bloque | Quién | Espacio | Modalidad |
-|---|---|---|---|---|
-| 1 | Apertura | LEAD UTP | Auditorio | Presencial |
-| 2 | Conferencia magistral: convenios, requisitos y movilidad | UTP Internacional | Auditorio | Presencial |
-| 3 | Beca Fulbright | EducationUSA | Auditorio | Presencial |
-| 4 | Ponencias internacionales | Carmen (Tec de Monterrey), Fernando Injoque (Purdue), Guillermo Alfaro (Erasmus), Diego Mendoza (UC Berkeley) | Auditorio | Vlog + Q&A vía Zoom |
-| 5 | Panel de ex-becarios | Leslie (UC Berkeley), Lizbeth Dávila (ELAP · SIAS) | Auditorio | Presencial |
-| paralelo | Stands | UTP Internacional, EducationUSA | Zona de stands | 2:00 a 6:00 p.m. |
+> **Nota de consistencia:** este cronograma reemplaza la versión anterior (lugar, horario y horas exactas). Un solo punto queda por reconfirmar antes de publicarlo: el nombre correcto del ponente de Erasmus+ aparece como **"Guillermo Gonzalo"** en este documento y como "Guillermo Alfaro" en una fuente anterior. Se usa **Guillermo Gonzalo** por ser la fuente más reciente; avisar si no es correcto.
+
+| Hora | Bloque | Quién | Modalidad |
+|---|---|---|---|
+| 09:00–09:15 | Bienvenida | LEAD UTP | Presencial |
+| 09:15–09:22 | Cápsula | Fernando Injoque (Purdue) | Vlog + Q&A vía Zoom |
+| 09:22–09:42 | Ponencia | Ivanna (Purdue) | Vlog + Q&A vía Zoom |
+| 09:47–10:07 | Conferencia: convenios, requisitos y movilidad | UTP Internacional | Presencial |
+| 10:12–10:42 | Panel de ex-becarios | Leslie Sánchez (UC Berkeley), Diego Mendoza (UC Berkeley) | Presencial |
+| 10:47–11:07 | Beca Fulbright | EducationUSA · Nikole Meza | Presencial |
+| 11:07–11:22 | Intermedio | — | — |
+| 11:22–11:29 | Cápsula | Mila (Japón) | Vlog + Q&A vía Zoom |
+| 11:29–11:49 | Beca MEXT | APEBEMO | Presencial |
+| 11:54–12:14 | Stand/ponencia | APEBEMO | Presencial |
+| 12:14–12:21 | Cápsula | Guillermo Gonzalo (Erasmus+) *(antes "Guillermo Alfaro", ver nota arriba)* | Vlog + Q&A vía Zoom |
+| 12:21–12:41 | Erasmus Mundus | EMA Perú | Presencial |
+| 12:41–12:56 | Ponencia | Raquel Sánchez | Vía Zoom |
+| 13:01–13:21 | Migajeando Becas | Raúl Jauregui | Presencial |
+| 13:21–13:31 | Cierre | LEAD UTP | Presencial |
+| paralelo | Stands | UTP Internacional, EducationUSA, APEBEMO, Migajeando Becas | Zona de stands, 9:00 a.m. a 1:31 p.m. |
+
+**Pendiente de confirmar por separado:** si Carmen (Tec de Monterrey) y Lizbeth Dávila (ELAP · SIAS), presentes en la versión anterior del cronograma, siguen participando; no aparecen en el documento nuevo. No se elimina su ficha de `src/data/` hasta confirmarlo, pero tampoco se agrega al cronograma con hora hasta entonces.
 
 ### Modelo de datos: convocatorias y tips
 
@@ -309,10 +322,12 @@ Postevento (opcional): banner "Gracias por venir" en la landing. El canje sigue 
 
 | Pendiente | Bloquea | Responsable sugerido | Fecha límite |
 |---|---|---|---|
-| Horarios exactos por bloque | Cronograma | Pilar de Excelencia Académica | 3 oct |
-| Fechas y enlace oficial de cada convocatoria | Calendario, PDF, .ics | UTP Internacional, EducationUSA | 5 oct |
-| 3 tips por convocatoria | Calendario desbloqueado | UTP Internacional, EducationUSA | 5 oct |
-| ¿Cuántos stands sellan? (hoy 2; ¿se suma alguno?) | Pasaporte impreso | Pilar | 3 oct |
+| ~~Horarios exactos por bloque~~ | Cronograma | Pilar de Excelencia Académica | **Resuelto:** ver sección 4 |
+| Confirmar nombre "Guillermo Gonzalo" vs. "Guillermo Alfaro" | Cronograma, tarjeta de ponente | Pilar | Antes de Fase 8 |
+| Confirmar si Carmen (Tec de Monterrey) y Lizbeth Dávila (ELAP · SIAS) siguen participando | Cronograma, ponentes | Pilar | Antes de Fase 8 |
+| Fechas y enlace oficial de cada convocatoria | Calendario, PDF, .ics | UTP Internacional, EducationUSA, APEBEMO, Migajeando Becas | 5 oct |
+| 3 tips por convocatoria | Calendario desbloqueado | UTP Internacional, EducationUSA, APEBEMO, Migajeando Becas | 5 oct |
+| Confirmar que son 4 stands los que sellan (UTP Internacional, EducationUSA, APEBEMO, Migajeando Becas) | Pasaporte impreso | Pilar | 3 oct |
 | Cantidad de pasaportes y códigos | Impresión | Pilar | 4 oct |
 | Sellos físicos por stand | Mecánica | Pilar | 7 oct |
 | Ubicación y voluntarios de la mesa de canje | Mecánica | Pilar | 7 oct |
@@ -321,6 +336,6 @@ Postevento (opcional): banner "Gracias por venir" en la landing. El canje sigue 
 | Fotos de ponentes (autorizadas) | Ponentes | Pilar | 1 oct |
 | Archivos de logos de aliados | Stands y aliados | Pilar | 1 oct |
 | Dominio o subdominio | Deploy, QR de stickers | LEAD UTP | 30 sep |
-| Situación de la Embajada de Japón | Stands (hoy excluida) | Pilar | Cuando se confirme |
+| ~~Situación de la Embajada de Japón~~ | Stands | Pilar | **Resuelto:** MEXT se presenta vía APEBEMO, la Embajada no participa directamente |
 
 El dominio es crítico: los QR de los stickers llevan la URL final. **Hay que definirlo antes de generar los códigos.**

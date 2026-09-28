@@ -44,6 +44,21 @@ const postulacionesRaw: Postulacion[] = [
     estado: "por-confirmar",
     verificadoEl: null,
   },
+  {
+    id: "mext",
+    programa: "Beca MEXT",
+    destino: "Japón",
+    codigoPais: "JP",
+    institucion: "APEBEMO",
+    // No se inventan fechas ni enlace oficial para APEBEMO (pendiente,
+    // PLAN.md sección 8).
+    apertura: null,
+    cierre: null,
+    urlOficial: null,
+    dondePreguntar: "Stand APEBEMO",
+    estado: "por-confirmar",
+    verificadoEl: null,
+  },
 ];
 
 const postulaciones: Postulacion[] = postulacionesRaw.map((p) => PostulacionSchema.parse(p));

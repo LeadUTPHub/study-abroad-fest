@@ -1,6 +1,5 @@
 import { PonenteSchema, type Ponente } from "./schema";
 
-// Confirmados; fotos pendientes (PLAN.md, sección 4, fila "Ponentes").
 // Cuando lleguen las fotos autorizadas (PLAN.md, sección 6), se agrega
 // `imagen: "carmen.jpg"` (etc.) apuntando a src/assets/ponentes/.
 const ponentesRaw: Ponente[] = [
@@ -11,7 +10,9 @@ const ponentesRaw: Ponente[] = [
     codigoPais: "MX",
     meta: "México",
     grupo: "internacional",
-    estado: "confirmado",
+    // Ya no aparece en el cronograma confirmado; pendiente de confirmar si
+    // sigue participando (PLAN.md, sección 8). No se borra su ficha.
+    estado: "por-confirmar",
   },
   {
     id: "fernando-injoque",
@@ -23,12 +24,52 @@ const ponentesRaw: Ponente[] = [
     estado: "confirmado",
   },
   {
-    id: "guillermo-alfaro",
-    nombre: "Guillermo Alfaro",
+    id: "ivanna",
+    nombre: "Ivanna",
+    institucion: "Purdue University",
+    codigoPais: "US",
+    meta: "Estados Unidos",
+    grupo: "internacional",
+    estado: "confirmado",
+  },
+  {
+    id: "mila",
+    nombre: "Mila",
+    // Solo se da el nombre y el país en la fuente (PLAN.md).
+    institucion: null,
+    codigoPais: "JP",
+    meta: "Japón",
+    grupo: "internacional",
+    estado: "confirmado",
+  },
+  {
+    id: "guillermo-gonzalo",
+    // Reemplaza a "Guillermo Alfaro" (PLAN.md, sección 8: pendiente de
+    // reconfirmar cuál de los dos nombres es correcto).
+    nombre: "Guillermo Gonzalo",
     institucion: "Erasmus",
     codigoPais: "EU",
     meta: "Europa",
     grupo: "internacional",
+    estado: "por-confirmar",
+  },
+  {
+    id: "raquel-sanchez",
+    nombre: "Raquel Sánchez",
+    // Ni institución ni país se dan en la fuente.
+    institucion: null,
+    codigoPais: null,
+    meta: null,
+    grupo: "internacional",
+    estado: "confirmado",
+  },
+  {
+    id: "leslie-sanchez",
+    nombre: "Leslie Sánchez",
+    institucion: "UC Berkeley",
+    codigoPais: "US",
+    meta: "Beca culminada",
+    grupo: "panel",
     estado: "confirmado",
   },
   {
@@ -37,15 +78,8 @@ const ponentesRaw: Ponente[] = [
     institucion: "UC Berkeley",
     codigoPais: "US",
     meta: "Estados Unidos",
-    grupo: "internacional",
-    estado: "confirmado",
-  },
-  {
-    id: "leslie",
-    nombre: "Leslie",
-    institucion: "UC Berkeley",
-    codigoPais: "US",
-    meta: "Beca culminada",
+    // Pasó del grupo "internacional" al panel de ex-becarios en el
+    // cronograma confirmado.
     grupo: "panel",
     estado: "confirmado",
   },
@@ -56,7 +90,9 @@ const ponentesRaw: Ponente[] = [
     codigoPais: "CN",
     meta: "China",
     grupo: "panel",
-    estado: "confirmado",
+    // Ya no aparece en el cronograma confirmado; pendiente de confirmar si
+    // sigue participando (PLAN.md, sección 8). No se borra su ficha.
+    estado: "por-confirmar",
   },
 ];
 
