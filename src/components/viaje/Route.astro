@@ -1,0 +1,179 @@
+---
+// 02 · Ruta de vuelo (VIAJE.md, sección 4): la pieza central. Camino de papel
+// vertical con un avión que lo recorre, grupos numerados, horas muy visibles
+// y, en escritorio, un carril sticky con los stands abiertos.
+// Semántica: <ol> de paradas, <ul> de filas, <time> en cada hora.
+import evento from "../../data/evento";
+import { gates, groups, intermission } from "../../data/schedule";
+import type { ScheduleMode } from "../../data/schema";
+import { hora12 } from "../../lib/viaje";
+import PaperEdge from "./PaperEdge.astro";
+import Plane from "./Plane.astro";
+
+const MODOS: Record<ScheduleMode, { label: string; cls: string }> = {
+  presencial: { label: "Presencial", cls: "bg-magenta text-paper" },
+  // AA: el sky-deep de marca (#2F86C4) da 3.9:1 con texto blanco de 12 px; este tono da 5.4:1.
+  "vlog-zoom": { label: "Vlog + Zoom", cls: "bg-[#22709F] text-paper" },
+  zoom: { label: "Zoom", cls: "bg-violet text-paper" },
+  libre: { label: "Libre", cls: "border-[1.5px] border-dashed border-lav text-ink-2" },
+};
+const chipBase = "shrink-0 self-center whitespace-nowrap rounded-full px-3 py-1 font-sans text-xs font-extrabold";
+
+const inicio = groups[0]?.from ?? evento.horaInicio;
+const fin = groups[groups.length - 1]?.to ?? evento.horaFin;
+
+// El intermedio va entre los dos grupos que lo rodean por horario.
+const paradas = [
+  ...groups.map((g) => ({ kind: "group" as const, at: g.from, g })),
+  { kind: "pin" as const, at: intermission.start, pin: intermission },
+].sort((a, b) => a.at.localeCompare(b.at));
+
+const timePill =
+  "rounded-md bg-[#ECEBF8] px-[7px] py-px font-mono text-base font-semibold text-violet lg:rounded-lg lg:px-[9px] lg:py-[3px] lg:text-[21px]";
+const timeEnd = "font-mono text-[11px] font-semibold text-violet lg:text-[13px]";
+const row = "grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-2 gap-y-[3px] border-t border-[#E4E7F5] px-3 py-[7px] min-h-14 lg:grid-cols-[176px_minmax(0,1fr)_auto] lg:gap-x-4 lg:gap-y-0 lg:px-5 lg:py-1.5";
+const node = "relative z-[1] justify-self-center";
+const extremePill =
+  "rounded-[10px] bg-brand-gradient px-3 pt-[5px] pb-1 font-display text-[32px] leading-none text-paper shadow-[0_3px_0_rgb(29_33_82/0.2)] lg:rounded-[14px] lg:px-[18px] lg:pt-[7px] lg:pb-1.5 lg:text-[42px] lg:shadow-[0_4px_0_rgb(29_33_82/0.2)]";
+const extremeLabel =
+  "font-mono text-xs font-semibold tracking-[.18em] text-violet uppercase lg:text-[15px] lg:tracking-[.2em]";
+const itemGrid = "grid grid-cols-[56px_minmax(0,1fr)] gap-2 lg:grid-cols-[120px_minmax(0,1fr)] lg:gap-4";
+---
+
+<section id="cronograma" class="relative z-[3] scroll-mt-24 bg-paper px-5 pt-[84px] pb-24 text-ink md:px-8 lg:px-10 lg:pt-[110px] lg:pb-[130px] xl:px-0" aria-labelledby="cronograma-title">
+  <PaperEdge edge="top" id="edge-cron-top" />
+  <PaperEdge edge="bottom" id="edge-cron-bottom" />
+
+  <div class="mx-auto w-full max-w-[1200px]">
+    <div class="flex flex-col gap-3 lg:grid lg:grid-cols-[minmax(0,1fr)_420px] lg:items-end lg:gap-[60px]">
+      <div class="flex flex-col gap-3 lg:gap-4">
+        <span class="font-mono text-xs font-semibold tracking-[.16em] text-violet uppercase lg:text-[13px]">02 · Ruta de vuelo</span>
+        <h2 id="cronograma-title" class="m-0 font-display text-[56px] leading-[.98] font-normal text-ink lg:text-[80px]">Del despegue<br />al atardecer</h2>
+        <p class="m-0 max-w-[44ch] text-[17px] leading-[1.45] font-semibold text-ink-2 lg:text-[21px]">
+          Cuatro horas, un solo recorrido. Las cápsulas llegan en vlog y se responden preguntas en vivo por Zoom.
+        </p>
+        <ul class="m-0 flex list-none flex-wrap items-center gap-2 p-0 text-xs font-extrabold text-paper lg:hidden" aria-label="Modalidades">
+          {(["presencial", "vlog-zoom", "zoom"] as const).map((m) => <li class={`rounded-full px-2.5 py-1 ${MODOS[m].cls}`}>{MODOS[m].label}</li>)}
+        </ul>
+      </div>
+      <div class="hidden flex-col gap-3 rounded-[18px] border border-[#E1E4F2] bg-paper-2 px-[22px] py-5 text-[15px] font-bold text-ink lg:flex">
+        <span class="font-mono text-xs tracking-[.14em] text-violet uppercase">Cómo leer el tablero</span>
+        <div class="flex items-center gap-2.5"><span class={`rounded-full px-[11px] py-1 text-xs font-extrabold ${MODOS.presencial.cls}`}>Presencial</span>En el {evento.lugar}</div>
+        <div class="flex items-center gap-2.5"><span class={`rounded-full px-[11px] py-1 text-xs font-extrabold ${MODOS["vlog-zoom"].cls}`}>Vlog + Zoom</span>Video pregrabado y preguntas en vivo</div>
+        <div class="flex items-center gap-2.5"><span class={`rounded-full px-[11px] py-1 text-xs font-extrabold ${MODOS.zoom.cls}`}>Zoom</span>Ponencia conectada por Zoom</div>
+      </div>
+    </div>
+
+    <div class="mt-6 lg:mt-14 lg:grid lg:grid-cols-[minmax(0,1fr)_300px] lg:items-start lg:gap-10">
+      <div class="relative">
+        <!-- camino de papel: alto = alto de la lista -->
+        <svg class="pointer-events-none absolute top-0 left-0 h-full w-14 overflow-visible lg:hidden" aria-hidden="true">
+          <rect x="6" width="44" height="100%" rx="22" fill="rgb(29 33 82 / 0.16)" transform="translate(0 5)"></rect>
+          <rect x="6" width="44" height="100%" rx="22" fill="#525F97"></rect>
+          <line x1="6" y1="0" x2="6" y2="100%" stroke="#FDFEFC" stroke-width="3.5"></line>
+          <line x1="50" y1="0" x2="50" y2="100%" stroke="#FDFEFC" stroke-width="3.5"></line>
+          <line class="v-dash" x1="28" y1="10" x2="28" y2="100%" stroke="#FDFEFC" stroke-width="3.5" stroke-linecap="round"></line>
+        </svg>
+        <svg class="pointer-events-none absolute top-0 left-0 hidden h-full w-[120px] overflow-visible lg:block" aria-hidden="true">
+          <rect x="18" width="84" height="100%" rx="42" fill="rgb(29 33 82 / 0.16)" transform="translate(0 7)"></rect>
+          <rect x="18" width="84" height="100%" rx="42" fill="#525F97"></rect>
+          <line x1="18" y1="0" x2="18" y2="100%" stroke="#FDFEFC" stroke-width="5"></line>
+          <line x1="102" y1="0" x2="102" y2="100%" stroke="#FDFEFC" stroke-width="5"></line>
+          <line class="v-dash" x1="60" y1="14" x2="60" y2="100%" stroke="#FDFEFC" stroke-width="5" stroke-linecap="round"></line>
+        </svg>
+        <!-- avión: recorre el camino de arriba a abajo -->
+        <div class="pointer-events-none absolute top-0 left-0 h-full w-14 [container-type:size] lg:w-[120px]" aria-hidden="true">
+          <div class="motion-plane v-fly absolute top-0 left-7 [--fly-from:70px] [--fly-to:70px] lg:left-[60px] lg:[--fly-from:90px] lg:[--fly-to:92px]">
+            <svg class="absolute -top-[30px] -left-[30px] size-[60px] overflow-visible lg:-top-[38px] lg:-left-[38px] lg:size-[76px]">
+              <g transform="translate(30 30)" class="lg:hidden">
+                <circle r="19" cx="2" cy="4" fill="rgb(29 33 82 / 0.22)"></circle>
+                <Plane scale={1.5} rotate={180} stroke="#AC0BAD" strokeWidth={1.3} />
+              </g>
+              <g transform="translate(38 38)" class="hidden lg:block">
+                <circle r="34" cx="3" cy="6" fill="rgb(29 33 82 / 0.22)"></circle>
+                <Plane scale={2.7} rotate={180} stroke="#AC0BAD" strokeWidth={1.3} />
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <ol class="relative m-0 flex list-none flex-col gap-3.5 p-0 lg:gap-[26px]" role="list">
+          <li class={`${itemGrid} h-11 items-center lg:h-14`}>
+            <div class={`${node} size-[34px] rounded-full border-[5px] border-sky bg-paper shadow-[0_3px_0_rgb(29_33_82/0.25)] lg:size-[50px] lg:border-[6px] lg:shadow-[0_4px_0_rgb(29_33_82/0.25)]`} aria-hidden="true"></div>
+            <div class="flex items-center gap-2.5 lg:gap-4">
+              <time datetime={inicio} class={extremePill}>{inicio}</time>
+              <span class={extremeLabel}>Despegue</span>
+            </div>
+          </li>
+
+          {paradas.map((p) =>
+            p.kind === "group" ? (
+              <li class={`${itemGrid} items-start`}>
+                <div class={`${node} mt-1 grid size-11 place-items-center rounded-full border-4 border-paper bg-brand-gradient font-display text-xl text-paper shadow-[0_4px_0_rgb(29_33_82/0.25)] lg:mt-0.5 lg:size-16 lg:border-[6px] lg:text-[28px] lg:shadow-[0_5px_0_rgb(29_33_82/0.25)]`} aria-hidden="true">{p.g.n}</div>
+                <article class="v-card min-w-0 overflow-hidden rounded-2xl border-2 border-lav bg-paper shadow-[0_5px_0_rgb(29_33_82/0.12)] lg:rounded-[20px] lg:shadow-[0_7px_0_rgb(29_33_82/0.12)]" aria-labelledby={`grupo-${p.g.n}`}>
+                  <header class="flex min-h-[70px] flex-col items-start justify-center gap-1.5 px-3 py-1.5 lg:min-h-[68px] lg:flex-row lg:items-center lg:justify-between lg:gap-4 lg:px-5 lg:py-2">
+                    <h3 id={`grupo-${p.g.n}`} class="m-0 font-display text-lg leading-[1.05] font-normal text-ink lg:text-[30px]">{p.g.title}</h3>
+                    <p class="m-0 rounded-[9px] bg-brand-gradient px-2.5 pt-[5px] pb-1 font-display text-[17px] leading-none whitespace-nowrap text-paper shadow-[0_2px_0_rgb(29_33_82/0.2)] lg:rounded-xl lg:px-3.5 lg:pt-[7px] lg:pb-1.5 lg:text-[23px] lg:shadow-[0_3px_0_rgb(29_33_82/0.2)]">
+                      <span class="sr-only">De </span>{hora12(p.g.from)} <span aria-hidden="true">→</span><span class="sr-only"> a </span> {hora12(p.g.to)}
+                    </p>
+                  </header>
+                  <ul class="m-0 list-none p-0">
+                    {p.g.rows.map((r) => (
+                      <li class={`v-stop ${row}`}>
+                        <p class="col-start-1 row-start-1 m-0 flex items-baseline gap-1.5 whitespace-nowrap lg:gap-2">
+                          <time datetime={r.start} class={timePill}>{r.start}</time>
+                          <span class={timeEnd}>a <time datetime={r.end}>{r.end}</time></span>
+                        </p>
+                        <p class="col-span-2 row-start-2 m-0 min-w-0 text-[13.5px] leading-[1.2] lg:col-span-1 lg:col-start-2 lg:row-start-1 lg:flex lg:flex-col lg:gap-px lg:text-[17px] lg:leading-[1.15]">
+                          <b class="font-extrabold text-ink">{r.title}</b>{" "}
+                          {r.who && <span class="font-semibold text-ink-2 lg:text-sm">{r.who}</span>}
+                        </p>
+                        <span class={`col-start-2 row-start-1 justify-self-end lg:col-start-3 ${chipBase} ${MODOS[r.mode].cls}`}>{MODOS[r.mode].label}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              </li>
+            ) : (
+              <li class={`${itemGrid} h-11 items-center lg:h-12`}>
+                <div class={`${node} grid size-[38px] place-items-center rounded-full border-4 border-dashed border-violet bg-paper text-violet lg:size-[52px] lg:border-[5px]`} aria-hidden="true">
+                  <svg class="size-4 lg:size-[22px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.1-7-11.5a7 7 0 0 1 14 0C19 14.9 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>
+                </div>
+                <div class="flex h-11 min-w-0 items-center gap-2 rounded-xl bg-paper-2 px-3 lg:h-12 lg:gap-3.5 lg:rounded-2xl lg:px-5">
+                  <time datetime={p.pin.start} class="rounded-md bg-[#ECEBF8] px-1.5 py-px font-mono text-[15px] font-semibold text-violet lg:rounded-lg lg:px-[9px] lg:py-0.5 lg:text-[21px]">{p.pin.start}</time>
+                  <span class="hidden font-mono text-[13px] font-semibold text-violet lg:inline">a <time datetime={p.pin.end}>{p.pin.end}</time></span>
+                  <span class="truncate text-[13px] font-extrabold text-ink lg:text-[17px]">{p.pin.title}</span>
+                </div>
+              </li>
+            ),
+          )}
+
+          <li class={`${itemGrid} h-11 items-center lg:h-14`}>
+            <div class={`${node} size-[34px] rounded-full border-[5px] border-paper bg-brand-gradient shadow-[0_0_20px_6px_rgb(172_11_173/0.35)] lg:size-[50px] lg:border-[6px] lg:shadow-[0_0_26px_8px_rgb(172_11_173/0.35)]`} aria-hidden="true"></div>
+            <div class="flex items-center gap-2.5 lg:gap-4">
+              <time datetime={fin} class={extremePill}>{fin}</time>
+              <span class={extremeLabel}>Atardecer</span>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <aside class="sticky top-6 hidden flex-col gap-4 rounded-3xl border-[6px] border-paper bg-[linear-gradient(170deg,#AC0BAD,#6258BB)] px-[26px] py-7 text-paper shadow-[0_8px_0_rgb(29_33_82/0.16)] outline-2 outline-lav lg:flex" aria-labelledby="carril-title">
+        <span class="font-mono text-xs font-semibold tracking-[.14em] uppercase opacity-90">Carril paralelo</span>
+        <h3 id="carril-title" class="m-0 font-display text-[38px] leading-none font-normal">Stands abiertos</h3>
+        <p class="m-0 font-display text-[32px] leading-none text-sky-soft">
+          <time datetime={evento.horaInicio}>{evento.horaInicio}</time> <span aria-hidden="true">→</span><span class="sr-only"> a </span> <time datetime={evento.horaFin}>{evento.horaFin}</time>
+        </p>
+        <div class="h-0.5 bg-paper/40"></div>
+        <ul class="m-0 flex list-none flex-col gap-2.5 p-0 text-[17px] font-bold">
+          {gates.filter((g) => g.estado === "confirmado").map((g) => (
+            <li class="flex items-center gap-2.5 rounded-xl bg-paper/16 px-3.5 py-3"><span class="size-3 shrink-0 rounded-full bg-paper" aria-hidden="true"></span>{g.name}</li>
+          ))}
+        </ul>
+        <p class="m-0 text-base leading-normal font-semibold">
+          Requisitos, promedios, convalidación, visados y fechas de postulación. Aquí se resuelve lo oficial, y aquí se sella tu pasaporte.
+        </p>
+      </aside>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,37 @@
+---
+// Borde ondulado (círculos de papel recortado) que une una sección paper con
+// la vecina. `edge="top"` se apoya sobre el borde superior de la sección y
+// `edge="bottom"` bajo el inferior. Decorativo.
+interface Props {
+  edge: "top" | "bottom";
+  id: string;
+}
+const { edge, id } = Astro.props;
+const flip = edge === "bottom";
+const pos = edge === "top" ? "-top-[29px] lg:-top-[39px]" : "-bottom-[29px] lg:-bottom-[39px]";
+---
+
+<div class={`pointer-events-none absolute inset-x-0 ${pos}`} aria-hidden="true">
+  <!-- móvil: círculos r26 cada 42 -->
+  <svg class:list={["block h-[30px] w-full lg:hidden", flip && "-scale-y-100"]}>
+    <defs>
+      <pattern id={`${id}-m`} width="42" height="30" patternUnits="userSpaceOnUse">
+        <circle cx="0" cy="36" r="26" fill="#FDFEFC"></circle>
+        <circle cx="42" cy="36" r="26" fill="#FDFEFC"></circle>
+      </pattern>
+    </defs>
+    <rect width="100%" height="30" fill={`url(#${id}-m)`}></rect>
+    <rect y="29" width="100%" height="2" fill="#FDFEFC"></rect>
+  </svg>
+  <!-- escritorio: círculos r36 cada 60 -->
+  <svg class:list={["hidden h-10 w-full lg:block", flip && "-scale-y-100"]}>
+    <defs>
+      <pattern id={`${id}-d`} width="60" height="40" patternUnits="userSpaceOnUse">
+        <circle cx="0" cy="49" r="36" fill="#FDFEFC"></circle>
+        <circle cx="60" cy="49" r="36" fill="#FDFEFC"></circle>
+      </pattern>
+    </defs>
+    <rect width="100%" height="40" fill={`url(#${id}-d)`}></rect>
+    <rect y="39" width="100%" height="2" fill="#FDFEFC"></rect>
+  </svg>
+</div>
