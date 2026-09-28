@@ -1,0 +1,295 @@
+---
+// Fase 4: PDF del calendario de becas (design/canvas/Calendario-P1.dc.html
+// y Calendario-P2.dc.html), replicado en A4. `scripts/pdf.ts` construye el
+// sitio y corre `astro preview` LOCALMENTE (sin la variable de entorno
+// VERCEL) para imprimir esta ruta a `private/calendario-becas-saf2026.pdf`
+// con Playwright.
+//
+// Contenido protegido (CLAUDE.md, regla 10): esta página muestra fechas
+// de cierre y enlaces oficiales de las convocatorias. Por eso, además de
+// noindex, se bloquea por completo cuando el build corre en Vercel
+// (proceso.env.VERCEL, presente tanto en build como en runtime): el HTML
+// que termina desplegado nunca contiene el contenido protegido, sea cual
+// sea el estado de los datos. Solo un build LOCAL (el que hace
+// `npm run pdf`) produce la página completa, y ese resultado nunca se
+// despliega: se queda en el PDF de `private/`.
+import "../../styles/global.css";
+import "@fontsource/lilita-one/400.css";
+import "@fontsource/figtree/400.css";
+import "@fontsource/figtree/500.css";
+import "@fontsource/figtree/600.css";
+import "@fontsource/figtree/700.css";
+import "@fontsource/figtree/800.css";
+import "@fontsource/ibm-plex-mono/500.css";
+import "@fontsource/ibm-plex-mono/600.css";
+import evento from "../../data/evento";
+import postulaciones from "../../data/postulaciones";
+import stands from "../../data/stands";
+import { formatoFechaCorta } from "../../lib/fechas";
+import { qrSvg } from "../../lib/qr";
+
+// No lleva `export const prerender = false`: el adaptador @astrojs/vercel
+// no soporta `astro preview` en cuanto el sitio tiene alguna ruta on-demand
+// ("The @astrojs/vercel adapter does not support the preview command"),
+// y `scripts/pdf.ts` depende de `astro preview` (ver PLAN.md, Fase 4). Por
+// eso esta página se queda prerenderizada, y el bloqueo real en Vercel se
+// completa con la regla que agrega scripts/bloquear-imprimir-en-vercel.mjs
+// después del build (Astro no traduce `Astro.response.status` a un status
+// real para páginas estáticas, solo para redirects 3xx).
+const bloqueado = Boolean(process.env.VERCEL);
+if (bloqueado) {
+  Astro.response.status = 404;
+}
+
+const anio = evento.fecha.slice(0, 4);
+const aliadoPrincipal = evento.organizadores[1] ?? null;
+
+const MESES_ES = ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SET", "OCT", "NOV", "DIC"];
+const [anioEventoStr, mesEventoStr] = evento.fecha.split("-");
+const anioEvento = Number(anioEventoStr);
+const mesEvento = Number(mesEventoStr) - 1;
+const meses = Array.from({ length: 12 }, (_, i) => {
+  const idx = (mesEvento + i) % 12;
+  return { m: MESES_ES[idx], y: String(anioEvento + Math.floor((mesEvento + i) / 12)) };
+});
+
+const fechaCorta = (iso: string) => {
+  const [y, m, d] = iso.split("-");
+  return `${d}/${m}/${y.slice(2)}`;
+};
+
+const filas = bloqueado
+  ? []
+  : await Promise.all(
+      postulaciones.map(async (p) => ({
+        p,
+        qr: p.urlOficial ? await qrSvg(p.urlOficial) : null,
+      })),
+    );
+
+const institucionesUnicas = [...new Set(postulaciones.map((p) => p.institucion))];
+const confirmadasConFecha = postulaciones
+  .filter((p): p is typeof p & { verificadoEl: string } => p.estado === "confirmado" && p.verificadoEl !== null)
+  .map((p) => p.verificadoEl)
+  .sort();
+const ultimaVerificacion = confirmadasConFecha.at(-1) ?? null;
+
+const pasos = [
+  { n: "1", t: "Elige tu convocatoria", d: "Una o dos que encajen con tu carrera y tu ciclo." },
+  { n: "2", t: "Lee las bases en la web oficial", d: "Requisitos, fechas y documentos, siempre desde la fuente oficial." },
+  { n: "3", t: "Arma tu lista de documentos", d: "Anota abajo lo que te falta y ponle fecha a cada uno." },
+  { n: "4", t: "Pide asesoría", d: "El stand de tu convocatoria resuelve lo oficial." },
+  { n: "5", t: "Postula antes del cierre", d: "No dejes el envío para el último día." },
+];
+
+const standsConfirmados = stands.filter((s) => s.estado === "confirmado");
+---
+
+<!doctype html>
+<html lang="es-PE">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Calendario de becas · Imprimir</title>
+  </head>
+  <body>
+    {
+      bloqueado ? (
+        <p>Not found.</p>
+      ) : (
+        <>
+          <!-- Página 1 -->
+          <section class="pagina flex flex-col bg-paper text-ink">
+            <div class="relative h-[300px] shrink-0 bg-sky px-12 pt-11 text-paper">
+              <div class="cloud-drift absolute right-[60px] top-[46px] h-8 w-[110px] rounded-full bg-paper opacity-90"></div>
+              <div class="flex items-center gap-2 text-sm font-extrabold">
+                <span>LEAD</span>
+                <span class="rounded-md bg-paper px-2 py-0.5 font-display text-sky-deep tracking-[.08em]">UTP</span>
+                {aliadoPrincipal && <span class="font-semibold">× {aliadoPrincipal}</span>}
+              </div>
+              <div class="mt-6 font-mono text-xs font-semibold uppercase tracking-[.14em]">
+                {evento.nombre} {anio} · Descargable
+              </div>
+              <h1 class="m-0 mt-2 font-display text-[60px] leading-none [text-shadow:0_4px_0_rgba(29,33,82,.2)]">
+                Calendario de becas
+              </h1>
+              <p class="m-0 mt-2.5 max-w-[46ch] text-[17px] font-bold">
+                Las convocatorias presentadas en el evento, con su cierre, su web oficial y dónde preguntar.
+              </p>
+              <svg width="794" height="70" viewBox="0 0 794 70" class="absolute bottom-[-1px] left-0" aria-hidden="true">
+                <path d="M0 40 C 200 10, 400 70, 794 26 L794 70 L0 70 Z" fill="#FDFEFC"></path>
+                <path d="M0 34 C 200 4, 400 64, 794 20" fill="none" stroke="#525F97" stroke-width="22"></path>
+                <path d="M0 34 C 200 4, 400 64, 794 20" fill="none" stroke="#FDFEFC" stroke-width="3" stroke-dasharray="14 12"></path>
+              </svg>
+            </div>
+
+            <div class="flex flex-col gap-3.5 px-12 pt-6">
+              <div class="flex items-baseline justify-between">
+                <h2 class="m-0 font-display text-2xl">Tu año de postulaciones</h2>
+                <span class="text-[13px] font-semibold text-ink-2">Marca con un círculo el mes de cada cierre</span>
+              </div>
+              <div class="grid grid-cols-12 gap-1.5">
+                {meses.map((m) => (
+                  <div class="flex h-[58px] flex-col justify-between rounded-lg border-[1.5px] border-lav p-1.5">
+                    <span class="font-mono text-[11px] font-semibold text-violet">{m.m}</span>
+                    <span class="text-[11px] font-bold text-ink-2">{m.y}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-3 px-12 pt-6">
+              <h2 class="m-0 font-display text-2xl">Convocatorias</h2>
+              <div class="grid grid-cols-[52px_1.5fr_92px_92px_1fr_72px] gap-3 border-b-[1.5px] border-ink px-3 pb-2 font-mono text-[11px] font-semibold uppercase tracking-[.08em] text-ink-2">
+                <span>Destino</span><span>Convocatoria</span><span>Apertura</span><span>Cierre</span><span>Dónde preguntar</span><span>Web</span>
+              </div>
+              {filas.map(({ p, qr }) => (
+                <div class="grid grid-cols-[52px_1.5fr_92px_92px_1fr_72px] items-center gap-3 border-b border-lav p-3">
+                  <span class="w-fit rounded border-[1.5px] border-magenta px-1.5 py-0.5 font-mono text-xs font-semibold text-magenta">
+                    {p.codigoPais}
+                  </span>
+                  <div>
+                    <div class="text-[15px] font-extrabold">{p.programa}</div>
+                    <div class="text-[13px] text-ink-2">{p.destino}</div>
+                  </div>
+                  <span class="font-mono text-[13px] text-ink-2">{p.apertura ? fechaCorta(p.apertura) : "Por confirmar"}</span>
+                  <span class="rounded-md bg-paper-2 px-1.5 py-1 text-center font-mono text-[13px] font-semibold text-violet">
+                    {p.cierre ? fechaCorta(p.cierre) : "Por confirmar"}
+                  </span>
+                  <span class="text-[13px] font-bold">{p.dondePreguntar ?? "Por confirmar"}</span>
+                  {qr ? (
+                    <div class="h-16 w-16" set:html={qr} />
+                  ) : (
+                    <div class="grid h-16 w-16 place-items-center rounded-md border-[1.5px] border-dashed border-lav font-mono text-[9px] text-ink-2">
+                      Por confirmar
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            <div class="grow" />
+            <div class="mx-12 mb-10 flex justify-between gap-5 border-t-[1.5px] border-lav pt-3.5 text-xs text-ink-2">
+              <span>
+                {ultimaVerificacion
+                  ? `Fechas verificadas el ${formatoFechaCorta(ultimaVerificacion)} con ${institucionesUnicas.join(", ")}.`
+                  : `Fechas en proceso de verificación con ${institucionesUnicas.join(", ")}.`}{" "}
+                Confirma siempre en la web oficial de cada convocatoria antes de postular.
+              </span>
+              <span class="whitespace-nowrap font-mono">1 / 2</span>
+            </div>
+          </section>
+
+          <!-- Página 2 -->
+          <section class="pagina flex flex-col gap-6 bg-paper p-12 text-ink">
+            <div class="flex items-end justify-between">
+              <div>
+                <div class="font-mono text-xs font-semibold uppercase tracking-[.14em] text-violet">Planificador personal</div>
+                <h1 class="m-0 mt-1.5 font-display text-[46px] leading-none">Mi ruta de postulación</h1>
+              </div>
+              <span class="-rotate-3 rounded-[10px] bg-brand-gradient px-3.5 py-1.5 font-display text-lg text-paper">
+                SAF {anio}
+              </span>
+            </div>
+
+            <div class="relative flex flex-col gap-3">
+              <svg width="40" height="400" viewBox="0 0 40 400" class="absolute left-0 top-0" aria-hidden="true">
+                <rect x="6" y="0" width="28" height="400" rx="14" fill="#525F97"></rect>
+                <line x1="20" y1="8" x2="20" y2="392" stroke="#FDFEFC" stroke-width="3" stroke-dasharray="12 10"></line>
+              </svg>
+              {pasos.map((s) => (
+                <div class="grid grid-cols-[40px_1fr] items-center gap-4">
+                  <div class="ml-0.5 grid h-9 w-9 place-items-center rounded-full border-[3px] border-paper bg-brand-gradient font-display text-base text-paper">
+                    {s.n}
+                  </div>
+                  <div class="grid min-h-[68px] grid-cols-[22px_1fr] items-start gap-3 rounded-2xl border-[1.5px] border-lav p-3.5">
+                    <span class="mt-0.5 h-[18px] w-[18px] rounded border-2 border-ink" />
+                    <div>
+                      <div class="text-base font-extrabold">{s.t}</div>
+                      <div class="text-[13px] leading-relaxed text-ink-2">{s.d}</div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div class="grid grid-cols-2 gap-4.5">
+              <div class="flex flex-col gap-3.5 rounded-2xl border-[1.5px] border-lav p-4.5">
+                <div class="font-display text-xl">Mi convocatoria</div>
+                <div class="flex flex-col gap-1">
+                  <span class="font-mono text-[11px] uppercase tracking-[.1em] text-ink-2">Nombre</span>
+                  <div class="h-[22px] border-b-[1.5px] border-ink" />
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                  <div class="flex flex-col gap-1">
+                    <span class="font-mono text-[11px] uppercase tracking-[.1em] text-ink-2">Destino</span>
+                    <div class="h-[22px] border-b-[1.5px] border-ink" />
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <span class="font-mono text-[11px] uppercase tracking-[.1em] text-magenta">Cierre</span>
+                    <div class="h-[22px] border-b-[1.5px] border-magenta" />
+                  </div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span class="font-mono text-[11px] uppercase tracking-[.1em] text-ink-2">Web oficial</span>
+                  <div class="h-[22px] border-b-[1.5px] border-ink" />
+                </div>
+              </div>
+              <div class="flex flex-col gap-2.5 rounded-2xl border-[1.5px] border-lav p-4.5">
+                <div class="font-display text-xl">Documentos que me faltan</div>
+                {[1, 2, 3, 4, 5].map(() => (
+                  <div class="grid grid-cols-[18px_1fr] items-end gap-2.5">
+                    <span class="h-3.5 w-3.5 rounded border-2 border-ink" />
+                    <div class="h-[22px] border-b border-lav" />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4.5 rounded-2xl bg-sky-soft p-5">
+              {standsConfirmados.map((s) => (
+                <div>
+                  <div class="text-[15px] font-extrabold">{s.nombre}</div>
+                  <div class="text-[13px] leading-relaxed">
+                    {s.descripcion ?? "Por anunciar."}
+                    <br />
+                    Contacto oficial: por confirmar.
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div class="grow" />
+            <div class="flex justify-between gap-5 border-t-[1.5px] border-lav pt-3.5 text-xs text-ink-2">
+              <span>
+                {evento.nombre} {anio} · {evento.organizadores.join(", en alianza con ")}
+              </span>
+              <span class="font-mono">2 / 2</span>
+            </div>
+          </section>
+        </>
+      )
+    }
+    <style>
+      @page {
+        size: A4;
+        margin: 0;
+      }
+      body {
+        margin: 0;
+        background: #fdfefc;
+      }
+      .pagina {
+        width: 794px;
+        height: 1123px;
+        box-sizing: border-box;
+        overflow: hidden;
+        break-after: page;
+      }
+      .pagina:last-child {
+        break-after: auto;
+      }
+    </style>
+  </body>
+</html>
