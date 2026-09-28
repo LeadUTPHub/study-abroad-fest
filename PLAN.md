@@ -151,9 +151,9 @@ Diseño: `design/canvas/Canje-Mobile.dc.html`. Mobile primero, porque el canje o
 - **Error:** el campo tiembla y muestra "Ese código no es válido. Revisa que esté completo, con el formato SAF-XXXX-XXXX." Si ya se usó en 3 dispositivos: "Este código ya se activó en 3 dispositivos. Acércate a la mesa de canje." Después del evento: "Escríbenos a [CONTACTO]".
 - **Desbloqueado:** sello "APROBADO" que cae, botones Descargar PDF y Agregar cierres a mi calendario, y acordeón por convocatoria con fecha de cierre, 3 tips de su stand y enlace oficial.
 
-### Cronograma: datos confirmados (según documento "STUDY ABROAD FEST 2026")
+### Cronograma: datos confirmados (según documento "STUDY ABROAD FEST 2026", horario corregido el 27 sep a la tarde)
 
-> **Nota de consistencia:** este cronograma reemplaza la versión anterior (lugar, horario y horas exactas). Corrección de horario: el evento vuelve a ser 2:00 p.m. a 6:00 p.m. (no 9:00 a.m. a 1:31 p.m., como decía una versión intermedia de este documento); se agrega el bloque "Networking y mesas de consulta" antes del cierre. La fuente ya no da un nombre de persona para el bloque de Fulbright (antes decía "EducationUSA · Nikole Meza"): queda solo la institución hasta que se confirme. Dos puntos siguen por reconfirmar antes de publicar: el nombre correcto del ponente de Erasmus+ aparece como **"Guillermo Gonzalo"** en este documento y como "Guillermo Alfaro" en una fuente anterior (se usa Guillermo Gonzalo por ser la fuente más reciente; avisar si no es correcto), y si Carmen y Lizbeth Dávila siguen participando (ver nota debajo de la tabla).
+> **Nota de consistencia:** el contenido y orden de este cronograma viene del documento "STUDY ABROAD FEST 2026"; las horas exactas fueron corregidas después, de vuelta al rango original 2:00-6:00 p.m. (la versión intermedia de 9:00 a.m. a 1:31 p.m. queda descartada). Un solo punto sigue por reconfirmar antes de publicarlo: el nombre correcto del ponente de Erasmus+ aparece como **"Guillermo Gonzalo"** en el documento nuevo y como "Guillermo Alfaro" en una fuente anterior. Se usa **Guillermo Gonzalo** por ser la fuente más reciente; avisar si no es correcto.
 
 | Hora | Bloque | Quién | Modalidad |
 |---|---|---|---|
@@ -169,11 +169,13 @@ Diseño: `design/canvas/Canje-Mobile.dc.html`. Mobile primero, porque el canje o
 | 16:20–16:40 | Stand/ponencia | APEBEMO | Presencial |
 | 16:40–16:45 | Cápsula | Guillermo Gonzalo (Erasmus+) *(antes "Guillermo Alfaro", ver nota arriba)* | Vlog + Q&A vía Zoom |
 | 16:45–17:05 | Erasmus Mundus | EMA Perú | Presencial |
-| 17:05–17:20 | Ponencia | Raquel Sánchez, conexión Erasmus Mundus | Vía Zoom |
+| 17:05–17:20 | Ponencia | Raquel Sánchez (conexión Erasmus Mundus) | Vía Zoom |
 | 17:20–17:40 | Migajeando Becas | Raúl Jauregui | Presencial |
 | 17:40–17:55 | Networking y mesas de consulta | — | — |
 | 17:55–18:00 | Cierre | LEAD UTP | Presencial |
-| paralelo | Stands | UTP Internacional, EducationUSA, APEBEMO, Migajeando Becas | Zona de stands, 2:00 p.m. a 6:00 p.m. |
+| paralelo | Stands | UTP Internacional, EducationUSA, APEBEMO, Migajeando Becas | Zona de stands, 2:00 a 6:00 p.m. |
+
+**Nota:** el documento con este ajuste de horario ya no menciona a Nikole Meza (antes asociada a EducationUSA); se deja EducationUSA como institución a cargo del bloque de Fulbright hasta que se confirme si ella sigue participando.
 
 **Pendiente de confirmar por separado:** si Carmen (Tec de Monterrey) y Lizbeth Dávila (ELAP · SIAS), presentes en la versión anterior del cronograma, siguen participando; no aparecen en el documento nuevo. No se elimina su ficha de `src/data/` hasta confirmarlo, pero tampoco se agrega al cronograma con hora hasta entonces.
 
@@ -266,10 +268,10 @@ Claude Code no puede hacer estas tareas. Están ordenadas por momento.
 ### Producción física (antes del 7 oct)
 - [ ] **Pasaporte:** exportar `Pasaporte-Exterior` y `Pasaporte-Interior` del canvas en PDF e imprimir a doble cara en A5, doblado. Cantidad: la misma de códigos.
 - [ ] **Stickers de código:** imprimir el CSV como etiquetas con código y QR (Claude Code puede generar el PDF de etiquetas en la Fase 5).
-- [ ] **Sellos:** conseguir un sello o sticker distinto por stand (UTP Internacional, EducationUSA y cualquier stand nuevo).
+- [ ] **Sellos:** conseguir un sello o sticker distinto para cada uno de los 4 stands que sellan (UTP Internacional, EducationUSA, APEBEMO, Migajeando Becas). El diseño de cada sello ya está en `Pasaporte-Interior.dc.html`; puedes usarlo de referencia para mandar a hacer el sello físico o el sticker.
 - [ ] **Mesa de canje:** definir ubicación (¿las mesas cercanas a la entrada?) y 1 o 2 voluntarios responsables de los stickers.
-- [ ] **Briefing:** explicar a cada stand que sella después de conversar con el estudiante, y a los voluntarios qué revisar y qué decir si alguien pierde su código.
-- [ ] **Tips:** pedir a UTP Internacional y EducationUSA 3 tips por convocatoria, junto con las fechas.
+- [ ] **Briefing:** explicar a cada uno de los 4 stands que sella después de conversar con el estudiante, y a los voluntarios qué revisar y qué decir si alguien pierde su código.
+- [ ] **Tips:** pedir a UTP Internacional, EducationUSA, APEBEMO y Migajeando Becas 3 tips por convocatoria, junto con las fechas.
 
 ### Publicar (Fase 7)
 - [ ] vercel.com → **Add New → Project** → importar el repo.
