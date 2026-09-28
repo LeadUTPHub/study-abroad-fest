@@ -3,8 +3,8 @@ import { EventoSchema, type Evento } from "./schema";
 const evento: Evento = EventoSchema.parse({
   nombre: "Study Abroad Fest",
   fecha: "2026-10-10",
-  horaInicio: "09:00",
-  horaFin: "13:31",
+  horaInicio: "14:00",
+  horaFin: "18:00",
   lugar: "Convention Center UTP",
   direccion: "Jr. Hernán Velarde 260, Lima",
   zonaHoraria: "America/Lima",

@@ -5,16 +5,23 @@ import {
   type CarrilParalelo,
 } from "./schema";
 
-// Datos confirmados según el documento "STUDY ABROAD FEST 2026"
-// (PLAN.md, sección "Cronograma: datos confirmados"). Reemplaza la versión
-// anterior (lugar, horario y horas exactas cambiaron por completo).
+// Datos confirmados según el documento "STUDY ABROAD FEST 2026", con la
+// corrección de horario: el evento vuelve a ser 2:00 p.m. a 6:00 p.m.
+// (no 9:00 a.m. a 1:31 p.m., como se había indicado antes). Mismo
+// contenido y orden; solo cambian las horas, y se agrega el bloque de
+// "Networking y mesas de consulta" antes del cierre (16 bloques en
+// total).
 //
-// El documento fuente ya no distingue "espacio" por bloque (antes sí lo
-// hacía), así que queda en null: no se inventa "auditorio" para todos.
+// El documento fuente no da "espacio" por bloque, así que queda en
+// null: no se inventa "auditorio" para todos.
 //
-// Un solo bloque queda "por-confirmar": la cápsula de Erasmus+, porque el
-// nombre del ponente todavía se está reconfirmando ("Guillermo Gonzalo" vs.
-// "Guillermo Alfaro" — PLAN.md, sección 8).
+// Un solo bloque queda "por-confirmar": la cápsula de Erasmus+, porque
+// el nombre del ponente todavía se está reconfirmando ("Guillermo
+// Gonzalo" vs. "Guillermo Alfaro" — PLAN.md, sección 8).
+//
+// La fuente ya no da un nombre de persona para el bloque de Fulbright
+// (antes decía "EducationUSA · Nikole Meza"): queda solo la
+// institución hasta que se confirme.
 const bloquesRaw: CronogramaBloque[] = [
   {
     orden: 1,
@@ -22,8 +29,8 @@ const bloquesRaw: CronogramaBloque[] = [
     quien: "LEAD UTP",
     espacio: null,
     modalidad: "presencial",
-    horaInicio: "09:00",
-    horaFin: "09:15",
+    horaInicio: "14:00",
+    horaFin: "14:10",
     estado: "confirmado",
   },
   {
@@ -32,8 +39,8 @@ const bloquesRaw: CronogramaBloque[] = [
     quien: "Fernando Injoque (Purdue)",
     espacio: null,
     modalidad: "vlog-zoom",
-    horaInicio: "09:15",
-    horaFin: "09:22",
+    horaInicio: "14:10",
+    horaFin: "14:15",
     estado: "confirmado",
   },
   {
@@ -42,8 +49,8 @@ const bloquesRaw: CronogramaBloque[] = [
     quien: "Ivanna (Purdue)",
     espacio: null,
     modalidad: "vlog-zoom",
-    horaInicio: "09:22",
-    horaFin: "09:42",
+    horaInicio: "14:15",
+    horaFin: "14:35",
     estado: "confirmado",
   },
   {
@@ -52,8 +59,8 @@ const bloquesRaw: CronogramaBloque[] = [
     quien: "UTP Internacional",
     espacio: null,
     modalidad: "presencial",
-    horaInicio: "09:47",
-    horaFin: "10:07",
+    horaInicio: "14:35",
+    horaFin: "14:55",
     estado: "confirmado",
   },
   {
@@ -62,28 +69,30 @@ const bloquesRaw: CronogramaBloque[] = [
     quien: "Leslie Sánchez (UC Berkeley), Diego Mendoza (UC Berkeley)",
     espacio: null,
     modalidad: "presencial",
-    horaInicio: "10:12",
-    horaFin: "10:42",
+    horaInicio: "14:55",
+    horaFin: "15:25",
     estado: "confirmado",
   },
   {
     orden: 6,
     titulo: "Beca Fulbright",
-    quien: "EducationUSA · Nikole Meza",
+    // Sin nombre de persona: la fuente ya no lo da (antes decía
+    // "EducationUSA · Nikole Meza").
+    quien: "EducationUSA",
     espacio: null,
     modalidad: "presencial",
-    horaInicio: "10:47",
-    horaFin: "11:07",
+    horaInicio: "15:25",
+    horaFin: "15:45",
     estado: "confirmado",
   },
   {
     orden: 7,
-    titulo: "Intermedio",
+    titulo: "Intermedio y networking",
     quien: null,
     espacio: null,
     modalidad: "receso",
-    horaInicio: "11:07",
-    horaFin: "11:22",
+    horaInicio: "15:45",
+    horaFin: "15:55",
     estado: "confirmado",
   },
   {
@@ -92,8 +101,8 @@ const bloquesRaw: CronogramaBloque[] = [
     quien: "Mila (Japón)",
     espacio: null,
     modalidad: "vlog-zoom",
-    horaInicio: "11:22",
-    horaFin: "11:29",
+    horaInicio: "15:55",
+    horaFin: "16:00",
     estado: "confirmado",
   },
   {
@@ -102,8 +111,8 @@ const bloquesRaw: CronogramaBloque[] = [
     quien: "APEBEMO",
     espacio: null,
     modalidad: "presencial",
-    horaInicio: "11:29",
-    horaFin: "11:49",
+    horaInicio: "16:00",
+    horaFin: "16:20",
     estado: "confirmado",
   },
   {
@@ -112,8 +121,8 @@ const bloquesRaw: CronogramaBloque[] = [
     quien: "APEBEMO",
     espacio: null,
     modalidad: "presencial",
-    horaInicio: "11:54",
-    horaFin: "12:14",
+    horaInicio: "16:20",
+    horaFin: "16:40",
     estado: "confirmado",
   },
   {
@@ -123,8 +132,8 @@ const bloquesRaw: CronogramaBloque[] = [
     quien: "Guillermo Gonzalo (Erasmus+)",
     espacio: null,
     modalidad: "vlog-zoom",
-    horaInicio: "12:14",
-    horaFin: "12:21",
+    horaInicio: "16:40",
+    horaFin: "16:45",
     estado: "por-confirmar",
   },
   {
@@ -133,18 +142,18 @@ const bloquesRaw: CronogramaBloque[] = [
     quien: "EMA Perú",
     espacio: null,
     modalidad: "presencial",
-    horaInicio: "12:21",
-    horaFin: "12:41",
+    horaInicio: "16:45",
+    horaFin: "17:05",
     estado: "confirmado",
   },
   {
     orden: 13,
     titulo: "Ponencia",
-    quien: "Raquel Sánchez",
+    quien: "Raquel Sánchez (conexión Erasmus Mundus)",
     espacio: null,
     modalidad: "zoom-vivo",
-    horaInicio: "12:41",
-    horaFin: "12:56",
+    horaInicio: "17:05",
+    horaFin: "17:20",
     estado: "confirmado",
   },
   {
@@ -153,30 +162,40 @@ const bloquesRaw: CronogramaBloque[] = [
     quien: "Raúl Jauregui",
     espacio: null,
     modalidad: "presencial",
-    horaInicio: "13:01",
-    horaFin: "13:21",
+    horaInicio: "17:20",
+    horaFin: "17:40",
     estado: "confirmado",
   },
   {
     orden: 15,
+    titulo: "Networking y mesas de consulta",
+    quien: null,
+    espacio: null,
+    modalidad: "receso",
+    horaInicio: "17:40",
+    horaFin: "17:55",
+    estado: "confirmado",
+  },
+  {
+    orden: 16,
     titulo: "Cierre",
     quien: "LEAD UTP",
     espacio: null,
     modalidad: "presencial",
-    horaInicio: "13:21",
-    horaFin: "13:31",
+    horaInicio: "17:55",
+    horaFin: "18:00",
     estado: "confirmado",
   },
 ];
 
 export const bloques: CronogramaBloque[] = bloquesRaw.map((b) => CronogramaBloqueSchema.parse(b));
 
-// El carril de stands corre en paralelo a todo el programa del auditorio,
-// durante todo el horario del evento (src/data/evento.ts).
+// El carril de stands corre en paralelo a todo el programa, durante
+// todo el horario del evento (src/data/evento.ts).
 const carrilParaleloRaw: CarrilParalelo = {
   titulo: "Stands abiertos",
-  horaInicio: "09:00",
-  horaFin: "13:31",
+  horaInicio: "14:00",
+  horaFin: "18:00",
   quienes: ["UTP Internacional", "EducationUSA", "APEBEMO", "Migajeando Becas"],
   nota: "Requisitos, promedios, convalidación, visados y fechas de postulación. Aquí se resuelve lo oficial.",
   estado: "confirmado",

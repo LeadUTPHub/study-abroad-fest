@@ -11,7 +11,7 @@ Plan para ejecutar en Claude Code, fase por fase. Cada fase trae su prompt listo
 - **6 oct:** sistema de canje probado de punta a punta con códigos reales.
 - **7 oct:** pasaportes y stickers de código impresos.
 - **8 oct:** contenido congelado (horarios, convocatorias, tips).
-- **10 oct:** evento. Canje activo desde las 9:00 a.m.
+- **10 oct:** evento. Canje activo desde las 2:00 p.m.
 
 ---
 
@@ -58,7 +58,7 @@ Plan para ejecutar en Claude Code, fase por fase. Cada fase trae su prompt listo
 | Dispositivos por código | Hasta **3** activaciones | Propuesto |
 | Duración de la sesión | Cookie de 60 días | Propuesto |
 | Intentos fallidos | Máximo 10 por IP cada 10 minutos | Propuesto |
-| Cuándo se activa el canje | Desde el 10 oct, 9:00 a.m. (antes, `/canje` muestra "Disponible el día del evento") | Propuesto |
+| Cuándo se activa el canje | Desde el 10 oct, 2:00 p.m. (antes, `/canje` muestra "Disponible el día del evento") | Propuesto |
 | Contenido protegido | Tabla de convocatorias con fechas, tips, PDF y .ics de cierres | Propuesto |
 | Contenido público | Nombres de las convocatorias y la mecánica | Propuesto |
 
@@ -153,26 +153,27 @@ Diseño: `design/canvas/Canje-Mobile.dc.html`. Mobile primero, porque el canje o
 
 ### Cronograma: datos confirmados (según documento "STUDY ABROAD FEST 2026")
 
-> **Nota de consistencia:** este cronograma reemplaza la versión anterior (lugar, horario y horas exactas). Un solo punto queda por reconfirmar antes de publicarlo: el nombre correcto del ponente de Erasmus+ aparece como **"Guillermo Gonzalo"** en este documento y como "Guillermo Alfaro" en una fuente anterior. Se usa **Guillermo Gonzalo** por ser la fuente más reciente; avisar si no es correcto.
+> **Nota de consistencia:** este cronograma reemplaza la versión anterior (lugar, horario y horas exactas). Corrección de horario: el evento vuelve a ser 2:00 p.m. a 6:00 p.m. (no 9:00 a.m. a 1:31 p.m., como decía una versión intermedia de este documento); se agrega el bloque "Networking y mesas de consulta" antes del cierre. La fuente ya no da un nombre de persona para el bloque de Fulbright (antes decía "EducationUSA · Nikole Meza"): queda solo la institución hasta que se confirme. Dos puntos siguen por reconfirmar antes de publicar: el nombre correcto del ponente de Erasmus+ aparece como **"Guillermo Gonzalo"** en este documento y como "Guillermo Alfaro" en una fuente anterior (se usa Guillermo Gonzalo por ser la fuente más reciente; avisar si no es correcto), y si Carmen y Lizbeth Dávila siguen participando (ver nota debajo de la tabla).
 
 | Hora | Bloque | Quién | Modalidad |
 |---|---|---|---|
-| 09:00–09:15 | Bienvenida | LEAD UTP | Presencial |
-| 09:15–09:22 | Cápsula | Fernando Injoque (Purdue) | Vlog + Q&A vía Zoom |
-| 09:22–09:42 | Ponencia | Ivanna (Purdue) | Vlog + Q&A vía Zoom |
-| 09:47–10:07 | Conferencia: convenios, requisitos y movilidad | UTP Internacional | Presencial |
-| 10:12–10:42 | Panel de ex-becarios | Leslie Sánchez (UC Berkeley), Diego Mendoza (UC Berkeley) | Presencial |
-| 10:47–11:07 | Beca Fulbright | EducationUSA · Nikole Meza | Presencial |
-| 11:07–11:22 | Intermedio | — | — |
-| 11:22–11:29 | Cápsula | Mila (Japón) | Vlog + Q&A vía Zoom |
-| 11:29–11:49 | Beca MEXT | APEBEMO | Presencial |
-| 11:54–12:14 | Stand/ponencia | APEBEMO | Presencial |
-| 12:14–12:21 | Cápsula | Guillermo Gonzalo (Erasmus+) *(antes "Guillermo Alfaro", ver nota arriba)* | Vlog + Q&A vía Zoom |
-| 12:21–12:41 | Erasmus Mundus | EMA Perú | Presencial |
-| 12:41–12:56 | Ponencia | Raquel Sánchez | Vía Zoom |
-| 13:01–13:21 | Migajeando Becas | Raúl Jauregui | Presencial |
-| 13:21–13:31 | Cierre | LEAD UTP | Presencial |
-| paralelo | Stands | UTP Internacional, EducationUSA, APEBEMO, Migajeando Becas | Zona de stands, 9:00 a.m. a 1:31 p.m. |
+| 14:00–14:10 | Bienvenida | LEAD UTP | Presencial |
+| 14:10–14:15 | Cápsula | Fernando Injoque (Purdue) | Vlog + Q&A vía Zoom |
+| 14:15–14:35 | Ponencia | Ivanna (Purdue) | Vlog + Q&A vía Zoom |
+| 14:35–14:55 | Conferencia: convenios, requisitos y movilidad | UTP Internacional | Presencial |
+| 14:55–15:25 | Panel de ex-becarios | Leslie Sánchez (UC Berkeley), Diego Mendoza (UC Berkeley) | Presencial |
+| 15:25–15:45 | Beca Fulbright | EducationUSA | Presencial |
+| 15:45–15:55 | Intermedio y networking | — | — |
+| 15:55–16:00 | Cápsula | Mila (Japón) | Vlog + Q&A vía Zoom |
+| 16:00–16:20 | Beca MEXT | APEBEMO | Presencial |
+| 16:20–16:40 | Stand/ponencia | APEBEMO | Presencial |
+| 16:40–16:45 | Cápsula | Guillermo Gonzalo (Erasmus+) *(antes "Guillermo Alfaro", ver nota arriba)* | Vlog + Q&A vía Zoom |
+| 16:45–17:05 | Erasmus Mundus | EMA Perú | Presencial |
+| 17:05–17:20 | Ponencia | Raquel Sánchez, conexión Erasmus Mundus | Vía Zoom |
+| 17:20–17:40 | Migajeando Becas | Raúl Jauregui | Presencial |
+| 17:40–17:55 | Networking y mesas de consulta | — | — |
+| 17:55–18:00 | Cierre | LEAD UTP | Presencial |
+| paralelo | Stands | UTP Internacional, EducationUSA, APEBEMO, Migajeando Becas | Zona de stands, 2:00 p.m. a 6:00 p.m. |
 
 **Pendiente de confirmar por separado:** si Carmen (Tec de Monterrey) y Lizbeth Dávila (ELAP · SIAS), presentes en la versión anterior del cronograma, siguen participando; no aparecen en el documento nuevo. No se elimina su ficha de `src/data/` hasta confirmarlo, pero tampoco se agrega al cronograma con hora hasta entonces.
 

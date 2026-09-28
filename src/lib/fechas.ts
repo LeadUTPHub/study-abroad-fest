@@ -22,7 +22,7 @@ export function formatoFechaCorta(fecha: string): string {
   }).format(fechaHoraLima(fecha, "00:00"));
 }
 
-/** "9:00 a. m." a partir de una hora "HH:mm". */
+/** "2:00 p. m." a partir de una hora "HH:mm". */
 export function formatoHora12(hora: string): string {
   return new Intl.DateTimeFormat(LOCALE, {
     timeZone: ZONA_HORARIA,
