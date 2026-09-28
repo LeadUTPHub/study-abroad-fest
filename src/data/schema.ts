@@ -1,0 +1,199 @@
+import { z } from "zod";
+
+/**
+ * Todo dato de `src/data/` lleva un estado (CLAUDE.md · Reglas de contenido, #2).
+ * Solo lo "confirmado" se publica, salvo que el componente muestre
+ * explícitamente "Por anunciar" / "Por confirmar".
+ */
+export const EstadoSchema = z.enum(["confirmado", "por-confirmar"]);
+export type Estado = z.infer<typeof EstadoSchema>;
+
+const FECHA_RE = /^\d{4}-\d{2}-\d{2}$/;
+const HORA_RE = /^\d{2}:\d{2}$/;
+const CODIGO_RE = /^[A-Z]{2,4}$/;
+
+const FechaSchema = z.string().regex(FECHA_RE, "usa el formato YYYY-MM-DD");
+const HoraSchema = z.string().regex(HORA_RE, "usa el formato HH:mm");
+const CodigoSchema = z.string().regex(CODIGO_RE, "usa 2 a 4 letras mayúsculas (p. ej. MX, US, UTP)");
+
+// ---------------------------------------------------------------------------
+// Evento (src/data/evento.ts)
+// ---------------------------------------------------------------------------
+// A propósito NO tiene ningún campo de aforo/capacidad (CLAUDE.md, regla 3).
+export const EventoSchema = z.object({
+  nombre: z.string(),
+  fecha: FechaSchema,
+  horaInicio: HoraSchema,
+  horaFin: HoraSchema,
+  lugar: z.string(),
+  direccion: z.string(),
+  zonaHoraria: z.string(),
+  gratuito: z.boolean(),
+  inscripcionPrevia: z.boolean(),
+  lumaUrl: z.url(),
+  organizadores: z.array(z.string()).min(1),
+  estado: EstadoSchema,
+});
+export type Evento = z.infer<typeof EventoSchema>;
+
+// ---------------------------------------------------------------------------
+// Cronograma (src/data/cronograma.ts)
+// ---------------------------------------------------------------------------
+export const ModalidadSchema = z.enum([
+  "presencial",
+  // Vlog pregrabado + preguntas en vivo por Zoom. Nunca "presencial"
+  // (CLAUDE.md, regla 6).
+  "vlog-zoom",
+]);
+export type Modalidad = z.infer<typeof ModalidadSchema>;
+
+export const EspacioSchema = z.enum(["auditorio", "zona-stands"]);
+export type Espacio = z.infer<typeof EspacioSchema>;
+
+export const CronogramaBloqueSchema = z.object({
+  orden: z.number().int().positive(),
+  titulo: z.string(),
+  quien: z.string(),
+  espacio: EspacioSchema,
+  modalidad: ModalidadSchema,
+  hora: HoraSchema.nullable(),
+  estado: EstadoSchema,
+});
+export type CronogramaBloque = z.infer<typeof CronogramaBloqueSchema>;
+
+/** El carril paralelo de stands, que corre junto al cronograma del auditorio. */
+export const CarrilParaleloSchema = z.object({
+  titulo: z.string(),
+  horaInicio: HoraSchema.nullable(),
+  horaFin: HoraSchema.nullable(),
+  quienes: z.array(z.string()).min(1),
+  nota: z.string(),
+  estado: EstadoSchema,
+});
+export type CarrilParalelo = z.infer<typeof CarrilParaleloSchema>;
+
+// ---------------------------------------------------------------------------
+// Ponentes (src/data/ponentes.ts)
+// ---------------------------------------------------------------------------
+export const GrupoPonenteSchema = z.enum([
+  "internacional", // vlog + Q&A vía Zoom
+  "panel", // ex-becarios, presencial
+]);
+export type GrupoPonente = z.infer<typeof GrupoPonenteSchema>;
+
+export const PonenteSchema = z.object({
+  id: z.string(),
+  nombre: z.string(),
+  institucion: z.string(),
+  codigoPais: CodigoSchema,
+  /** Nota corta bajo el nombre: país, o algo como "Beca culminada". */
+  meta: z.string(),
+  grupo: GrupoPonenteSchema,
+  /** Ruta relativa dentro de src/assets/ponentes/. Ausente = placeholder. */
+  imagen: z.string().optional(),
+  estado: EstadoSchema,
+});
+export type Ponente = z.infer<typeof PonenteSchema>;
+
+// ---------------------------------------------------------------------------
+// Stands (src/data/stands.ts)
+// ---------------------------------------------------------------------------
+export const StandSchema = z.object({
+  id: z.string(),
+  nombre: z.string(),
+  descripcion: z.string(),
+  /** Ruta relativa dentro de src/assets/aliados/. Ausente = placeholder. */
+  logo: z.string().optional(),
+  estado: EstadoSchema,
+});
+export type Stand = z.infer<typeof StandSchema>;
+
+// ---------------------------------------------------------------------------
+// Aliados (src/data/aliados.ts)
+// ---------------------------------------------------------------------------
+export const AliadoSchema = z.object({
+  nombre: z.string(),
+  /** Ruta relativa dentro de src/assets/aliados/. Ausente = placeholder. */
+  logo: z.string().optional(),
+  estado: EstadoSchema,
+});
+export type Aliado = z.infer<typeof AliadoSchema>;
+
+// ---------------------------------------------------------------------------
+// Postulaciones / convocatorias (src/data/postulaciones.ts)
+// ---------------------------------------------------------------------------
+// El nombre de la convocatoria y la institución son públicos. Las fechas,
+// el enlace oficial y "dónde preguntar" solo se muestran si estado es
+// "confirmado" (fechas y enlace son, además, contenido protegido: nunca
+// van en public/, páginas prerenderizadas ni JS de cliente — CLAUDE.md
+// regla 10).
+export const PostulacionSchema = z
+  .object({
+    id: z.string(),
+    programa: z.string(),
+    destino: z.string(),
+    codigoPais: CodigoSchema,
+    institucion: z.string(),
+    apertura: FechaSchema.nullable(),
+    cierre: FechaSchema.nullable(),
+    urlOficial: z.url().nullable(),
+    dondePreguntar: z.string().nullable(),
+    estado: EstadoSchema,
+    verificadoEl: FechaSchema.nullable(),
+  })
+  .superRefine((data, ctx) => {
+    if (data.estado !== "confirmado") return;
+    (["apertura", "cierre", "urlOficial", "dondePreguntar", "verificadoEl"] as const).forEach(
+      (campo) => {
+        if (data[campo] === null) {
+          ctx.addIssue({
+            code: "custom",
+            path: [campo],
+            message: `una postulación "confirmado" no puede tener "${campo}" en null (CLAUDE.md, reglas 1 y 2)`,
+          });
+        }
+      },
+    );
+  });
+export type Postulacion = z.infer<typeof PostulacionSchema>;
+
+// ---------------------------------------------------------------------------
+// Tips (src/data/tips.ts) — SOLO se importa desde código de servidor
+// ---------------------------------------------------------------------------
+export const TipSchema = z
+  .object({
+    convocatoriaId: z.string(),
+    fuente: z.string(),
+    tips: z.array(z.string()).min(1),
+    estado: EstadoSchema,
+  })
+  .superRefine((data, ctx) => {
+    if (data.estado === "confirmado" && data.tips.length !== 3) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["tips"],
+        message: 'un tip "confirmado" necesita exactamente 3 tips (PLAN.md, sección 2)',
+      });
+    }
+  });
+export type Tip = z.infer<typeof TipSchema>;
+
+// ---------------------------------------------------------------------------
+// FAQ (src/data/faq.ts)
+// ---------------------------------------------------------------------------
+export const FaqItemSchema = z
+  .object({
+    pregunta: z.string(),
+    respuesta: z.string().nullable(),
+    estado: EstadoSchema,
+  })
+  .superRefine((data, ctx) => {
+    if (data.estado === "confirmado" && data.respuesta === null) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["respuesta"],
+        message: 'una FAQ "confirmado" necesita respuesta',
+      });
+    }
+  });
+export type FaqItem = z.infer<typeof FaqItemSchema>;
