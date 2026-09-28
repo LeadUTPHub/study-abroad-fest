@@ -1,19 +1,20 @@
 ---
 // Estática (PLAN.md, sección 3): la validación real ocurre en
 // POST /api/canje (on-demand). Mobile primero (design/canvas/Canje-Mobile.dc.html).
+import { Image } from "astro:assets";
 import Base from "../layouts/Base.astro";
 import FormCodigo from "../components/canje/FormCodigo.astro";
+import logoLead from "../assets/marca/logo-lead.png";
 ---
 
 <Base title="Canjea tu código · Study Abroad Fest" description="Canjea el código de tu pasaporte y desbloquea el Calendario de becas.">
   <div class="min-h-screen bg-sky">
-    {/* text-[19px] y el fondo ink/35 del mono label: por debajo de eso no
-       llegan a 4.5:1 de contraste sobre el celeste (Fase 6, revisión AA). */}
+    {/* el fondo ink/35 del mono label: por debajo de eso no llega a 4.5:1
+       de contraste sobre el celeste (Fase 6, revisión AA). */}
     <header class="flex items-center justify-between px-4 py-4 text-paper sm:px-6">
-      <div class="flex items-center gap-2 text-[19px] font-extrabold">
-        <span>LEAD</span>
-        <span class="rounded-md bg-paper px-1.5 py-0.5 font-display text-sky-deep tracking-[.08em]">UTP</span>
-      </div>
+      <a href="/#hero" class="flex items-center no-underline" aria-label="Ir al inicio">
+        <Image src={logoLead} alt="LEAD UTP" width={206} height={80} class="h-8 w-auto" />
+      </a>
       <span class="rounded-full bg-ink/35 px-3 py-1.5 font-mono text-[11px] font-semibold uppercase tracking-[.12em]">Canje · SAF 2026</span>
     </header>
     <main>

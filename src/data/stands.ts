@@ -9,6 +9,7 @@ const standsRaw: Stand[] = [
     id: "utp-internacional",
     nombre: "UTP Internacional",
     descripcion: "Convenios, promedios requeridos, convalidación de cursos y visados.",
+    logo: "Utplogonuevo.svg.webp",
     estado: "confirmado",
   },
   {

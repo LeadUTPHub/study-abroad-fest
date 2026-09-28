@@ -1,5 +1,10 @@
 ---
 // Stands (design/canvas/Main.dc.html), ahora con 4 tarjetas en vez de 2.
+// El recuadro de logo de cada tarjeta (design/canvas/Main.dc.html: "[LOGO
+// UTP INTERNACIONAL]") solo aparece cuando hay logo real en src/data/; sin
+// uno, la tarjeta se queda como antes (sin inventar un placeholder visible
+// para el público, CLAUDE.md regla 1).
+import { Image } from "astro:assets";
 import stands from "../data/stands";
 import aliados from "../data/aliados";
 
@@ -7,6 +12,9 @@ const standsConfirmados = stands.filter((s) => s.estado === "confirmado");
 const aliadosConfirmados = aliados.filter((a) => a.estado === "confirmado");
 
 const ACENTOS = ["#6258BB", "#AC0BAD", "#2F86C4", "#525F97"];
+
+const logos = import.meta.glob<{ default: ImageMetadata }>("../assets/aliados/*", { eager: true });
+const logoDe = (archivo?: string) => (archivo ? logos[`../assets/aliados/${archivo}`]?.default : undefined);
 ---
 
 <section id="stands" class="bg-paper px-4 py-16 sm:px-8 lg:px-[120px] lg:py-24">
@@ -23,24 +31,39 @@ const ACENTOS = ["#6258BB", "#AC0BAD", "#2F86C4", "#525F97"];
 
     <div class="flex flex-col gap-6">
       <div class="grid gap-6 sm:grid-cols-2">
-        {standsConfirmados.map((s, i) => (
-          <article
-            class="flex flex-col gap-3 rounded-[22px] border-2 border-lav bg-paper p-7 shadow-[0_6px_0_rgba(29,33,82,.12)]"
-            style={`border-top: 12px solid ${ACENTOS[i % ACENTOS.length]}`}
-          >
-            <h3 class="m-0 font-display text-3xl leading-none text-ink">{s.nombre}</h3>
-            <p class="m-0 text-lg leading-relaxed text-ink-2">
-              {s.descripcion ?? "Por anunciar."}
-            </p>
-          </article>
-        ))}
+        {standsConfirmados.map((s, i) => {
+          const logo = logoDe(s.logo);
+          return (
+            <article
+              class="flex flex-col gap-3 rounded-[22px] border-2 border-lav bg-paper p-7 shadow-[0_6px_0_rgba(29,33,82,.12)]"
+              style={`border-top: 12px solid ${ACENTOS[i % ACENTOS.length]}`}
+            >
+              {logo && (
+                <div class="flex h-16 items-center rounded-xl bg-paper-2 px-4">
+                  <Image src={logo} alt={s.nombre} class="max-h-10 w-auto object-contain" />
+                </div>
+              )}
+              <h3 class="m-0 font-display text-3xl leading-none text-ink">{s.nombre}</h3>
+              <p class="m-0 text-lg leading-relaxed text-ink-2">
+                {s.descripcion ?? "Por anunciar."}
+              </p>
+            </article>
+          );
+        })}
       </div>
 
       <div class="flex flex-wrap items-center gap-3">
         <span class="font-mono text-xs font-semibold uppercase tracking-[.14em] text-ink-2">Aliados</span>
-        {aliadosConfirmados.map((a) => (
-          <span class="rounded-xl border-2 border-lav px-4 py-2 font-extrabold text-ink">{a.nombre}</span>
-        ))}
+        {aliadosConfirmados.map((a) => {
+          const logo = logoDe(a.logo);
+          return logo ? (
+            <span class="flex h-11 items-center rounded-xl border-2 border-lav px-3.5">
+              <Image src={logo} alt={a.nombre} class="max-h-6 w-auto object-contain" />
+            </span>
+          ) : (
+            <span class="rounded-xl border-2 border-lav px-4 py-2 font-extrabold text-ink">{a.nombre}</span>
+          );
+        })}
       </div>
     </div>
   </div>

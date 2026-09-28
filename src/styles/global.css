@@ -179,7 +179,30 @@
   animation: field-shake 0.4s ease;
 }
 
+/*
+  Header flotante en escritorio (Nav.astro): al bajar más de su propia
+  altura, sale del flujo y se esconde deslizándose hacia arriba; apuntar
+  el mouse a la franja superior lo trae de vuelta como overlay sobre el
+  contenido. bg-sky sólido + sombra porque, ya fijo, flota sobre
+  secciones de cualquier color (paper, paper-2, degradado...).
+*/
+.nav-fijo {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  background: var(--color-sky);
+  box-shadow: 0 10px 24px -12px rgba(29, 33, 82, 0.45);
+  transform: translateY(0);
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.nav-fijo.nav-oculto {
+  transform: translateY(-100%);
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .nav-fijo {
+    transition: none;
+  }
   .road-dash,
   .btn-lift,
   .cloud-drift,

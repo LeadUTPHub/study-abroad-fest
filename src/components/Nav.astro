@@ -1,8 +1,13 @@
 ---
 // Menú con anclas (design/canvas/Main.dc.html header, adaptado a
 // hamburguesa en celular como en design/canvas/Mobile.dc.html).
+// Fase de marca: logo real de LEAD UTP (src/assets/marca/logo-lead.png).
+// En escritorio, el header se fija y se esconde al bajar; aparece de
+// nuevo apuntando el mouse arriba del todo (ver <script> al final).
+import { Image } from "astro:assets";
 import { lumaUrl } from "../lib/luma";
 import Button from "./ui/Button.astro";
+import logoLead from "../assets/marca/logo-lead.png";
 
 const enlaces = [
   { href: "#cronograma", label: "Cronograma" },
@@ -13,14 +18,11 @@ const enlaces = [
 ];
 ---
 
-<header class="relative z-20 flex items-center justify-between px-4 py-3 sm:px-8 lg:px-[120px] lg:py-0 lg:h-[88px]">
-  {/* text-[19px]: por debajo de eso, "LEAD" y "UTP" no llegan a 4.5:1 de
-     contraste sobre el celeste ni sobre el blanco (Fase 6, revisión AA). */}
-  <div class="flex items-center gap-2 text-paper font-extrabold text-[19px] sm:text-xl tracking-wide">
-    <span>LEAD</span>
-    <span class="rounded-md bg-paper px-2 py-0.5 font-display text-sky-deep tracking-[.08em]">UTP</span>
-    <span class="hidden font-semibold text-base opacity-90 sm:inline">Pilar de Excelencia Académica</span>
-  </div>
+<header id="nav-header" class="relative z-20 flex items-center justify-between px-4 py-3 sm:px-8 lg:px-[120px] lg:py-0 lg:h-[88px]">
+  <a href="#hero" class="flex items-center gap-2.5 no-underline" aria-label="Ir al inicio">
+    <Image src={logoLead} alt="LEAD UTP" width={206} height={80} class="h-8 w-auto sm:h-9 lg:h-10" />
+    <span class="hidden font-semibold text-base text-paper opacity-90 sm:inline">Pilar de Excelencia Académica</span>
+  </a>
 
   <nav class="hidden items-center gap-7 text-base font-bold text-paper lg:flex">
     {enlaces.map((e) => (
@@ -84,5 +86,49 @@ const enlaces = [
         toggle.setAttribute("aria-label", "Abrir menú");
       }),
     );
+  }
+
+  // Header flotante en escritorio: al bajar más de su propia altura, se
+  // saca del flujo del documento y se esconde (deslizado hacia arriba).
+  // Apuntar el mouse a la franja superior de la pantalla lo trae de
+  // vuelta como overlay, sin tener que scrollear hasta arriba. Solo en
+  // pantallas con mouse de verdad (celular sigue con DockMovil).
+  const header = document.getElementById("nav-header");
+  const conMouse = window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 1024px)");
+  if (header && conMouse.matches) {
+    const ZONA_REVELADO = 64;
+    let fijo = false;
+    let visible = true;
+
+    const revelar = () => {
+      if (!fijo || visible) return;
+      visible = true;
+      header.classList.remove("nav-oculto");
+    };
+    const esconder = () => {
+      if (!fijo || !visible) return;
+      visible = false;
+      header.classList.add("nav-oculto");
+    };
+
+    const alScrollear = () => {
+      const scrolleado = window.scrollY > header.offsetHeight;
+      if (scrolleado && !fijo) {
+        fijo = true;
+        visible = false;
+        header.classList.add("nav-fijo", "nav-oculto");
+      } else if (!scrolleado && fijo) {
+        fijo = false;
+        visible = true;
+        header.classList.remove("nav-fijo", "nav-oculto");
+      }
+    };
+
+    window.addEventListener("scroll", alScrollear, { passive: true });
+    window.addEventListener("mousemove", (e) => {
+      if (!fijo) return;
+      if (e.clientY <= ZONA_REVELADO) revelar();
+      else if (e.clientY > header.offsetHeight + 24) esconder();
+    });
   }
 </script>
