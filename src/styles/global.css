@@ -13,11 +13,20 @@
   --color-lav: #ABAEC8;
   --color-ink: #1D2152;
   --color-ink-2: #4A507C;
+  --color-yellow: #FFE36B;
+
+  /* Tokens LEAD UTP para la navbar y el footer del concepto Viaje. */
+  --color-navy: #020C3E;
+  --color-footer: #050814;
+  --color-active: #D93340;
+  --color-border-light: rgb(255 255 255 / 14%);
 
   /* Tipografías (self-hosted con @fontsource) */
   --font-display: "Lilita One", sans-serif;
   --font-sans: "Figtree", "Segoe UI", sans-serif;
   --font-mono: "IBM Plex Mono", monospace;
+  --font-inter: "Inter", sans-serif;
+  --font-archivo: "Archivo", sans-serif;
 }
 
 @layer base {
@@ -179,6 +188,45 @@
   animation: field-shake 0.4s ease;
 }
 
+/* Animaciones del concepto Viaje. Copiadas del catálogo visual aprobado. */
+@keyframes v-drift { from { transform: translateX(0); } to { transform: translateX(46px); } }
+@keyframes v-float { 0%, 100% { transform: rotate(2.5deg) translateY(0); } 50% { transform: rotate(1deg) translateY(-12px); } }
+@keyframes v-dash { to { stroke-dashoffset: -40; } }
+@keyframes v-spin { to { transform: rotate(360deg); } }
+@keyframes v-flip { 0% { transform: perspective(220px) rotateX(-90deg); opacity: .001; } 55% { transform: perspective(220px) rotateX(14deg); opacity: 1; } 100% { transform: none; opacity: 1; } }
+@keyframes v-pop { 0% { opacity: .001; transform: translateY(22px) rotate(-2deg) scale(.96); } 70% { transform: translateY(-4px) rotate(.4deg) scale(1.01); } 100% { opacity: 1; transform: none; } }
+@keyframes v-live { 0%, 100% { box-shadow: 0 0 0 0 rgb(255 227 107 / 60%); } 50% { box-shadow: 0 0 0 9px rgb(255 227 107 / 0%); } }
+@keyframes v-tick { 0% { transform: translateY(-8px); opacity: .3; } 100% { transform: none; opacity: 1; } }
+@keyframes v-stampdrop { 0% { opacity: .001; transform: rotate(calc(var(--r) - 26deg)) scale(2.3); } 8% { opacity: 1; transform: rotate(calc(var(--r) + 3deg)) scale(.9); } 12%, 84% { opacity: 1; transform: rotate(var(--r)) scale(1); } 94%, 100% { opacity: .001; transform: rotate(var(--r)) scale(1); } }
+@keyframes v-twinkle { 0%, 100% { opacity: .25; } 50% { opacity: 1; } }
+@keyframes v-shine { 0% { transform: translateX(-140%) skewX(-18deg); } 60%, 100% { transform: translateX(320%) skewX(-18deg); } }
+@keyframes v-sun { 0%, 100% { transform: scale(1); opacity: .9; } 50% { transform: scale(1.08); opacity: 1; } }
+
+.v-float { animation: v-float 7s ease-in-out infinite; }
+.v-drift { animation: v-drift 11s ease-in-out infinite alternate; }
+.v-drift-b { animation: v-drift 15s ease-in-out infinite alternate-reverse; }
+.v-dash { stroke-dasharray: 14 14; animation: v-dash 1.4s linear infinite; }
+.v-spin { transform-origin: 75px 75px; animation: v-spin 26s linear infinite; }
+.v-flip { display: inline-block; transform-origin: 50% 0; animation: v-flip .7s cubic-bezier(.2, .8, .2, 1) both; }
+.v-pop { animation: v-pop .8s cubic-bezier(.2, .8, .2, 1) both; }
+.v-live { animation: v-live 2s ease-in-out infinite; }
+.v-tickn { animation: v-tick .4s ease both; }
+.v-stamp { animation: v-stampdrop 8s cubic-bezier(.2, .8, .2, 1) infinite both; }
+.v-star { animation: v-twinkle 3s ease-in-out infinite; }
+.v-sun { animation: v-sun 5s ease-in-out infinite; }
+.v-btn { position: relative; overflow: hidden; transition: transform .18s ease, box-shadow .18s ease; }
+.v-btn:hover { transform: translateY(-3px) rotate(-1deg); box-shadow: 0 9px 0 rgb(29 33 82 / 22%), 0 18px 30px -12px rgb(29 33 82 / 50%); }
+.v-btn::before { content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 36%; background: rgb(255 255 255 / 28%); transform: translateX(-140%) skewX(-18deg); animation: v-shine 4.5s ease-in-out infinite; }
+.v-nav-cta, .v-nav-link, .v-social, .v-flink, .v-stop, .v-row, .v-tag, .v-gate { transition: transform .2s ease, background-color .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease; }
+.v-nav-cta:hover { background: var(--color-magenta); color: white; }
+.v-nav-link:hover { background: rgb(255 255 255 / 6%); color: white; }
+.v-social:hover { transform: translateY(-2px); background: var(--color-magenta); border-color: rgb(172 11 173 / 60%); box-shadow: 0 10px 20px -8px rgb(172 11 173 / 50%); color: white; }
+.v-flink:hover { color: white; }
+.v-stop:hover { transform: translateX(6px); }
+.v-row:hover { background: rgb(255 255 255 / 9%) !important; }
+.v-tag:hover { transform: rotate(0deg) translateY(-10px) !important; }
+.v-gate:hover { transform: translateY(-8px); }
+
 /*
   Header flotante en escritorio (Nav.astro): al bajar más de su propia
   altura, sale del flujo y se esconde deslizándose hacia arriba; apuntar
@@ -223,5 +271,32 @@
      en vez de animarlo (animación 2b). */
   .motion-plane {
     display: none;
+  }
+
+  .v-float,
+  .v-drift,
+  .v-drift-b,
+  .v-dash,
+  .v-spin,
+  .v-flip,
+  .v-pop,
+  .v-live,
+  .v-tickn,
+  .v-stamp,
+  .v-star,
+  .v-sun,
+  .v-btn::before {
+    animation: none;
+  }
+  .v-stamp { opacity: 1; transform: rotate(var(--r)); }
+}
+
+/* Bloque global para que ninguna animación futura ignore la preferencia. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
   }
 }

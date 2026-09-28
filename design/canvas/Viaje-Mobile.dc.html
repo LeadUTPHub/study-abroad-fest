@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Study Abroad Fest · Viaje · Mobile</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&amp;family=Figtree:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@500;600&amp;family=Inter:wght@400;500;600;700&amp;family=Archivo:wght@700;800;900&amp;display=swap">
+<style>
+body{margin:0;font-family:"Figtree","Segoe UI",sans-serif;color:#1D2152;background:#3B99D8}
+a{color:inherit;text-decoration:none}
+@keyframes m-drift{from{transform:translateX(0)}to{transform:translateX(30px)}}
+@keyframes m-float{0%,100%{transform:rotate(2deg) translateY(0)}50%{transform:rotate(.6deg) translateY(-9px)}}
+@keyframes m-dash{to{stroke-dashoffset:-40}}
+@keyframes m-spin{to{transform:rotate(360deg)}}
+@keyframes m-flip{0%{transform:perspective(200px) rotateX(-90deg);opacity:.001}55%{transform:perspective(200px) rotateX(14deg);opacity:1}100%{transform:none;opacity:1}}
+@keyframes m-live{0%,100%{box-shadow:0 0 0 0 rgba(255,227,107,.6)}50%{box-shadow:0 0 0 8px rgba(255,227,107,0)}}
+@keyframes m-stampdrop{0%{opacity:.001;transform:rotate(calc(var(--r) - 26deg)) scale(2.3)}8%{opacity:1;transform:rotate(calc(var(--r) + 3deg)) scale(.9)}12%,84%{opacity:1;transform:rotate(var(--r)) scale(1)}94%,100%{opacity:.001;transform:rotate(var(--r)) scale(1)}}
+@keyframes m-twinkle{0%,100%{opacity:.25}50%{opacity:1}}
+@keyframes m-shine{0%{transform:translateX(-140%) skewX(-18deg)}60%,100%{transform:translateX(340%) skewX(-18deg)}}
+@keyframes m-sun{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.08);opacity:1}}
+.m-float{animation:m-float 7s ease-in-out infinite}
+.m-drift{animation:m-drift 10s ease-in-out infinite alternate}
+.m-drift-b{animation:m-drift 14s ease-in-out infinite alternate-reverse}
+.m-dash{stroke-dasharray:12 12;animation:m-dash 1.4s linear infinite}
+.m-spin{transform-origin:48px 48px;animation:m-spin 26s linear infinite}
+.m-flip{display:inline-block;transform-origin:50% 0;animation:m-flip .7s cubic-bezier(.2,.8,.2,1) both}
+.m-live{animation:m-live 2s ease-in-out infinite}
+.m-stamp{animation:m-stampdrop 8s cubic-bezier(.2,.8,.2,1) infinite both}
+.m-star{animation:m-twinkle 3s ease-in-out infinite}
+.m-sun{animation:m-sun 5s ease-in-out infinite}
+.m-btn{position:relative;overflow:hidden}
+.m-btn:before{content:"";position:absolute;top:0;bottom:0;left:0;width:36%;background:rgba(255,255,255,.28);transform:translateX(-140%) skewX(-18deg);animation:m-shine 4.5s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.m-float,.m-drift,.m-drift-b,.m-dash,.m-spin,.m-flip,.m-live,.m-stamp,.m-star,.m-sun,.m-btn:before{animation:none}.m-stamp{opacity:1;transform:rotate(var(--r))}}
+</style>
+</helmet>
+<div style="width: 390px; height: 7960px; position: relative; overflow: hidden; display: flex; flex-direction: column; background: linear-gradient(180deg,#3B99D8 0px,#66B3EA 900px,#5E84D2 1500px,#6258BB 3300px,#4D4AA5 4300px,#3A3A90 5200px,#2C2D78 6000px,#2A2468 6700px)">
+
+  <!-- ============ NAVBAR movil (estilo LEAD UTP) ============ -->
+  <header style="position: absolute; top: 12px; left: 0; right: 0; z-index: 30; padding: 0 12px; box-sizing: border-box">
+    <div style="height: 60px; box-sizing: border-box; padding: 0 8px 0 12px; display: flex; align-items: center; justify-content: space-between; border-radius: 12px; border: 1px solid rgba(255,255,255,.14); background: rgba(2,12,62,.78); backdrop-filter: blur(8px) saturate(130%); box-shadow: 0 8px 30px -12px rgba(2,12,62,.6); color: #fff">
+      <a href="#hero" aria-label="LEAD UTP, Study Abroad Fest, inicio" style="display: inline-flex; align-items: center; gap: 9px; min-height: 44px">
+        <img src="/_blob/0ffdcdd58e5769554f4320b35b40ff8a" alt="LEAD UTP" style="display: block; width: 84px; height: auto">
+        <span style="width: 1px; height: 22px; background: rgba(255,255,255,.22)"></span>
+        <span style="font-family: 'Lilita One', sans-serif; font-size: 13px; line-height: 1; letter-spacing: .02em">Study Abroad<br><span style="font-size: 12px; letter-spacing: .12em; color: #F6C8F6">FEST</span></span>
+      </a>
+      <div style="display: flex; align-items: center; gap: 4px">
+        <a href="https://luma.com/txyuybq9?tk=pwCvrY" style="display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 12px; border-radius: 6px; background: #fff; color: #020C3E; font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 12.5px; white-space: nowrap">Inscríbete</a>
+        <button aria-label="Abrir menú de navegación" style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 0; border-radius: 6px; background: transparent; color: #fff; cursor: pointer">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ 01 · DESPEGUE ============ -->
+  <section id="hero" style="height: 1100px; position: relative; flex-shrink: 0; z-index: 2">
+    <div style="position: absolute; right: -160px; top: -160px; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle,rgba(255,255,255,.55),rgba(255,255,255,0) 66%)"></div>
+    <div class="m-drift" style="position: absolute; left: 20px; top: 128px; width: 110px; height: 32px; background: #FDFEFC; border-radius: 999px; opacity: .9"></div>
+    <div class="m-drift-b" style="position: absolute; right: 24px; top: 180px; width: 90px; height: 28px; background: #FDFEFC; border-radius: 999px; opacity: .75"></div>
+    <svg width="390" height="1100" viewBox="0 0 390 1100" style="position: absolute; left: 0; top: 0; pointer-events: none">
+      <path class="m-dash" d="M-20 1000 C 100 1010, 220 990, 280 900 S 340 700, 420 640" fill="none" stroke="#FDFEFC" stroke-width="3" stroke-linecap="round" opacity=".85"></path>
+      <g>
+        <g transform="scale(2) translate(-12,-12)"><path transform="rotate(90 12 12)" fill="#FDFEFC" stroke="#1D2152" stroke-width="0.7" d="M21.5 15.2v-1.8L13.6 8.5V3.3a1.6 1.6 0 1 0-3.2 0v5.2l-7.9 4.9v1.8l7.9-2.4v5.1l-2 1.5V21l3.6-1 3.6 1v-1.6l-2-1.5v-5.1z"></path></g>
+        <animateMotion dur="12s" repeatCount="indefinite" rotate="auto" path="M-20 1000 C 100 1010, 220 990, 280 900 S 340 700, 420 640"></animateMotion>
+      </g>
+    </svg>
+    <div style="position: relative; padding: 100px 20px 0; display: flex; flex-direction: column; gap: 18px">
+      <span style="align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; background: rgba(29,33,82,.26); color: #FDFEFC; font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; padding: 7px 13px; border-radius: 999px"><span class="m-live" style="width: 8px; height: 8px; border-radius: 50%; background: #FFE36B"></span>Vuelo SAF 2026 · 10 OCT</span>
+      <h1 style="margin: 0; font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 66px; line-height: .96; color: #FDFEFC; text-shadow: 0 4px 0 rgba(29,33,82,.22)">Study Abroad<br><span style="display: inline-block; margin-top: 10px; font-size: 42px; letter-spacing: .08em; background: linear-gradient(100deg,#AC0BAD,#6258BB); border: 4px solid #FDFEFC; border-radius: 12px; padding: 3px 22px 0; transform: rotate(-2.5deg); box-shadow: 0 5px 0 rgba(29,33,82,.16); text-shadow: none">FEST</span></h1>
+      <p style="margin: 0; color: #FDFEFC; font-size: 19px; font-weight: 700; line-height: 1.35">Becas, intercambios y universidades del mundo en una sola tarde. Sal con tu siguiente paso claro.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px">
+        <span style="background: #FDFEFC; font-weight: 800; font-size: 14px; padding: 7px 11px; border-radius: 9px; transform: rotate(-1.2deg)"><span style="color: #6258BB">Sáb 10 oct</span> 2026</span>
+        <span style="background: #FDFEFC; font-weight: 800; font-size: 14px; padding: 7px 11px; border-radius: 9px; transform: rotate(1deg)">2:00 a 6:00 p.m.</span>
+        <span style="background: #FDFEFC; font-weight: 800; font-size: 14px; padding: 7px 11px; border-radius: 9px; transform: rotate(-1deg)">Convention Center UTP</span>
+        <span style="background: #FDFEFC; font-weight: 800; font-size: 14px; padding: 7px 11px; border-radius: 9px; transform: rotate(1.2deg)"><span style="color: #6258BB">Gratis</span> con inscripción</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 4px">
+        <a class="m-btn" href="https://luma.com/txyuybq9?tk=pwCvrY" style="display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 56px; box-sizing: border-box; font-family: 'Lilita One', sans-serif; font-size: 21px; color: #FDFEFC; background: linear-gradient(100deg,#AC0BAD,#6258BB); border: 4px solid #FDFEFC; border-radius: 999px; box-shadow: 0 5px 0 rgba(29,33,82,.16),0 12px 24px -12px rgba(29,33,82,.35)">Inscríbete gratis</a>
+        <a href="#cronograma" style="display: flex; align-items: center; justify-content: center; min-height: 52px; box-sizing: border-box; font-weight: 800; font-size: 16px; color: #FDFEFC; border: 3px solid #FDFEFC; border-radius: 999px">Ver la ruta de vuelo</a>
+      </div>
+      <div style="position: relative; align-self: center; width: 300px; margin-top: 30px">
+        <div class="m-float" style="border: 8px solid #FDFEFC; border-radius: 20px; overflow: hidden; background: #FDFEFC; box-shadow: 0 6px 0 rgba(29,33,82,.16),0 18px 32px -12px rgba(29,33,82,.5)">
+          <img src="/_blob/34a0459086a2c1b5eb02e9aff676052b" alt="Key visual de Study Abroad Fest" style="display: block; width: 284px; height: 284px; object-fit: cover">
+        </div>
+        <svg width="96" height="96" viewBox="0 0 96 96" style="position: absolute; right: -14px; top: -28px; filter: drop-shadow(0 4px 0 rgba(29,33,82,.16))">
+          <circle cx="48" cy="48" r="46" fill="#FDFEFC"></circle>
+          <g class="m-spin"><defs><path id="m-ring" d="M48 48 m-35 0 a35 35 0 1 1 70 0 a35 35 0 1 1 -70 0"></path></defs><text font-family="IBM Plex Mono, monospace" font-size="7.6" font-weight="600" fill="#AC0BAD" letter-spacing="1.5"><textPath href="#m-ring">STUDY ABROAD FEST · LIMA · 10 OCT 2026 ·</textPath></text></g>
+          <circle cx="48" cy="48" r="24" fill="none" stroke="#AC0BAD" stroke-width="1.5"></circle>
+          <g transform="translate(48 48) scale(1.1) translate(-12,-12)"><path transform="rotate(45 12 12)" fill="#6258BB" d="M21.5 15.2v-1.8L13.6 8.5V3.3a1.6 1.6 0 1 0-3.2 0v5.2l-7.9 4.9v1.8l7.9-2.4v5.1l-2 1.5V21l3.6-1 3.6 1v-1.6l-2-1.5v-5.1z"></path></g>
+        </svg>
+        <div style="position: absolute; left: -10px; bottom: -34px; background: #FDFEFC; border-radius: 16px; padding: 20px 16px 10px; transform: rotate(-3deg); box-shadow: 0 5px 0 rgba(29,33,82,.16),0 12px 22px -10px rgba(29,33,82,.35)">
+          <span style="position: absolute; top: -11px; left: 12px; background: linear-gradient(100deg,#AC0BAD,#6258BB); color: #FDFEFC; font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; padding: 3px 8px; border-radius: 5px">Despegamos en</span>
+          <div style="display: flex; gap: 14px; font-variant-numeric: tabular-nums">
+            <div style="display: flex; flex-direction: column; align-items: center"><b style="font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 30px; line-height: 1; color: #6258BB">{{cd.d}}</b><span style="font-size: 10px; font-weight: 800; color: #4A507C; text-transform: uppercase; letter-spacing: .08em">días</span></div>
+            <div style="display: flex; flex-direction: column; align-items: center"><b style="font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 30px; line-height: 1; color: #6258BB">{{cd.h}}</b><span style="font-size: 10px; font-weight: 800; color: #4A507C; text-transform: uppercase; letter-spacing: .08em">horas</span></div>
+            <div style="display: flex; flex-direction: column; align-items: center"><b style="font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 30px; line-height: 1; color: #6258BB">{{cd.m}}</b><span style="font-size: 10px; font-weight: 800; color: #4A507C; text-transform: uppercase; letter-spacing: .08em">min</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <svg width="390" height="160" viewBox="0 0 390 160" style="position: absolute; left: 0; bottom: -70px; pointer-events: none">
+      <g class="m-drift-b" fill="#FDFEFC" opacity=".95"><circle cx="50" cy="110" r="34"></circle><circle cx="94" cy="94" r="44"></circle><circle cx="142" cy="112" r="32"></circle><rect x="16" y="110" width="160" height="34" rx="17"></rect><circle cx="280" cy="118" r="30"></circle><circle cx="322" cy="102" r="40"></circle><circle cx="366" cy="120" r="28"></circle><rect x="250" y="118" width="150" height="32" rx="16"></rect></g>
+    </svg>
+  </section>
+
+  <!-- ============ 02 · RUTA DE VUELO ============ -->
+  <section id="cronograma" style="height: 1920px; position: relative; z-index: 3; flex-shrink: 0; box-sizing: border-box; padding: 84px 20px 0; background: #FDFEFC; color: #1D2152">
+    <svg width="390" height="30" viewBox="0 0 390 30" style="position:absolute;left:0;top:-29px;display:block"><g><circle cx="0" cy="36" r="26" fill="#FDFEFC"></circle><circle cx="42" cy="36" r="26" fill="#FDFEFC"></circle><circle cx="84" cy="36" r="26" fill="#FDFEFC"></circle><circle cx="126" cy="36" r="26" fill="#FDFEFC"></circle><circle cx="168" cy="36" r="26" fill="#FDFEFC"></circle><circle cx="210" cy="36" r="26" fill="#FDFEFC"></circle><circle cx="252" cy="36" r="26" fill="#FDFEFC"></circle><circle cx="294" cy="36" r="26" fill="#FDFEFC"></circle><circle cx="336" cy="36" r="26" fill="#FDFEFC"></circle><circle cx="378" cy="36" r="26" fill="#FDFEFC"></circle><circle cx="420" cy="36" r="26" fill="#FDFEFC"></circle><rect x="0" y="30" width="390" height="2" fill="#FDFEFC"></rect></g></svg>
+    <svg width="390" height="30" viewBox="0 0 390 30" style="position:absolute;left:0;bottom:-29px;display:block"><g transform="translate(0 30) scale(1 -1)"><circle cx="0" cy="36" r="26" fill="#FDFEFC"></circle><circle cx="42" cy="36" r="26" fill="#FDFEFC"></circle><circle cx="84" cy="36" r="26" fill="#FDFEFC"></circle><circle cx="126" cy="36" r="26" fill="#FDFEFC"></circle><circle cx="168" cy="36" r="26" fill="#FDFEFC"></circle><circle cx="210" cy="36" r="26" fill="#FDFEFC"></circle><circle cx="252" cy="36" r="26" fill="#FDFEFC"></circle><circle cx="294" cy="36" r="26" fill="#FDFEFC"></circle><circle cx="336" cy="36" r="26" fill="#FDFEFC"></circle><circle cx="378" cy="36" r="26" fill="#FDFEFC"></circle><circle cx="420" cy="36" r="26" fill="#FDFEFC"></circle><rect x="0" y="30" width="390" height="2" fill="#FDFEFC"></rect></g></svg>
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: #6258BB">02 · Ruta de vuelo</span>
+      <h2 style="margin: 0; font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 56px; line-height: .98; color: #1D2152">Del despegue<br>al atardecer</h2>
+      <p style="margin: 0; font-size: 17px; font-weight: 600; line-height: 1.45; color: #4A507C">Cuatro horas, un solo recorrido. Las cápsulas llegan en vlog y se responden preguntas en vivo por Zoom.</p>
+      <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 12px; font-weight: 800; color: #FDFEFC"><span style="background: #AC0BAD; border-radius: 999px; padding: 4px 10px">Presencial</span><span style="background: #2F86C4; border-radius: 999px; padding: 4px 10px">Vlog + Zoom</span><span style="background: #6258BB; border-radius: 999px; padding: 4px 10px">Zoom</span></div>
+    </div>
+    <div style="position: relative; margin-top: 24px">
+      <svg width="56" height="1430" viewBox="0 0 56 1430" style="position: absolute; left: 0; top: 0">
+        <rect x="6" y="0" width="44" height="1430" rx="22" fill="rgba(29,33,82,.16)" transform="translate(0 5)"></rect>
+        <rect x="6" y="0" width="44" height="1430" rx="22" fill="#525F97"></rect>
+        <line x1="6" y1="0" x2="6" y2="1430" stroke="#FDFEFC" stroke-width="3.5"></line>
+        <line x1="50" y1="0" x2="50" y2="1430" stroke="#FDFEFC" stroke-width="3.5"></line>
+        <line class="m-dash" x1="28" y1="10" x2="28" y2="1420" stroke="#FDFEFC" stroke-width="3.5" stroke-linecap="round"></line>
+        <g><circle r="19" cx="2" cy="4" fill="rgba(29,33,82,.22)"></circle><g transform="scale(1.5) translate(-12,-12)"><path transform="rotate(180 12 12)" fill="#FDFEFC" stroke="#AC0BAD" stroke-width="1.3" stroke-linejoin="round" d="M21.5 15.2v-1.8L13.6 8.5V3.3a1.6 1.6 0 1 0-3.2 0v5.2l-7.9 4.9v1.8l7.9-2.4v5.1l-2 1.5V21l3.6-1 3.6 1v-1.6l-2-1.5v-5.1z"></path></g><animateMotion dur="16s" repeatCount="indefinite" rotate="0" path="M28 70 L28 1360"></animateMotion></g>
+      </svg>
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <div style="display: grid; grid-template-columns: 56px minmax(0,1fr); gap: 8px; align-items: center; height: 44px">
+          <div style="justify-self: center; width: 34px; height: 34px; border-radius: 50%; background: #FDFEFC; border: 5px solid #3B99D8; box-sizing: border-box; position: relative; z-index: 1"></div>
+          <div style="display: flex; align-items: center; gap: 10px"><span style="font-family: 'Lilita One', sans-serif; font-size: 32px; line-height: 1; color: #FDFEFC; background: linear-gradient(100deg,#AC0BAD,#6258BB); border-radius: 10px; padding: 5px 12px 4px; box-shadow: 0 3px 0 rgba(29,33,82,.2)">14:00</span><span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: #6258BB">Despegue</span></div>
+        </div>
+        <sc-for list="{{groups}}" as="g" hint-placeholder-count="6">
+          <div>
+            <sc-if value="{{g.isGroup}}" hint-placeholder-val="{{ true }}">
+              <div style="display: grid; grid-template-columns: 56px minmax(0,1fr); gap: 8px; align-items: start">
+                <div style="justify-self: center; margin-top: 4px; width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(100deg,#AC0BAD,#6258BB); border: 4px solid #FDFEFC; box-sizing: border-box; box-shadow: 0 4px 0 rgba(29,33,82,.25); display: grid; place-items: center; color: #FDFEFC; font-family: 'Lilita One', sans-serif; font-size: 20px; position: relative; z-index: 1">{{g.n}}</div>
+                <div style="height: 240px; box-sizing: border-box; background: #FDFEFC; border: 2px solid #ABAEC8; border-radius: 16px; box-shadow: 0 5px 0 rgba(29,33,82,.12); overflow: hidden">
+                  <div style="height: 70px; box-sizing: border-box; padding: 6px 12px; display: flex; flex-direction: column; justify-content: center; gap: 6px; align-items: flex-start">
+                    <span style="font-family: 'Lilita One', sans-serif; font-size: 18px; line-height: 1.05; color: #1D2152; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden">{{g.title}}</span>
+                    <span style="font-family: 'Lilita One', sans-serif; font-size: 17px; line-height: 1; color: #FDFEFC; background: linear-gradient(100deg,#AC0BAD,#6258BB); border-radius: 9px; padding: 5px 10px 4px; white-space: nowrap; box-shadow: 0 2px 0 rgba(29,33,82,.2)">{{g.hours}}</span>
+                  </div>
+                  <sc-for list="{{g.rows}}" as="r" hint-placeholder-count="3">
+                    <div style="height: 56px; box-sizing: border-box; border-top: 1px solid #E4E7F5; padding: 3px 12px 0; display: flex; flex-direction: column; gap: 3px; justify-content: center">
+                      <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
+                        <div style="display: flex; align-items: baseline; gap: 6px; white-space: nowrap"><span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 16px; color: #6258BB; background: #ECEBF8; border-radius: 6px; padding: 1px 7px">{{r.t}}</span><span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 11px; color: #6258BB">{{r.end}}</span></div>
+                        <span style="{{r.chipStyle}}">{{r.chip}}</span>
+                      </div>
+                      <div style="font-size: 13.5px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis"><span style="font-weight: 800; color: #1D2152">{{r.title}}</span> <span style="font-weight: 600; color: #4A507C">{{r.who}}</span></div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-if>
+            <sc-if value="{{g.isPin}}" hint-placeholder-val="{{ false }}">
+              <div style="display: grid; grid-template-columns: 56px minmax(0,1fr); gap: 8px; align-items: center; height: 44px">
+                <div style="justify-self: center; width: 38px; height: 38px; border-radius: 50%; background: #FDFEFC; border: 4px dashed #6258BB; box-sizing: border-box; display: grid; place-items: center; color: #6258BB; position: relative; z-index: 1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.1-7-11.5a7 7 0 0 1 14 0C19 14.9 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg></div>
+                <div style="height: 44px; box-sizing: border-box; background: #F1F3FA; border-radius: 12px; padding: 0 12px; display: flex; align-items: center; gap: 8px; white-space: nowrap; overflow: hidden"><span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 15px; color: #6258BB; background: #ECEBF8; border-radius: 6px; padding: 1px 6px">{{g.t}}</span><span style="font-weight: 800; font-size: 13px; color: #1D2152; overflow: hidden; text-overflow: ellipsis">{{g.title}}</span></div>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+        <div style="display: grid; grid-template-columns: 56px minmax(0,1fr); gap: 8px; align-items: center; height: 44px">
+          <div style="justify-self: center; width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(100deg,#AC0BAD,#6258BB); border: 5px solid #FDFEFC; box-sizing: border-box; position: relative; z-index: 1; box-shadow: 0 0 20px 6px rgba(172,11,173,.35)"></div>
+          <div style="display: flex; align-items: center; gap: 10px"><span style="font-family: 'Lilita One', sans-serif; font-size: 32px; line-height: 1; color: #FDFEFC; background: linear-gradient(100deg,#AC0BAD,#6258BB); border-radius: 10px; padding: 5px 12px 4px; box-shadow: 0 3px 0 rgba(29,33,82,.2)">18:00</span><span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: #6258BB">Atardecer</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 03 · PONENTES ============ -->
+  <section id="ponentes" style="height: 780px; position: relative; flex-shrink: 0; box-sizing: border-box; padding: 40px 0 0 20px; color: #FDFEFC">
+    <div style="padding-right: 20px; display: flex; flex-direction: column; gap: 12px; margin-bottom: 26px">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: #FFE36B">03 · Pasajeros con historia</span>
+      <h2 style="margin: 0; font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 50px; line-height: 1; text-shadow: 0 4px 0 rgba(29,33,82,.22)">Quienes ya hicieron el viaje</h2>
+      <p style="margin: 0; font-size: 17px; font-weight: 600; line-height: 1.45; color: rgba(253,254,252,.92)">Comparten su experiencia personal. Para requisitos y procesos oficiales, pasa por los stands.</p>
+    </div>
+    <div style="display: flex; gap: 16px; overflow: hidden; padding: 10px 0 16px">
+      <sc-for list="{{ponentes}}" as="p" hint-placeholder-count="4">
+        <article style="flex: 0 0 232px; position: relative; background: #FDFEFC; color: #1D2152; border-radius: 18px; box-shadow: 0 6px 0 rgba(29,33,82,.22),0 14px 24px -12px rgba(8,10,45,.55); transform: {{p.rot}}; display: flex; flex-direction: column">
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 11px 15px; background: linear-gradient(100deg,#AC0BAD,#6258BB); color: #FDFEFC; border-radius: 18px 18px 0 0; font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 10px; letter-spacing: .14em; text-transform: uppercase"><span>Ponente</span><span>SAF 2026</span></div>
+          <div style="padding: 15px; display: flex; flex-direction: column; gap: 9px">
+            <div style="display: flex; align-items: center; gap: 12px"><div style="width: 68px; height: 68px; border-radius: 50%; background: #CFE6F6; border: 3px solid #FDFEFC; box-shadow: 0 0 0 2px #ABAEC8; display: grid; place-items: center; font-family: 'Lilita One', sans-serif; font-size: 27px; color: #2F86C4">{{p.ini}}</div><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; color: #AC0BAD; border: 2px solid #AC0BAD; border-radius: 6px; padding: 1px 8px; transform: rotate(-6deg)">{{p.code}}</span></div>
+            <div style="font-weight: 800; font-size: 19px; line-height: 1.15">{{p.name}}</div>
+            <div style="font-weight: 700; font-size: 14px; color: #6258BB">{{p.inst}}</div>
+            <span style="{{p.chipStyle}}">{{p.chip}}</span>
+          </div>
+          <div style="border-top: 2px dashed #ABAEC8; padding: 10px 15px 12px; display: flex; justify-content: space-between; align-items: center">
+            <div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: #4A507C">Sale</div><div style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 17px">{{p.t}}</div></div>
+            <div style="width: 70px; height: 24px; background: repeating-linear-gradient(90deg,#1D2152 0 2px,transparent 2px 4px,#1D2152 4px 7px,transparent 7px 9px,#1D2152 9px 10px,transparent 10px 13px)"></div>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+    <div style="margin-top: 10px; display: flex; align-items: center; gap: 12px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: rgba(253,254,252,.75)">
+      <span>Desliza para ver a los 8 ponentes</span>
+      <svg width="34" height="14" viewBox="0 0 34 14" fill="none" stroke="#FFE36B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 7h30M26 2l6 5-6 5"></path></svg>
+    </div>
+  </section>
+
+  <!-- ============ 04 · PUERTAS ============ -->
+  <section id="stands" style="height: 940px; position: relative; flex-shrink: 0; box-sizing: border-box; padding: 40px 20px 0; color: #FDFEFC">
+    <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 26px">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: #FFE36B">04 · Puertas de embarque</span>
+      <h2 style="margin: 0; font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 50px; line-height: 1; text-shadow: 0 4px 0 rgba(29,33,82,.22)">Cuatro puertas, todo el vuelo</h2>
+      <p style="margin: 0; font-size: 17px; font-weight: 600; line-height: 1.45; color: rgba(253,254,252,.92)">Aquí resuelves tus dudas oficiales sobre requisitos y convocatorias. Cada puerta te sella el pasaporte.</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px">
+      <sc-for list="{{gates}}" as="g" hint-placeholder-count="4">
+        <div style="background: #FDFEFC; color: #1D2152; border-radius: 18px; overflow: hidden; box-shadow: 0 6px 0 rgba(29,33,82,.24),0 14px 24px -12px rgba(8,10,45,.6)">
+          <div style="background: #12164A; color: #FDFEFC; padding: 12px 14px 14px; display: flex; align-items: flex-end; justify-content: space-between"><div><div style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: rgba(253,254,252,.65)">Puerta</div><div style="font-family: 'Lilita One', sans-serif; font-size: 58px; line-height: .9; color: #FFE36B">{{g.n}}</div></div><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FDFEFC" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"></path></svg></div>
+          <div style="padding: 14px; display: flex; flex-direction: column; gap: 12px; height: 132px; box-sizing: border-box">
+            <div style="font-weight: 800; font-size: 17px; line-height: 1.15">{{g.name}}</div>
+            <div style="margin-top: auto; display: flex; align-items: center; gap: 8px"><svg width="34" height="34" viewBox="0 0 54 54"><circle cx="27" cy="27" r="24" fill="none" stroke="{{g.color}}" stroke-width="3" stroke-dasharray="5 4"></circle><path d="M17 28l7 7 13-15" fill="none" stroke="{{g.color}}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path></svg><span style="font-weight: 700; font-size: 12px; color: #4A507C; line-height: 1.25">Sello para tu pasaporte</span></div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="margin-top: 26px; display: flex; flex-direction: column; gap: 10px">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: rgba(253,254,252,.7)">Con aliados del programa</span>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px"><span style="background: rgba(253,254,252,.14); border: 1.5px solid rgba(253,254,252,.4); border-radius: 999px; padding: 7px 14px; font-weight: 800; font-size: 14px">Erasmus+</span><span style="background: rgba(253,254,252,.14); border: 1.5px solid rgba(253,254,252,.4); border-radius: 999px; padding: 7px 14px; font-weight: 800; font-size: 14px">EMA Perú · Erasmus Mundus</span></div>
+    </div>
+  </section>
+
+  <!-- ============ 05 · PASAPORTE ============ -->
+  <section id="calendario" style="height: 1340px; position: relative; flex-shrink: 0; box-sizing: border-box; padding: 40px 20px 0; color: #FDFEFC">
+    <div class="m-star" style="position: absolute; left: 40px; top: 40px; width: 5px; height: 5px; border-radius: 50%; background: #FDFEFC"></div>
+    <div class="m-star" style="position: absolute; left: 320px; top: 90px; width: 4px; height: 4px; border-radius: 50%; background: #FDFEFC; animation-delay: 1.4s"></div>
+    <div style="display: flex; flex-direction: column; gap: 16px">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: #FFE36B">05 · Pasaporte SAF</span>
+      <span style="align-self: flex-start; display: inline-flex; align-items: center; gap: 7px; font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; background: rgba(253,254,252,.14); padding: 7px 12px; border-radius: 999px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFE36B" stroke-width="2.6" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>Exclusivo para asistentes</span>
+      <h2 style="margin: 0; font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 46px; line-height: 1; text-shadow: 0 4px 0 rgba(29,33,82,.22)">Tu Calendario de becas se gana en el evento</h2>
+      <p style="margin: 0; font-size: 18px; font-weight: 700; line-height: 1.4; color: rgba(253,254,252,.92)">Fechas de cierre, web oficial y tips de cada stand para cada convocatoria. Solo para quienes vienen el 10 de octubre.</p>
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <div style="background: #FDFEFC; color: #1D2152; border-radius: 16px; padding: 14px 16px; display: flex; align-items: center; gap: 14px; transform: rotate(-.8deg); box-shadow: 0 5px 0 rgba(8,10,45,.3)"><span style="font-family: 'Lilita One', sans-serif; font-size: 30px; color: #6258BB; line-height: 1">1</span><div><b style="font-size: 16px">Recoge tu pasaporte</b><div style="font-size: 13px; color: #4A507C">Al ingresar al evento.</div></div></div>
+        <div style="background: #FDFEFC; color: #1D2152; border-radius: 16px; padding: 14px 16px; display: flex; align-items: center; gap: 14px; transform: rotate(.8deg); box-shadow: 0 5px 0 rgba(8,10,45,.3)"><span style="font-family: 'Lilita One', sans-serif; font-size: 30px; color: #6258BB; line-height: 1">2</span><div><b style="font-size: 16px">Junta los 4 sellos</b><div style="font-size: 13px; color: #4A507C">Uno por cada puerta.</div></div></div>
+        <div style="background: #FDFEFC; color: #1D2152; border-radius: 16px; padding: 14px 16px; display: flex; align-items: center; gap: 14px; transform: rotate(-.6deg); box-shadow: 0 5px 0 rgba(8,10,45,.3)"><span style="font-family: 'Lilita One', sans-serif; font-size: 30px; color: #6258BB; line-height: 1">3</span><div><b style="font-size: 16px">Canjea tu código</b><div style="font-size: 13px; color: #4A507C">Y descarga tu calendario.</div></div></div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 4px">
+        <a class="m-btn" href="https://luma.com/txyuybq9?tk=pwCvrY" style="display: flex; align-items: center; justify-content: center; min-height: 54px; box-sizing: border-box; font-family: 'Lilita One', sans-serif; font-size: 20px; color: #FDFEFC; background: linear-gradient(100deg,#AC0BAD,#6258BB); border: 4px solid #FDFEFC; border-radius: 999px; box-shadow: 0 5px 0 rgba(8,10,45,.3)">Inscríbete para ir</a>
+        <a href="Canje-Mobile.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 50px; box-sizing: border-box; font-weight: 800; font-size: 16px; color: #FDFEFC; border: 3px solid #FDFEFC; border-radius: 999px">Ya tengo mi código</a>
+      </div>
+    </div>
+    <div style="position: relative; height: 430px; margin-top: 34px">
+      <div style="position: absolute; left: 4px; top: 0; width: 342px; height: 350px; background: #FDFEFC; color: #1D2152; border-radius: 20px; transform: rotate(-3deg); box-shadow: 0 8px 0 rgba(8,10,45,.3),0 24px 36px -14px rgba(8,10,45,.6); padding: 18px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end"><span style="font-family: 'Lilita One', sans-serif; font-size: 24px">Pasaporte</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #4A507C">SAF 2026 · 4 SELLOS</span></div>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); grid-template-rows: repeat(2, minmax(0,1fr)); gap: 10px; flex-grow: 1">
+          <div style="border: 1.5px solid #ABAEC8; border-radius: 12px; display: grid; place-items: center"><div class="m-stamp" style="--r: -12deg; animation-delay: 0s; width: 84px; height: 84px; border-radius: 50%; border: 3.5px solid #6258BB; display: grid; place-items: center; text-align: center; font-family: 'Lilita One', sans-serif; color: #6258BB; font-size: 16px; line-height: 1">UTP<br><span style="font-family: 'IBM Plex Mono', monospace; font-size: 8px">10.10.26</span></div></div>
+          <div style="border: 1.5px solid #ABAEC8; border-radius: 12px; display: grid; place-items: center"><div class="m-stamp" style="--r: 8deg; animation-delay: .9s; width: 104px; height: 68px; border-radius: 10px; border: 3.5px solid #AC0BAD; display: grid; place-items: center; text-align: center; font-family: 'Lilita One', sans-serif; color: #AC0BAD; font-size: 14px; line-height: 1.1">Education<br>USA</div></div>
+          <div style="border: 1.5px solid #ABAEC8; border-radius: 12px; display: grid; place-items: center"><div class="m-stamp" style="--r: -6deg; animation-delay: 1.8s; display: grid; place-items: center"><svg width="96" height="84" viewBox="0 0 120 104"><polygon points="60,6 114,98 6,98" fill="none" stroke="#525F97" stroke-width="5"></polygon><text x="60" y="78" text-anchor="middle" font-family="Lilita One, sans-serif" font-size="17" fill="#525F97">APEBEMO</text></svg></div></div>
+          <div style="border: 1.5px solid #ABAEC8; border-radius: 12px; display: grid; place-items: center"><div class="m-stamp" style="--r: 7deg; animation-delay: 2.7s; width: 84px; height: 84px; border-radius: 14px; border: 3.5px solid #2F86C4; display: grid; place-items: center; text-align: center; font-family: 'Lilita One', sans-serif; color: #2F86C4; font-size: 13px; line-height: 1.1">Migajeando<br>Becas</div></div>
+        </div>
+      </div>
+      <div style="position: absolute; right: 2px; bottom: 6px; width: 250px; background: linear-gradient(100deg,#AC0BAD,#6258BB); color: #FDFEFC; border: 4px solid #FDFEFC; border-radius: 16px; padding: 14px 16px; transform: rotate(3deg); box-shadow: 0 7px 0 rgba(8,10,45,.3); display: flex; flex-direction: column; gap: 6px">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .14em; text-transform: uppercase">Tu código</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 22px; letter-spacing: .06em">SAF-····-····</span>
+        <span style="font-size: 12px; font-weight: 700">Calendario y tips desbloqueados</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 06 · PASE DE ABORDAJE ============ -->
+  <section id="llegar" style="height: 680px; position: relative; flex-shrink: 0; box-sizing: border-box; padding: 20px 20px 0; color: #FDFEFC">
+    <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: #FFE36B">06 · Cómo llegar</span>
+      <h2 style="margin: 0; font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 50px; line-height: 1; text-shadow: 0 4px 0 rgba(29,33,82,.22)">Tu pase de abordaje</h2>
+    </div>
+    <div style="background: #FDFEFC; color: #1D2152; border-radius: 22px; overflow: hidden; box-shadow: 0 8px 0 rgba(8,10,45,.3),0 22px 34px -14px rgba(8,10,45,.6)">
+      <div style="padding: 22px 20px; display: flex; flex-direction: column; gap: 18px">
+        <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 14px; border-bottom: 2px dashed #ABAEC8"><span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #6258BB">SAF · 2026</span><span style="font-family: 'Lilita One', sans-serif; font-size: 22px; display: flex; align-items: center; gap: 8px">LIMA<svg width="22" height="22" viewBox="0 0 24 24"><path fill="#AC0BAD" d="M21.5 15.2v-1.8L13.6 8.5V3.3a1.6 1.6 0 1 0-3.2 0v5.2l-7.9 4.9v1.8l7.9-2.4v5.1l-2 1.5V21l3.6-1 3.6 1v-1.6l-2-1.5v-5.1z" transform="rotate(90 12 12)"></path></svg>EL MUNDO</span></div>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px 14px">
+          <div><div style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #4A507C">Fecha</div><div style="font-weight: 800; font-size: 18px">Sáb 10 oct 2026</div></div>
+          <div><div style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #4A507C">Tarifa</div><div style="font-weight: 800; font-size: 18px">Gratis</div></div>
+          <div><div style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #4A507C">Embarque</div><div style="font-weight: 800; font-size: 18px">2:00 p.m.</div></div>
+          <div><div style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #4A507C">Llegada</div><div style="font-weight: 800; font-size: 18px">6:00 p.m.</div></div>
+          <div style="grid-column: span 2"><div style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #4A507C">Puerta</div><div style="font-weight: 800; font-size: 18px">Convention Center UTP · Jr. Hernán Velarde 260, Lima</div></div>
+          <div style="grid-column: span 2"><div style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #4A507C">Requisito</div><div style="font-weight: 800; font-size: 18px">Inscripción previa en Luma</div></div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=Convention+Center+UTP+Jr.+Hern%C3%A1n+Velarde+260+Lima" style="display: flex; align-items: center; justify-content: center; min-height: 48px; box-sizing: border-box; font-weight: 800; font-size: 15px; color: #6258BB; border: 3px solid #6258BB; border-radius: 999px">Cómo llegar ↗</a>
+          <a href="#hero" style="display: flex; align-items: center; justify-content: center; min-height: 48px; box-sizing: border-box; font-weight: 800; font-size: 15px; color: #6258BB; border: 3px solid #6258BB; border-radius: 999px">Agregar a mi calendario</a>
+        </div>
+      </div>
+      <div style="background: linear-gradient(100deg,#AC0BAD,#6258BB); color: #FDFEFC; border-top: 3px dashed #FDFEFC; padding: 18px 20px; display: flex; align-items: center; justify-content: space-between">
+        <div><div style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 11px; letter-spacing: .14em; text-transform: uppercase">Asiento</div><div style="font-family: 'Lilita One', sans-serif; font-size: 40px; line-height: .95">Tuyo</div></div>
+        <div style="width: 120px; height: 38px; background: repeating-linear-gradient(90deg,#FDFEFC 0 2px,transparent 2px 4px,#FDFEFC 4px 7px,transparent 7px 9px,#FDFEFC 9px 10px,transparent 10px 13px)"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 07 · ATERRIZAJE ============ -->
+  <section style="height: 560px; position: relative; flex-shrink: 0; overflow: hidden; text-align: center; color: #FDFEFC; background: linear-gradient(180deg,#2A2468 0%,#5B2A86 38%,#AC0BAD 72%,#F27BB5 100%)">
+    <div class="m-star" style="position: absolute; left: 40px; top: 50px; width: 5px; height: 5px; border-radius: 50%; background: #FDFEFC"></div>
+    <div class="m-star" style="position: absolute; left: 300px; top: 90px; width: 4px; height: 4px; border-radius: 50%; background: #FDFEFC; animation-delay: 1s"></div>
+    <div class="m-sun" style="position: absolute; left: 50%; margin-left: -80px; bottom: 56px; width: 160px; height: 160px; border-radius: 50%; background: #FFE36B; box-shadow: 0 0 70px 24px rgba(255,227,107,.5)"></div>
+    <div style="position: relative; padding: 70px 20px 0; display: flex; flex-direction: column; align-items: center; gap: 16px">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: #FFE36B">07 · Aterrizaje</span>
+      <h2 style="margin: 0; font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 44px; line-height: 1; text-shadow: 0 4px 0 rgba(29,33,82,.28)">Tu camino empieza el 10 de octubre</h2>
+      <p style="margin: 0; font-size: 17px; font-weight: 700">Ven con curiosidad y sal con una oportunidad concreta a la que postular.</p>
+      <a class="m-btn" href="https://luma.com/txyuybq9?tk=pwCvrY" style="display: inline-flex; align-items: center; justify-content: center; min-height: 56px; box-sizing: border-box; font-family: 'Lilita One', sans-serif; font-size: 21px; color: #FDFEFC; background: linear-gradient(100deg,#AC0BAD,#6258BB); border: 4px solid #FDFEFC; border-radius: 999px; padding: 0 28px; box-shadow: 0 5px 0 rgba(29,33,82,.3)">Inscríbete gratis</a>
+    </div>
+    <svg width="390" height="150" viewBox="0 0 390 150" style="position: absolute; left: 0; bottom: 0">
+      <path d="M0 80 L40 34 L80 74 L120 28 L170 82 L210 46 L250 86 L290 30 L330 76 L390 44 V150 H0 Z" fill="#3B2A78" opacity=".85"></path>
+      <path d="M0 112 L50 74 L100 108 L160 68 L220 112 L280 76 L340 112 L390 80 V150 H0 Z" fill="#1D2152"></path>
+      <rect x="0" y="124" width="390" height="26" fill="#525F97"></rect>
+      <path class="m-dash" d="M0 137 H390" stroke="#FDFEFC" stroke-width="2.5" stroke-linecap="round"></path>
+    </svg>
+    <svg width="390" height="330" viewBox="0 0 390 330" style="position: absolute; left: 0; bottom: 0; pointer-events: none">
+      <g><g transform="scale(1.8) translate(-12,-12)"><path transform="rotate(90 12 12)" fill="#FDFEFC" stroke="#1D2152" stroke-width="0.7" d="M21.5 15.2v-1.8L13.6 8.5V3.3a1.6 1.6 0 1 0-3.2 0v5.2l-7.9 4.9v1.8l7.9-2.4v5.1l-2 1.5V21l3.6-1 3.6 1v-1.6l-2-1.5v-5.1z"></path></g><animateMotion dur="9s" repeatCount="indefinite" rotate="auto" path="M-40 50 C 80 40, 180 100, 250 240 S 340 292, 430 292"></animateMotion></g>
+    </svg>
+  </section>
+
+  <!-- ============ FOOTER movil (estilo LEAD UTP) ============ -->
+  <footer style="flex-grow: 1; background: #050814; color: #fff; border-top: 1px solid rgba(255,255,255,.14)">
+    <div style="padding: 40px 20px 0">
+      <a href="#hero" aria-label="Ir al inicio de Study Abroad Fest" style="display: inline-flex; align-items: center; min-height: 44px"><img src="/_blob/0ffdcdd58e5769554f4320b35b40ff8a" alt="LEAD UTP" style="display: block; width: 120px; height: auto"></a>
+      <p style="margin: 14px 0 0; font-family: 'Inter', sans-serif; font-size: 12px; line-height: 24px; font-weight: 600; letter-spacing: .16em; color: rgba(255,255,255,.72)">LEARN. EXPLORE. ASPIRE. DISCOVER.</p>
+      <ul style="margin: 18px 0 0; padding: 0; list-style: none; display: flex; align-items: center; gap: 10px" aria-label="Redes sociales de LEAD UTP">
+        <li><a href="https://www.instagram.com/lead_utp" aria-label="Instagram de LEAD UTP" style="display: inline-flex; width: 44px; height: 44px; align-items: center; justify-content: center; border-radius: 50%; border: 1px solid rgba(255,255,255,.15); background: rgba(255,255,255,.06); color: rgba(255,255,255,.8)"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z"></path><path d="M17.5 6.5h.01"></path></svg></a></li>
+        <li><a href="https://www.linkedin.com/company/lead-utp" aria-label="LinkedIn de LEAD UTP" style="display: inline-flex; width: 44px; height: 44px; align-items: center; justify-content: center; border-radius: 50%; border: 1px solid rgba(255,255,255,.15); background: rgba(255,255,255,.06); color: rgba(255,255,255,.8)"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6Z"></path><path d="M2 9h4v12H2z"></path><circle cx="4" cy="4" r="2"></circle></svg></a></li>
+        <li><a href="https://discord.gg/EYXFUfYHbF" aria-label="Discord de LEAD UTP" style="display: inline-flex; width: 44px; height: 44px; align-items: center; justify-content: center; border-radius: 50%; border: 1px solid rgba(255,255,255,.15); background: rgba(255,255,255,.06); color: rgba(255,255,255,.8)"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg></a></li>
+      </ul>
+      <div style="margin-top: 36px; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 26px 20px; font-family: 'Inter', sans-serif">
+        <nav aria-labelledby="mf-evento"><p id="mf-evento" style="margin: 0; font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.7)">El evento</p><ul style="margin: 10px 0 0; padding: 0; list-style: none"><li><a href="#cronograma" style="display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; color: rgba(255,255,255,.72)">Cronograma</a></li><li><a href="#ponentes" style="display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; color: rgba(255,255,255,.72)">Ponentes</a></li><li><a href="#stands" style="display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; color: rgba(255,255,255,.72)">Stands</a></li><li><a href="#calendario" style="display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; color: rgba(255,255,255,.72)">Calendario de becas</a></li></ul></nav>
+        <nav aria-labelledby="mf-org"><p id="mf-org" style="margin: 0; font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.7)">Organizan</p><ul style="margin: 10px 0 0; padding: 0; list-style: none"><li><a href="#hero" style="display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; color: rgba(255,255,255,.72)">LEAD UTP</a></li><li><a href="#hero" style="display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; color: rgba(255,255,255,.72)">Pilar de Excelencia Académica</a></li><li><a href="#hero" style="display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; color: rgba(255,255,255,.72)">UTP Internacional</a></li></ul></nav>
+        <nav aria-labelledby="mf-soc"><p id="mf-soc" style="margin: 0; font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.7)">Síguenos</p><ul style="margin: 10px 0 0; padding: 0; list-style: none"><li><a href="https://www.instagram.com/lead_utp" style="display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; color: rgba(255,255,255,.72)">Instagram</a></li><li><a href="https://www.linkedin.com/company/lead-utp" style="display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; color: rgba(255,255,255,.72)">LinkedIn</a></li><li><a href="https://discord.gg/EYXFUfYHbF" style="display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; color: rgba(255,255,255,.72)">Discord</a></li></ul></nav>
+        <nav aria-labelledby="mf-sop"><p id="mf-sop" style="margin: 0; font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.7)">Soporte</p><ul style="margin: 10px 0 0; padding: 0; list-style: none"><li><a href="#hero" style="display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; color: rgba(255,255,255,.72)">Contacto</a></li><li><a href="Canje-Mobile.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; color: rgba(255,255,255,.72)">Canjear mi código</a></li></ul></nav>
+      </div>
+      <div style="margin-top: 30px; border-top: 1px solid rgba(255,255,255,.1); padding: 16px 0 26px; font-family: 'Inter', sans-serif; font-size: 12px; line-height: 1.6; color: rgba(255,255,255,.62)">© 2026 LEAD UTP · Todos los derechos reservados<br>Study Abroad Fest · en alianza con UTP Internacional</div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":7960}}'>
+class Component extends DCLogic {
+  componentDidMount() { this._t = setInterval(() => this.forceUpdate(), 30000); }
+  componentWillUnmount() { clearInterval(this._t); }
+  renderVals() {
+    const target = new Date('2026-10-10T14:00:00-05:00').getTime();
+    const mins = Math.max(0, Math.floor((target - Date.now()) / 60000));
+    const pad = (n) => String(n).padStart(2, '0');
+
+    const vlog = 'flex-shrink: 0; font-family: IBM Plex Mono, monospace; font-weight: 600; font-size: 10px; color: #FFE36B; border: 1.5px solid #FFE36B; border-radius: 999px; padding: 1px 7px; white-space: nowrap';
+    const zoom = 'flex-shrink: 0; font-family: IBM Plex Mono, monospace; font-weight: 600; font-size: 10px; color: #9FD3FF; border: 1.5px solid #9FD3FF; border-radius: 999px; padding: 1px 7px; white-space: nowrap';
+    const free = 'flex-shrink: 0; font-family: IBM Plex Mono, monospace; font-weight: 600; font-size: 10px; color: rgba(253,254,252,.7); border: 1.5px dashed rgba(253,254,252,.4); border-radius: 999px; padding: 1px 7px; white-space: nowrap';
+    const none = 'display: none';
+
+    const raw = [
+      ['14:00', 'Bienvenida', 'LEAD UTP', 'LIM', 'x'],
+      ['14:10', 'Cápsula desde Purdue', 'Fernando Injoque', 'US', 'v'],
+      ['14:15', 'Experiencia en Purdue', 'Ivanna', 'US', 'x'],
+      ['14:35', 'UTP Internacional', 'Movilidad y convenios', 'LIM', 'x'],
+      ['14:55', 'Experiencia en UC Berkeley', 'Leslie Sánchez y Diego Mendoza', 'US', 'x'],
+      ['15:25', 'Beca Fulbright', 'EducationUSA', 'US', 'x'],
+      ['15:45', 'Intermedio y networking', '·', '·', 'f'],
+      ['15:55', 'Cápsula desde Japón', 'Mila', 'JP', 'v'],
+      ['16:00', 'Beca MEXT', '·', 'JP', 'x'],
+      ['16:20', 'APEBEMO', '·', 'JP', 'x'],
+      ['16:40', 'Cápsula Erasmus+', 'Guillermo Gonzalo', 'EU', 'v'],
+      ['16:45', 'Erasmus Mundus', 'EMA Perú', 'EU', 'x'],
+      ['17:05', 'Conexión Erasmus Mundus', 'Raquel Sánchez', 'EU', 'z'],
+      ['17:20', 'Migajeando Becas', 'Raúl Jauregui', 'MUN', 'x'],
+      ['17:40', 'Networking y mesas de consulta', '·', '·', 'f'],
+      ['17:55', 'Cierre', 'LEAD UTP', 'LIM', 'x']
+    ];
+    const chipP = {
+      v: 'flex-shrink: 0; font-family: IBM Plex Mono, monospace; font-weight: 600; font-size: 10px; color: #AC0BAD; background: #F6E3F6; border-radius: 999px; padding: 2px 8px; white-space: nowrap',
+      z: 'flex-shrink: 0; font-family: IBM Plex Mono, monospace; font-weight: 600; font-size: 10px; color: #FDFEFC; background: #2F86C4; border-radius: 999px; padding: 2px 8px; white-space: nowrap',
+      f: 'flex-shrink: 0; font-family: IBM Plex Mono, monospace; font-weight: 600; font-size: 10px; color: #4A507C; border: 1.5px dashed #ABAEC8; border-radius: 999px; padding: 1px 7px; white-space: nowrap'
+    };
+    const ends = raw.map((r, i) => (raw[i + 1] ? raw[i + 1][0] : '18:00'));
+    const rows = raw.map((r, i) => ({
+      n: String(i + 1), t: r[0], title: r[1], who: r[2], code: r[3],
+      sub: 'a ' + ends[i] + (r[3] !== '·' ? ' · ' + r[3] : ''),
+      chip: r[4] === 'v' ? 'Vlog' : r[4] === 'z' ? 'Zoom' : r[4] === 'f' ? 'Libre' : '',
+      chipStyleP: chipP[r[4]] || none,
+      node: r[4] === 'v' ? '#FFE36B' : r[4] === 'z' ? '#2F86C4' : r[4] === 'f' ? '#FDFEFC' : 'linear-gradient(100deg,#AC0BAD,#6258BB)',
+      nodeInk: r[4] === 'v' ? '#1D2152' : r[4] === 'f' ? '#6258BB' : '#FDFEFC',
+      delay: (i * 0.09).toFixed(2) + 's',
+      op: r[4] === 'f' ? '.92' : '1'
+    }));
+
+    const cp = 'font-family: Figtree, sans-serif; font-weight: 800; font-size: 11px; color: #FDFEFC; border-radius: 999px; padding: 3px 10px; white-space: nowrap; ';
+    const CH = {
+      p: { chip: 'Presencial', chipStyle: cp + 'background: #AC0BAD' },
+      v: { chip: 'Vlog + Zoom', chipStyle: cp + 'background: #2F86C4' },
+      z: { chip: 'Zoom', chipStyle: cp + 'background: #6258BB' },
+      f: { chip: 'Libre', chipStyle: 'font-family: Figtree, sans-serif; font-weight: 800; font-size: 11px; color: #4A507C; border: 1.5px dashed #ABAEC8; border-radius: 999px; padding: 2px 9px; white-space: nowrap' }
+    };
+    const G = [
+      ['Bienvenida y voces internacionales', '2:00 p.m. → 2:35 p.m.', [
+        ['14:00', '14:10', 'Bienvenida', 'LEAD UTP', 'p'],
+        ['14:10', '14:15', 'Cápsula', 'Fernando Injoque (Purdue)', 'v'],
+        ['14:15', '14:35', 'Ponencia', 'Ivanna (Purdue)', 'v']]],
+      ['Conferencia, panel y Fulbright', '2:35 p.m. → 3:45 p.m.', [
+        ['14:35', '14:55', 'Conferencia: convenios, requisitos y movilidad', 'UTP Internacional', 'p'],
+        ['14:55', '15:25', 'Panel de ex-becarios', 'Leslie Sánchez, Diego Mendoza (UC Berkeley)', 'p'],
+        ['15:25', '15:45', 'Beca Fulbright', 'EducationUSA', 'p']]],
+      'PIN',
+      ['Japón: Beca MEXT con APEBEMO', '3:55 p.m. → 4:40 p.m.', [
+        ['15:55', '16:00', 'Cápsula', 'Mila (Japón)', 'v'],
+        ['16:00', '16:20', 'Beca MEXT', 'APEBEMO', 'p'],
+        ['16:20', '16:40', 'APEBEMO', '', 'p']]],
+      ['Europa: Erasmus+ y Erasmus Mundus', '4:40 p.m. → 5:20 p.m.', [
+        ['16:40', '16:45', 'Cápsula', 'Guillermo Gonzalo (Erasmus+)', 'v'],
+        ['16:45', '17:05', 'Erasmus Mundus', 'EMA Perú', 'p'],
+        ['17:05', '17:20', 'Conexión Erasmus Mundus', 'Raquel Sánchez', 'z']]],
+      ['Migajeando Becas y cierre', '5:20 p.m. → 6:00 p.m.', [
+        ['17:20', '17:40', 'Migajeando Becas', 'Raúl Jauregui', 'p'],
+        ['17:40', '17:55', 'Networking y mesas de consulta', '', 'f'],
+        ['17:55', '18:00', 'Cierre', 'LEAD UTP', 'p']]]
+    ];
+    let gn = 0;
+    const groups = G.map((g) => g === 'PIN'
+      ? { isPin: true, isGroup: false, t: '15:45', end: 'a 15:55', title: 'Intermedio y networking', n: '', hours: '', rows: [] }
+      : { isPin: false, isGroup: true, n: String(++gn), title: g[0], hours: g[1], t: '', end: '',
+          rows: g[2].map((r) => ({ t: r[0], end: 'a ' + r[1], title: r[2], who: r[3], chip: CH[r[4]].chip, chipStyle: CH[r[4]].chipStyle })) });
+
+    const rot = ['rotate(-1.4deg)', 'rotate(1.2deg)', 'rotate(-0.8deg)', 'rotate(1.4deg)'];
+    const chipV = 'align-self: flex-start; font-family: IBM Plex Mono, monospace; font-weight: 600; font-size: 10px; letter-spacing: .06em; color: #AC0BAD; background: #F6E3F6; border-radius: 999px; padding: 3px 9px';
+    const chipZ = 'align-self: flex-start; font-family: IBM Plex Mono, monospace; font-weight: 600; font-size: 10px; letter-spacing: .06em; color: #FDFEFC; background: #2F86C4; border-radius: 999px; padding: 3px 9px';
+    const chipT = 'align-self: flex-start; font-family: IBM Plex Mono, monospace; font-weight: 600; font-size: 10px; letter-spacing: .06em; color: #4A507C; background: #E4E7F5; border-radius: 999px; padding: 3px 9px';
+    const pon = [
+      ['FI', 'US', 'Fernando Injoque', 'Purdue University', 'Vlog + Q&A', chipV, '14:10'],
+      ['I', 'US', 'Ivanna', 'Purdue University', 'Experiencia personal', chipT, '14:15'],
+      ['LS', 'US', 'Leslie Sánchez', 'UC Berkeley', 'Experiencia personal', chipT, '14:55'],
+      ['DM', 'US', 'Diego Mendoza', 'UC Berkeley', 'Experiencia personal', chipT, '14:55'],
+      ['M', 'JP', 'Mila', 'Desde Japón', 'Vlog + Q&A', chipV, '15:55'],
+      ['GG', 'EU', 'Guillermo Gonzalo', 'Erasmus+', 'Vlog + Q&A', chipV, '16:40'],
+      ['RS', 'EU', 'Raquel Sánchez', 'Conexión Erasmus Mundus', 'Zoom', chipZ, '17:05'],
+      ['RJ', 'MUN', 'Raúl Jauregui', 'Migajeando Becas', 'Experiencia personal', chipT, '17:20']
+    ].map((p, i) => ({ ini: p[0], code: p[1], name: p[2], inst: p[3], chip: p[4], chipStyle: p[5], t: p[6], rot: rot[i % 4] }));
+
+    return {
+      cd: { d: pad(Math.floor(mins / 1440)), h: pad(Math.floor((mins % 1440) / 60)), m: pad(mins % 60) },
+      rows,
+      groups,
+      ponentes: pon,
+      gates: [
+        { n: '1', name: 'UTP Internacional', color: '#6258BB' },
+        { n: '2', name: 'EducationUSA', color: '#AC0BAD' },
+        { n: '3', name: 'APEBEMO', color: '#525F97' },
+        { n: '4', name: 'Migajeando Becas', color: '#2F86C4' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -220,3 +220,63 @@ export const FaqItemSchema = z
     }
   });
 export type FaqItem = z.infer<typeof FaqItemSchema>;
+
+// ---------------------------------------------------------------------------
+// Viaje: cronograma visual (src/data/schedule.ts)
+// ---------------------------------------------------------------------------
+export const ScheduleModeSchema = z.enum(["presencial", "vlog-zoom", "zoom", "libre"]);
+export type ScheduleMode = z.infer<typeof ScheduleModeSchema>;
+
+export const ScheduleRowSchema = z.object({
+  start: HoraSchema,
+  end: HoraSchema,
+  title: z.string(),
+  who: z.string().optional(),
+  mode: ScheduleModeSchema,
+});
+export type ScheduleRow = z.infer<typeof ScheduleRowSchema>;
+
+export const ScheduleGroupSchema = z.object({
+  n: z.number().int().positive(),
+  title: z.string(),
+  from: HoraSchema,
+  to: HoraSchema,
+  rows: z.array(ScheduleRowSchema).min(1),
+});
+export type ScheduleGroup = z.infer<typeof ScheduleGroupSchema>;
+
+export const ScheduleBreakSchema = z.object({
+  start: HoraSchema,
+  end: HoraSchema,
+  title: z.string(),
+});
+export type ScheduleBreak = z.infer<typeof ScheduleBreakSchema>;
+
+// Viaje: tarjetas de ponente (pase de abordaje) y puertas de embarque.
+export const SpeakerModeSchema = z.enum(["vlog-zoom", "zoom", "experiencia"]);
+export type SpeakerMode = z.infer<typeof SpeakerModeSchema>;
+
+export const SpeakerSchema = z.object({
+  id: z.string(),
+  initials: z.string().min(1).max(3),
+  /** Código de país del sello. null = sin sello (no se inventa un código). */
+  code: CodigoSchema.nullable(),
+  name: z.string(),
+  institution: z.string().nullable(),
+  mode: SpeakerModeSchema,
+  /** Hora de la actividad en el cronograma (tarjeta "Sale"). */
+  time: HoraSchema,
+  estado: EstadoSchema,
+});
+export type Speaker = z.infer<typeof SpeakerSchema>;
+
+export const GateColorSchema = z.enum(["violet", "magenta", "road", "sky-deep"]);
+export const GateSchema = z.object({
+  n: z.number().int().positive(),
+  /** Debe coincidir con el `id` de un stand en src/data/stands.ts. */
+  standId: z.string(),
+  name: z.string(),
+  color: GateColorSchema,
+  estado: EstadoSchema,
+});
+export type Gate = z.infer<typeof GateSchema>;
