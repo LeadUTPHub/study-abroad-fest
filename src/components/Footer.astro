@@ -1,0 +1,17 @@
+---
+// Footer (design/canvas/Main.dc.html). Separado de CtaFinal.astro para
+// quedar fuera de <main> y conservar su landmark "contentinfo".
+import evento from "../data/evento";
+---
+
+<footer class="flex flex-col items-center gap-2 bg-ink px-6 py-8 text-center text-[15px] text-paper/85 sm:flex-row sm:justify-between sm:px-[120px] sm:text-left">
+  <span>
+    Organiza <b class="text-paper">{evento.organizadores[0]}</b>
+    {evento.organizadores[1] && (
+      <>
+        , en alianza con <b class="text-paper">{evento.organizadores[1]}</b>
+      </>
+    )}
+  </span>
+  <span>{evento.nombre} {evento.fecha.slice(0, 4)}</span>
+</footer>

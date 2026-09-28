@@ -9,6 +9,7 @@ import PasaporteSeccion from "../components/PasaporteSeccion.astro";
 import PaseAbordaje from "../components/PaseAbordaje.astro";
 import Faq from "../components/Faq.astro";
 import CtaFinal from "../components/CtaFinal.astro";
+import Footer from "../components/Footer.astro";
 import DockMovil from "../components/DockMovil.astro";
 import RoadDivider from "../components/ui/RoadDivider.astro";
 ---
@@ -18,16 +19,19 @@ import RoadDivider from "../components/ui/RoadDivider.astro";
   description="Becas, intercambios y universidades del mundo en una sola tarde. Sábado 10 de octubre, Convention Center UTP, Lima."
 >
   <Nav />
-  <Hero />
-  <RoadDivider />
-  <Cronograma />
-  <Ponentes />
-  <Stands />
-  <PasaporteSeccion />
-  <PaseAbordaje>
-    <Faq />
-  </PaseAbordaje>
-  <CtaFinal />
+  <main>
+    <Hero />
+    <RoadDivider />
+    <Cronograma />
+    <Ponentes />
+    <Stands />
+    <PasaporteSeccion />
+    <PaseAbordaje>
+      <Faq />
+    </PaseAbordaje>
+    <CtaFinal />
+  </main>
+  <Footer />
   {/* Reserva el espacio del dock fijo para que no tape el footer en celular. */}
   <div class="h-[68px] lg:hidden" aria-hidden="true"></div>
   <DockMovil />

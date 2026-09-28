@@ -18,7 +18,10 @@ import Sello from "../ui/Sello.astro";
 const activacionISO = momentoActivacion().toISOString();
 const finEventoISO = fechaHoraLima(evento.fecha, evento.horaFin).toISOString();
 const standsConfirmados = stands.filter((s) => s.estado === "confirmado");
-const coloresSello = ["#6258BB", "#AC0BAD", "#2F86C4", "#525F97"];
+// #2771A5 en vez de #2F86C4 (sky-deep): sobre el sello, ese azul más claro
+// no llega a 4.5:1 de contraste (Fase 6, revisión AA); esta variante más
+// oscura sí, y se mantiene en la misma familia de color.
+const coloresSello = ["#6258BB", "#AC0BAD", "#2771A5", "#525F97"];
 ---
 
 <div
@@ -40,7 +43,9 @@ const coloresSello = ["#6258BB", "#AC0BAD", "#2F86C4", "#525F97"];
     <div class="mt-2 text-center font-mono text-[11px] text-ink-2">Pasaporte con sellos → código</div>
   </div>
 
-  <div id="canje-no-disponible" hidden class="rounded-2xl bg-ink/20 p-5 text-center">
+  {/* bg-ink/35 (no /20): a 15px, ese texto paper no llega a 4.5:1 de
+     contraste sobre el celeste con menos opacidad (Fase 6, revisión AA). */}
+  <div id="canje-no-disponible" hidden class="rounded-2xl bg-ink/35 p-5 text-center">
     <div class="font-display text-2xl leading-tight">Disponible el día del evento</div>
     <p class="m-0 mt-2 text-[15px] font-semibold leading-relaxed">
       El canje se activa el {formatoFechaCorta(evento.fecha)}, a las {formatoHora12(evento.horaInicio)}.
@@ -80,14 +85,14 @@ const coloresSello = ["#6258BB", "#AC0BAD", "#2F86C4", "#525F97"];
       </div>
     </form>
 
-    <div id="canje-ayuda-antes" class="mt-4 flex flex-col gap-2 rounded-2xl bg-ink/20 p-4">
+    <div id="canje-ayuda-antes" class="mt-4 flex flex-col gap-2 rounded-2xl bg-ink/35 p-4">
       <div class="text-base font-extrabold">¿Aún no tienes código?</div>
       <div class="text-[15px] leading-relaxed">
         Pide tu pasaporte al ingresar al evento, visita cada stand y ve a la mesa de canje con todos
         los sellos.
       </div>
     </div>
-    <div id="canje-ayuda-despues" hidden class="mt-4 flex flex-col gap-2 rounded-2xl bg-ink/20 p-4">
+    <div id="canje-ayuda-despues" hidden class="mt-4 flex flex-col gap-2 rounded-2xl bg-ink/35 p-4">
       <div class="text-base font-extrabold">¿Perdiste tu código?</div>
       <div class="text-[15px] leading-relaxed">
         {evento.contactoSoporte

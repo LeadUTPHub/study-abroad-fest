@@ -14,7 +14,9 @@ const enlaces = [
 ---
 
 <header class="relative z-20 flex items-center justify-between px-4 py-3 sm:px-8 lg:px-[120px] lg:py-0 lg:h-[88px]">
-  <div class="flex items-center gap-2 text-paper font-extrabold text-sm sm:text-lg tracking-wide">
+  {/* text-[19px]: por debajo de eso, "LEAD" y "UTP" no llegan a 4.5:1 de
+     contraste sobre el celeste ni sobre el blanco (Fase 6, revisión AA). */}
+  <div class="flex items-center gap-2 text-paper font-extrabold text-[19px] sm:text-xl tracking-wide">
     <span>LEAD</span>
     <span class="rounded-md bg-paper px-2 py-0.5 font-display text-sky-deep tracking-[.08em]">UTP</span>
     <span class="hidden font-semibold text-base opacity-90 sm:inline">Pilar de Excelencia Académica</span>

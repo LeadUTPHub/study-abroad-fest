@@ -14,8 +14,10 @@ if (!sesion.valida) {
 }
 ---
 
-<Base title="Mi calendario de becas · Study Abroad Fest" description="Tu Calendario de becas desbloqueado.">
+<Base title="Mi calendario de becas · Study Abroad Fest" description="Tu Calendario de becas desbloqueado." noindex>
   <div class="min-h-screen bg-sky">
-    <CalendarioDesbloqueado ultimos4={sesion.ultimos4} />
+    <main>
+      <CalendarioDesbloqueado ultimos4={sesion.ultimos4} />
+    </main>
   </div>
 </Base>

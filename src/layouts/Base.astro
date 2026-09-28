@@ -8,13 +8,31 @@ import "@fontsource/figtree/800.css";
 import "@fontsource/ibm-plex-mono/500.css";
 import "@fontsource/ibm-plex-mono/600.css";
 import "../styles/global.css";
+import Analytics from "@vercel/analytics/astro";
 
 interface Props {
   title: string;
   description?: string;
+  /** Ruta de la imagen para Open Graph / Twitter Card. Por defecto, la
+   *  tarjeta genérica del evento (scripts/og-image.ts, Fase 6). */
+  image?: string;
+  /** Páginas protegidas o de un solo estudiante (p. ej. /mi-calendario):
+   *  no deben quedar indexadas ni enlazadas desde buscadores. */
+  noindex?: boolean;
 }
 
-const { title, description } = Astro.props;
+const DESCRIPCION_POR_DEFECTO =
+  "Becas, intercambios y universidades del mundo en una sola tarde. Sábado 10 de octubre, Convention Center UTP, Lima.";
+
+const { title, description = DESCRIPCION_POR_DEFECTO, image = "/og-image.png", noindex = false } = Astro.props;
+
+// Astro.site depende de la variable de entorno SITE_URL (astro.config.mjs):
+// el dominio final todavía está pendiente (PLAN.md, sección 8), así que
+// sin ella estas URL quedan relativas en vez de inventar un dominio
+// (CLAUDE.md, regla 1). Se vuelven absolutas solas en cuanto se defina
+// SITE_URL en Vercel.
+const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : Astro.url.pathname;
+const imagenOgURL = Astro.site ? new URL(image, Astro.site).toString() : image;
 ---
 
 <!doctype html>
@@ -22,12 +40,33 @@ const { title, description } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#3B99D8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    {description && <meta name="description" content={description} />}
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Study Abroad Fest" />
+    <meta property="og:locale" content="es_PE" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={imagenOgURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Study Abroad Fest 2026 · sábado 10 de octubre · Convention Center UTP, Lima" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imagenOgURL} />
   </head>
   <body>
     <slot />
+    <Analytics />
   </body>
 </html>

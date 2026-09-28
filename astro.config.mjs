@@ -7,6 +7,12 @@ import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
+  // Dominio final todavía pendiente (PLAN.md, sección 8): sin SITE_URL,
+  // las URL absolutas (canonical, Open Graph) se degradan a rutas
+  // relativas en vez de inventar un dominio (CLAUDE.md, regla 1). Se
+  // activan solas en cuanto se defina SITE_URL en Vercel (Fase 7).
+  site: process.env.SITE_URL || undefined,
+
   vite: {
     plugins: [tailwindcss()]
   },

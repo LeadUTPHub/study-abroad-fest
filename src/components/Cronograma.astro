@@ -154,11 +154,14 @@ const rangoHoras = (inicio: string | null, fin: string | null) =>
                         </span>
                         <span class="font-extrabold text-ink">{b.titulo}</span>
                         {b.quien && <span class="text-sm text-ink-2">{b.quien}</span>}
+                        {/* bg-[#2771A5] (no bg-sky-deep): a este tamaño,
+                           sky-deep no llega a 4.5:1 de contraste con el
+                           texto paper (Fase 6, revisión AA). */}
                         {b.modalidad !== "receso" && (
                           <span
                             class:list={[
                               "ml-auto rounded-full px-2.5 py-1 text-xs font-extrabold text-paper",
-                              MODALIDAD_ES_ZOOM(b.modalidad) ? "bg-sky-deep" : "bg-magenta",
+                              MODALIDAD_ES_ZOOM(b.modalidad) ? "bg-[#2771A5]" : "bg-magenta",
                             ]}
                           >
                             {MODALIDAD_LABEL[b.modalidad]}

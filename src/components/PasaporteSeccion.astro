@@ -15,7 +15,10 @@ const pasos = [
   { n: 3, titulo: "Canjea tu código", detalle: "Y descarga tu calendario aquí." },
 ];
 
-const COLORES_SELLO = ["#6258BB", "#AC0BAD", "#2F86C4", "#525F97"];
+// #2771A5 en vez de #2F86C4 (sky-deep): sobre el sello, ese azul más claro
+// no llega a 4.5:1 de contraste (Fase 6, revisión AA); esta variante más
+// oscura sí, y se mantiene en la misma familia de color.
+const COLORES_SELLO = ["#6258BB", "#AC0BAD", "#2771A5", "#525F97"];
 ---
 
 <section id="calendario" class="relative overflow-hidden bg-sky px-4 py-16 text-paper sm:px-8 lg:px-[120px] lg:py-24">
@@ -23,7 +26,7 @@ const COLORES_SELLO = ["#6258BB", "#AC0BAD", "#2F86C4", "#525F97"];
 
   <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_560px] lg:items-center lg:gap-14">
     <div class="flex flex-col gap-5">
-      <span class="inline-flex w-fit items-center gap-2 rounded-full bg-ink/25 px-3.5 py-2 font-mono text-[13px] font-semibold uppercase tracking-[.14em]">
+      <span class="inline-flex w-fit items-center gap-2 rounded-full bg-ink/35 px-3.5 py-2 font-mono text-[13px] font-semibold uppercase tracking-[.14em]">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFE36B" stroke-width="2.6" stroke-linecap="round" aria-hidden="true">
           <rect x="5" y="11" width="14" height="10" rx="2"></rect>
           <path d="M8 11V8a4 4 0 0 1 8 0v3"></path>
@@ -33,7 +36,7 @@ const COLORES_SELLO = ["#6258BB", "#AC0BAD", "#2F86C4", "#525F97"];
       <h2 class="m-0 font-display text-4xl leading-none [text-shadow:0_5px_0_rgba(29,33,82,.2)] sm:text-5xl lg:text-[66px]">
         Tu Calendario de becas se gana en el evento
       </h2>
-      <p class="m-0 max-w-[40ch] text-lg font-bold leading-snug sm:text-xl">
+      <p class="m-0 max-w-[40ch] text-xl font-bold leading-snug sm:text-2xl">
         Fechas de cierre, web oficial y tips de cada stand para cada convocatoria. Solo para quienes vienen el 10 de octubre.
       </p>
 

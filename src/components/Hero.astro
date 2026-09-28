@@ -20,7 +20,9 @@ const rangoHoras = `${formatoHora12(evento.horaInicio)} a ${formatoHora12(evento
 
   <div class="grid items-center gap-10 lg:min-h-[640px] lg:grid-cols-[1.05fr_.95fr] lg:gap-16">
     <div class="relative flex flex-col gap-5 sm:gap-6">
-      <span class="inline-flex w-fit items-center gap-2.5 rounded-full bg-ink/20 px-4 py-2 font-mono text-[13px] font-semibold uppercase tracking-[.14em] text-paper">
+      {/* bg-ink/35 (no /20) y text-xl (no text-lg): por debajo de eso el
+         texto paper no llega a 4.5:1 sobre el celeste (Fase 6, revisión AA). */}
+      <span class="inline-flex w-fit items-center gap-2.5 rounded-full bg-ink/35 px-4 py-2 font-mono text-[13px] font-semibold uppercase tracking-[.14em] text-paper">
         <span class="h-2.5 w-2.5 rounded-full bg-[#FFE36B]" aria-hidden="true"></span>
         Feria de oportunidades internacionales
       </span>
@@ -32,7 +34,7 @@ const rangoHoras = `${formatoHora12(evento.horaInicio)} a ${formatoHora12(evento
         </span>
       </h1>
 
-      <p class="m-0 max-w-[30ch] text-lg font-bold leading-snug text-paper sm:text-xl lg:text-2xl">
+      <p class="m-0 max-w-[30ch] text-xl font-bold leading-snug text-paper sm:text-2xl">
         Becas, intercambios y universidades del mundo en una sola tarde. Sal con tu siguiente paso claro.
       </p>
 

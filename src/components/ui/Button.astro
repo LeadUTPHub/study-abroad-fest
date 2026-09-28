@@ -37,16 +37,20 @@ const variants: Record<string, string> = {
     "bg-paper font-sans font-extrabold text-ink shadow-[0_5px_0_rgba(29,33,82,.16)]",
 };
 
+// El texto "outline" (paper sobre celeste) solo llega a 4.5:1 de contraste
+// si cuenta como "texto grande" AA (≥18.66px en negrita); por eso sus
+// tamaños de fuente están un poco por encima de los de "gradient" y
+// "solid" (Fase 6, revisión de contraste AA).
 const sizes: Record<string, string> = {
-  sm: variant === "gradient" ? "text-lg px-6 py-3" : "text-sm px-5 py-2.5",
+  sm: variant === "gradient" ? "text-lg px-6 py-3" : "text-[19px] px-5 py-2",
   md:
     variant === "gradient"
       ? "text-[21px] px-[26px] pt-[15px] pb-[13px]"
-      : "text-[17px] px-[22px] py-[14px]",
+      : "text-[19px] px-[22px] py-[13px]",
   lg:
     variant === "gradient"
       ? "text-[22px] px-[30px] pt-4 pb-[14px]"
-      : "text-[18px] px-7 py-4",
+      : "text-[19px] px-7 py-[15px]",
 };
 
 const classes = [base, variants[variant], sizes[size], block ? "w-full" : "", className]

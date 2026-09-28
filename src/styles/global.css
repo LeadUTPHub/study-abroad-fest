@@ -26,6 +26,21 @@
     color: var(--color-ink);
     font-family: var(--font-sans);
   }
+
+  /*
+    Foco visible (Fase 6, revisión de accesibilidad). El anillo doble
+    (halo paper + borde ink) se ve con contraste suficiente sobre
+    cualquier fondo de marca: el ink domina sobre sky/paper/paper-2, y el
+    paper domina sobre el degradado magenta→violeta y sobre ink. Sin esto,
+    el foco por teclado quedaba solo con el outline azul por defecto del
+    navegador, casi invisible sobre el celeste de marca.
+  */
+  :focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 3px var(--color-paper),
+      0 0 0 6px var(--color-ink);
+  }
 }
 
 @layer utilities {

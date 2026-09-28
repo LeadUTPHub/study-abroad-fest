@@ -51,6 +51,7 @@ export function armarFormularioCodigo(): void {
     errorEl!.textContent = MENSAJES[codigo] ?? MENSAJES.formato;
     errorEl!.classList.remove("hidden");
     input!.style.borderColor = "#B0126F";
+    input!.setAttribute("aria-invalid", "true");
     if (!reducido) {
       form!.classList.remove("field-shake");
       void form!.offsetWidth;
@@ -61,6 +62,7 @@ export function armarFormularioCodigo(): void {
   function ocultarError() {
     errorEl!.classList.add("hidden");
     input!.style.borderColor = "";
+    input!.removeAttribute("aria-invalid");
   }
 
   form.addEventListener("submit", async (evento) => {

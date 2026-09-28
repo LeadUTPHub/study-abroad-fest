@@ -29,7 +29,9 @@ const ROTACIONES = ["-1.4deg", "1.2deg", "-0.8deg", "1.4deg"];
       <div class="flex flex-col gap-4">
         <div class="flex flex-wrap items-center gap-3 text-lg font-extrabold text-ink">
           Ponencias internacionales
-          <span class="rounded-full bg-sky-deep px-2.5 py-1 font-mono text-xs uppercase tracking-[.12em] text-paper">
+          {/* bg-[#2771A5] (no bg-sky-deep): a este tamaño, sky-deep no llega
+             a 4.5:1 de contraste con el texto paper (Fase 6, revisión AA). */}
+          <span class="rounded-full bg-[#2771A5] px-2.5 py-1 font-mono text-xs uppercase tracking-[.12em] text-paper">
             Vlog + Zoom en vivo
           </span>
         </div>
