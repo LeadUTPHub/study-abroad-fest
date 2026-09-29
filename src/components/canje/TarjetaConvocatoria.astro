@@ -13,7 +13,7 @@ const { postulacion, tip } = Astro.props;
 const tipsConfirmados = tip && tip.estado === "confirmado" ? tip.tips : null;
 ---
 
-<details class="group rounded-2xl bg-paper shadow-[0_5px_0_rgba(29,33,82,.14)]">
+<details class="group rounded-[20px] border-2 border-paper bg-paper shadow-[0_6px_0_rgba(29,33,82,.14),0_12px_24px_-18px_rgba(29,33,82,.55)] transition-transform hover:-translate-y-0.5">
   <summary class="grid cursor-pointer list-none grid-cols-[52px_minmax(0,1fr)_24px] items-center gap-3 p-4 text-ink marker:content-none">
     <span class="w-fit -rotate-6 rounded-md border-2 border-magenta px-1.5 py-0.5 font-mono text-[13px] font-semibold text-magenta">
       {postulacion.codigoPais}
@@ -24,8 +24,8 @@ const tipsConfirmados = tip && tip.estado === "confirmado" ? tip.tips : null;
         Cierre {postulacion.cierre ? formatoFechaCorta(postulacion.cierre) : "por confirmar"}
       </span>
     </span>
-    <span class="font-display text-2xl text-magenta group-open:hidden">+</span>
-    <span class="hidden font-display text-2xl text-magenta group-open:inline">×</span>
+    <span class="grid size-7 place-items-center rounded-full bg-paper-2 font-display text-2xl leading-none text-magenta group-open:hidden">+</span>
+    <span class="hidden size-7 place-items-center rounded-full bg-paper-2 font-display text-2xl leading-none text-magenta group-open:inline-flex">×</span>
   </summary>
   <div class="flex flex-col gap-2.5 px-4 pb-4.5">
     {tipsConfirmados ? (

@@ -1,26 +1,17 @@
 ---
 // Estática (PLAN.md, sección 3): la validación real ocurre en
 // POST /api/canje (on-demand). Mobile primero (design/canvas/Canje-Mobile.dc.html).
-import { Image } from "astro:assets";
 import Base from "../layouts/Base.astro";
 import FormCodigo from "../components/canje/FormCodigo.astro";
-import logoLead from "../assets/marca/logo-lead.png";
-import logoEvento from "../assets/marca/logo study.png";
+import CanjeNav from "../components/canje/CanjeNav.astro";
 ---
 
 <Base title="Canjea tu código · Study Abroad Fest" description="Canjea el código de tu pasaporte y desbloquea el Calendario de becas.">
-  <div class="min-h-screen bg-sky">
-    {/* el fondo ink/35 del mono label: por debajo de eso no llega a 4.5:1
-       de contraste sobre el celeste (Fase 6, revisión AA). */}
-    <header class="flex items-center justify-between px-4 py-4 text-paper sm:px-6">
-      <a href="/#hero" class="flex items-center gap-2 no-underline" aria-label="Ir al inicio de Study Abroad Fest">
-        <Image src={logoEvento} alt="Study Abroad Fest" width={1080} height={1350} class="block h-11 w-auto object-contain" loading="eager" />
-        <span class="h-7 w-px bg-paper/50" aria-hidden="true"></span>
-        <Image src={logoLead} alt="LEAD UTP" width={206} height={80} class="h-8 w-auto" />
-      </a>
-      <span class="rounded-full bg-ink/35 px-3 py-1.5 font-mono text-[11px] font-semibold uppercase tracking-[.12em]">Canje · SAF 2026</span>
-    </header>
-    <main>
+  <div class="min-h-screen overflow-hidden bg-[linear-gradient(180deg,#3B99D8_0%,#66B3EA_44%,#6258BB_100%)]">
+    <CanjeNav current="canje" />
+    <main class="relative">
+      <div class="pointer-events-none absolute -top-20 right-[-90px] size-64 rounded-full bg-paper/20 blur-2xl" aria-hidden="true"></div>
+      <div class="pointer-events-none absolute bottom-24 left-[-110px] size-72 rounded-full bg-magenta/20 blur-3xl" aria-hidden="true"></div>
       <FormCodigo />
     </main>
   </div>

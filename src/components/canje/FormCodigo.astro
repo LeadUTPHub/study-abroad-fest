@@ -33,12 +33,12 @@ const coloresSello = ["#6258BB", "#AC0BAD", "#2771A5", "#525F97"];
   id="canje-raiz"
   data-activacion={activacionISO}
   data-fin-evento={finEventoISO}
-  class="mx-auto flex max-w-[520px] flex-col gap-5 px-4 py-6 text-paper sm:px-6"
+  class="relative mx-auto flex max-w-[560px] flex-col gap-6 px-4 py-8 text-paper sm:px-6 sm:py-12"
 >
-  <div class="passport-illustration self-center rounded-2xl bg-paper p-4 shadow-[0_6px_0_rgba(29,33,82,.18)]">
+  <div class="passport-illustration self-center rotate-[-1deg] rounded-[24px] border-[5px] border-paper bg-paper p-4 shadow-[0_8px_0_rgba(29,33,82,.18),0_18px_30px_-18px_rgba(29,33,82,.55)]">
     <div class="grid grid-cols-2 gap-2.5">
       {standsConfirmados.map((s, i) => (
-        <div class="grid aspect-square place-items-center rounded-xl border-2 border-lav p-1">
+        <div class="grid aspect-square place-items-center rounded-2xl border-2 border-lav bg-paper-2 p-1">
           <Sello shape="circulo" size={64} color={coloresSello[i % coloresSello.length]} rotate={i % 2 === 0 ? "-10deg" : "8deg"}>
             {s.nombre}
           </Sello>
@@ -50,7 +50,7 @@ const coloresSello = ["#6258BB", "#AC0BAD", "#2771A5", "#525F97"];
 
   {/* bg-ink/35 (no /20): a 15px, ese texto paper no llega a 4.5:1 de
      contraste sobre el celeste con menos opacidad (Fase 6, revisión AA). */}
-  <div id="canje-no-disponible" hidden class="rounded-2xl bg-ink/35 p-5 text-center">
+  <div id="canje-no-disponible" hidden class="rounded-[20px] border-2 border-paper/40 bg-ink/55 p-5 text-center shadow-[0_8px_22px_-16px_rgba(29,33,82,.8)]">
     <div class="font-display text-2xl leading-tight">Disponible el día del evento</div>
     <p class="m-0 mt-2 text-[15px] font-semibold leading-relaxed">
       El canje se activa el {formatoFechaCorta(evento.fecha)}, a las {formatoHora12(evento.horaInicio)}.
@@ -58,14 +58,14 @@ const coloresSello = ["#6258BB", "#AC0BAD", "#2771A5", "#525F97"];
   </div>
 
   <div id="canje-formulario">
-    <h1 class="m-0 font-display text-4xl leading-none [text-shadow:0_4px_0_rgba(29,33,82,.2)] sm:text-5xl">
+    <h1 class="m-0 max-w-[12ch] font-display text-[42px] leading-[.94] [text-shadow:0_4px_0_rgba(29,33,82,.2)] sm:text-6xl">
       Canjea tu Calendario de becas
     </h1>
     <p class="m-0 mt-3 text-lg font-bold leading-snug">
       Ingresa el código que te dieron en la mesa de canje al completar tu pasaporte.
     </p>
 
-    <form id="form-codigo" class="mt-5 flex flex-col gap-3 rounded-[20px] bg-paper p-5 text-ink shadow-[0_6px_0_rgba(29,33,82,.16)]" novalidate>
+    <form id="form-codigo" class="mt-5 flex flex-col gap-3 rounded-[24px] border-[5px] border-paper bg-paper p-5 text-ink shadow-[0_8px_0_rgba(29,33,82,.16),0_18px_30px_-18px_rgba(29,33,82,.55)] sm:p-6" novalidate>
       <label for="codigo" class="font-mono text-xs font-semibold uppercase tracking-[.12em] text-ink-2">
         Tu código
       </label>
@@ -77,7 +77,7 @@ const coloresSello = ["#6258BB", "#AC0BAD", "#2771A5", "#525F97"];
         autocapitalize="characters"
         inputmode="text"
         aria-describedby="codigo-error"
-        class="w-full rounded-xl border-2 border-lav bg-paper-2 p-3.5 font-mono text-xl font-semibold tracking-[.08em] text-ink uppercase"
+        class="w-full rounded-xl border-2 border-lav bg-paper-2 p-3.5 font-mono text-xl font-semibold tracking-[.08em] text-ink uppercase placeholder:text-ink-2/60 focus:border-violet focus:outline-none focus:ring-4 focus:ring-violet/20"
       />
       <div id="codigo-error" role="alert" class="hidden text-sm font-bold text-magenta">
         Ese código no es válido. Revisa que esté completo, con el formato SAF-XXXX-XXXX.
@@ -90,14 +90,14 @@ const coloresSello = ["#6258BB", "#AC0BAD", "#2771A5", "#525F97"];
       </div>
     </form>
 
-    <div id="canje-ayuda-antes" class="mt-4 flex flex-col gap-2 rounded-2xl bg-ink/35 p-4">
+    <div id="canje-ayuda-antes" class="mt-4 flex flex-col gap-2 rounded-[20px] border-2 border-paper/35 bg-ink/55 p-4 shadow-[0_8px_22px_-16px_rgba(29,33,82,.8)]">
       <div class="text-base font-extrabold">¿Aún no tienes código?</div>
       <div class="text-[15px] leading-relaxed">
         Pide tu pasaporte al ingresar al evento, visita cada stand y ve a la mesa de canje con todos
         los sellos.
       </div>
     </div>
-    <div id="canje-ayuda-despues" hidden class="mt-4 flex flex-col gap-2 rounded-2xl bg-ink/35 p-4">
+    <div id="canje-ayuda-despues" hidden class="mt-4 flex flex-col gap-2 rounded-[20px] border-2 border-paper/35 bg-ink/55 p-4 shadow-[0_8px_22px_-16px_rgba(29,33,82,.8)]">
       <div class="text-base font-extrabold">¿Perdiste tu código?</div>
       <div class="text-[15px] leading-relaxed">
         {evento.contactoSoporte

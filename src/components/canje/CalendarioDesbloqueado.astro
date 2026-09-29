@@ -20,8 +20,8 @@ const confirmadas = postulaciones.filter((p) => p.estado === "confirmado");
 const tipsPorConvocatoria = new Map(tips.map((t) => [t.convocatoriaId, t]));
 ---
 
-<div class="mx-auto flex max-w-[520px] flex-col gap-5 px-4 py-6 sm:px-6">
-  <div class="relative overflow-hidden rounded-[20px] bg-paper p-6 shadow-[0_6px_0_rgba(29,33,82,.16)]">
+<div class="mx-auto flex max-w-[560px] flex-col gap-6 px-4 py-8 sm:px-6 sm:py-12">
+  <div class="relative overflow-hidden rounded-[24px] border-[5px] border-paper bg-paper p-5 shadow-[0_8px_0_rgba(29,33,82,.16),0_18px_30px_-18px_rgba(29,33,82,.55)] sm:p-6">
     <div class="approved-stamp absolute right-3.5 top-3.5 grid h-[92px] w-[92px] -rotate-12 place-items-center rounded-full border-4 border-magenta text-center font-mono text-[11px] font-semibold leading-tight text-magenta">
       APROBADO<br />SAF {anio}
     </div>
@@ -47,7 +47,10 @@ const tipsPorConvocatoria = new Map(tips.map((t) => [t.convocatoriaId, t]));
     </div>
   </div>
 
-  <div class="mt-1 font-display text-2xl text-paper">Convocatorias y tips</div>
+  <div class="flex items-end justify-between gap-3 px-1">
+    <h2 class="m-0 font-display text-3xl leading-none text-paper [text-shadow:0_3px_0_rgba(29,33,82,.2)]">Convocatorias y tips</h2>
+    <span class="font-mono text-[10px] font-semibold uppercase tracking-[.12em] text-paper/75">Tu ruta</span>
+  </div>
 
   {confirmadas.length > 0 ? (
     <div class="flex flex-col gap-3">
@@ -56,7 +59,7 @@ const tipsPorConvocatoria = new Map(tips.map((t) => [t.convocatoriaId, t]));
       ))}
     </div>
   ) : (
-    <p class="m-0 rounded-2xl bg-paper/90 p-4 text-[15px] leading-relaxed text-ink">
+    <p class="m-0 rounded-[20px] border-2 border-paper bg-paper/95 p-5 text-[15px] leading-relaxed text-ink shadow-[0_6px_0_rgba(29,33,82,.14)]">
       Las convocatorias se confirman pronto. Tu código sigue funcionando: vuelve a esta página más
       adelante para ver fechas y tips.
     </p>

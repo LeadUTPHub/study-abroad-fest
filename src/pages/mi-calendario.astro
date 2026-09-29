@@ -6,6 +6,7 @@ export const prerender = false;
 
 import Base from "../layouts/Base.astro";
 import CalendarioDesbloqueado from "../components/canje/CalendarioDesbloqueado.astro";
+import CanjeNav from "../components/canje/CanjeNav.astro";
 import { COOKIE_SESION, verificarSesion } from "../server/canje";
 
 const sesion = verificarSesion(Astro.cookies.get(COOKIE_SESION)?.value);
@@ -15,8 +16,11 @@ if (!sesion.valida) {
 ---
 
 <Base title="Mi calendario de becas · Study Abroad Fest" description="Tu Calendario de becas desbloqueado." noindex>
-  <div class="min-h-screen bg-sky">
-    <main>
+  <div class="min-h-screen overflow-hidden bg-[linear-gradient(180deg,#3B99D8_0%,#66B3EA_38%,#6258BB_100%)]">
+    <CanjeNav current="calendario" />
+    <main class="relative">
+      <div class="pointer-events-none absolute -top-24 right-[-100px] size-72 rounded-full bg-paper/20 blur-3xl" aria-hidden="true"></div>
+      <div class="pointer-events-none absolute bottom-10 left-[-120px] size-80 rounded-full bg-magenta/20 blur-3xl" aria-hidden="true"></div>
       <CalendarioDesbloqueado ultimos4={sesion.ultimos4} />
     </main>
   </div>

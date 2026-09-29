@@ -1,0 +1,29 @@
+---
+import { Image } from "astro:assets";
+import logoLead from "../../assets/marca/logo-lead.png";
+import logoEvento from "../../assets/marca/logo study.png";
+
+interface Props {
+  current?: "canje" | "calendario";
+}
+
+const { current = "canje" } = Astro.props;
+const currentLabel = current === "calendario" ? "Mi calendario" : "Canje · SAF 2026";
+---
+
+<header class="sticky top-0 z-40 border-b border-white/20 bg-ink/95 px-3 py-2.5 text-paper shadow-[0_8px_24px_-14px_rgba(29,33,82,.65)] backdrop-blur-md sm:px-6 lg:px-8">
+  <div class="mx-auto flex min-h-14 w-full max-w-[1120px] items-center justify-between gap-3">
+    <a href="/#hero" class="inline-flex min-h-11 min-w-0 items-center gap-2 rounded-xl no-underline transition-transform hover:-rotate-1" aria-label="Ir al inicio de Study Abroad Fest">
+      <Image src={logoEvento} alt="Study Abroad Fest" width={1080} height={1350} class="block h-12 w-auto object-contain" loading="eager" />
+      <span class="hidden h-8 w-px bg-paper/35 sm:block" aria-hidden="true"></span>
+      <Image src={logoLead} alt="LEAD UTP" width={206} height={80} class="hidden h-8 w-auto sm:block" loading="eager" />
+    </a>
+    <div class="flex items-center gap-2">
+      <span class="hidden rounded-full border border-paper/30 bg-paper/10 px-3 py-2 font-mono text-[10px] font-semibold uppercase tracking-[.12em] text-paper sm:inline-flex">{currentLabel}</span>
+      <a href="/#hero" class="inline-flex min-h-11 items-center rounded-full border-2 border-paper px-3.5 text-xs font-extrabold text-paper no-underline transition-colors hover:bg-paper hover:text-ink sm:px-4 sm:text-sm">
+        <span class="sm:hidden">Volver</span>
+        <span class="hidden sm:inline">Volver al evento</span>
+      </a>
+    </div>
+  </div>
+</header>
