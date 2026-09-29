@@ -5,6 +5,7 @@ import { Image } from "astro:assets";
 import Base from "../layouts/Base.astro";
 import FormCodigo from "../components/canje/FormCodigo.astro";
 import logoLead from "../assets/marca/logo-lead.png";
+import logoEvento from "../assets/marca/logo study.png";
 ---
 
 <Base title="Canjea tu código · Study Abroad Fest" description="Canjea el código de tu pasaporte y desbloquea el Calendario de becas.">
@@ -12,7 +13,9 @@ import logoLead from "../assets/marca/logo-lead.png";
     {/* el fondo ink/35 del mono label: por debajo de eso no llega a 4.5:1
        de contraste sobre el celeste (Fase 6, revisión AA). */}
     <header class="flex items-center justify-between px-4 py-4 text-paper sm:px-6">
-      <a href="/#hero" class="flex items-center no-underline" aria-label="Ir al inicio">
+      <a href="/#hero" class="flex items-center gap-2 no-underline" aria-label="Ir al inicio de Study Abroad Fest">
+        <Image src={logoEvento} alt="Study Abroad Fest" width={1080} height={1350} class="block h-11 w-auto object-contain" loading="eager" />
+        <span class="h-7 w-px bg-paper/50" aria-hidden="true"></span>
         <Image src={logoLead} alt="LEAD UTP" width={206} height={80} class="h-8 w-auto" />
       </a>
       <span class="rounded-full bg-ink/35 px-3 py-1.5 font-mono text-[11px] font-semibold uppercase tracking-[.12em]">Canje · SAF 2026</span>
