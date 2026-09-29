@@ -1,0 +1,70 @@
+---
+// 03 · Pasajeros con historia. Tarjetas de ponente como pase de abordaje.
+// Desktop: cuadrícula de 4. Móvil: carrusel horizontal con scroll táctil.
+// Solo se publican ponentes `confirmado` (CLAUDE.md, regla 2). Los ponentes
+// comparten experiencia personal: lo oficial se atiende en los stands (regla 5).
+import { speakers } from "../../data/schedule";
+import type { SpeakerMode } from "../../data/schema";
+
+const publicos = speakers.filter((s) => s.estado === "confirmado");
+const rot = ["-rotate-[1.4deg]", "rotate-[1.2deg]", "-rotate-[.8deg]", "rotate-[1.4deg]"];
+
+const CHIP: Record<SpeakerMode, { label: string; cls: string }> = {
+  "vlog-zoom": { label: "Vlog + Q&A", cls: "bg-[#F6E3F6] text-magenta" },
+  // AA: texto blanco de 11 px necesita un azul más oscuro que sky-deep.
+  zoom: { label: "Zoom", cls: "bg-[#22709F] text-paper" },
+  experiencia: { label: "Experiencia personal", cls: "bg-[#E4E7F5] text-ink-2" },
+};
+---
+
+<section id="ponentes" class="relative scroll-mt-24 pt-10 text-paper" aria-labelledby="ponentes-title">
+  <div class="mx-auto w-full max-w-[1200px] px-5 md:px-8 lg:px-10 xl:px-0">
+    <div class="mb-[26px] flex flex-col gap-3 lg:mb-11 lg:flex-row lg:items-end lg:justify-between lg:gap-10" data-motion-stop data-motion-delay="0">
+      <div class="flex max-w-[760px] flex-col gap-3 lg:gap-3.5">
+        <span class="font-mono text-xs font-semibold tracking-[.16em] text-yellow uppercase lg:text-[13px]">03 · Pasajeros con historia</span>
+        <h2 id="ponentes-title" class="m-0 font-display text-[50px] leading-none font-normal [text-shadow:0_4px_0_rgb(29_33_82/0.22)] lg:text-[72px] lg:[text-shadow:0_5px_0_rgb(29_33_82/0.22)]">Quienes ya hicieron el viaje</h2>
+      </div>
+      <p class="m-0 text-[17px] leading-[1.45] font-semibold text-paper/92 lg:max-w-[34ch] lg:text-[19px] lg:text-paper/90">
+        Comparten su experiencia personal. Para requisitos y procesos oficiales, pasa por los stands.
+      </p>
+    </div>
+  </div>
+
+  <div class="mx-auto w-full max-w-[1200px] lg:px-10 xl:px-0">
+    <ul
+      class="m-0 flex list-none snap-x snap-mandatory gap-4 overflow-x-auto px-5 pt-2.5 pb-4 [scrollbar-width:none] md:px-8 lg:grid lg:snap-none lg:grid-cols-4 lg:gap-x-6 lg:gap-y-7 lg:overflow-visible lg:p-0 [&::-webkit-scrollbar]:hidden"
+      tabindex="0"
+      aria-label="Ponentes"
+    >
+      {publicos.map((p, i) => (
+        <li class="w-[232px] shrink-0 snap-start lg:w-auto">
+          <article class={`v-tag relative flex h-full flex-col rounded-[18px] bg-paper text-ink shadow-[0_6px_0_rgb(29_33_82/0.22),0_14px_24px_-12px_rgb(8_10_45/0.55)] lg:rounded-[20px] lg:shadow-[0_7px_0_rgb(29_33_82/0.22),0_18px_30px_-14px_rgb(8_10_45/0.55)] ${rot[i % 4]}`} data-motion-stop data-motion-delay={`${140 + i * 90}`}>
+            <div class="flex items-center justify-between rounded-t-[18px] bg-brand-gradient px-[15px] py-[11px] font-mono text-[10px] font-semibold tracking-[.14em] text-paper uppercase lg:rounded-t-[20px] lg:px-[18px] lg:py-3.5 lg:text-[11px] lg:tracking-[.16em]" aria-hidden="true"><span>Ponente</span><span>SAF 2026</span></div>
+            <div class="flex flex-col gap-[9px] p-[15px] lg:gap-2.5 lg:px-[18px] lg:pt-[18px] lg:pb-4">
+              <div class="flex items-center gap-3 lg:gap-3.5">
+                <div class="grid size-[68px] place-items-center rounded-full border-[3px] border-paper bg-sky-soft font-display text-[27px] text-[#22709F] shadow-[0_0_0_2px_#ABAEC8] lg:size-[84px] lg:border-4 lg:text-[34px]" aria-hidden="true">{p.initials}</div>
+                {p.code && <span class="-rotate-6 rounded-md border-2 border-magenta px-2 py-px font-mono text-xs font-semibold text-magenta lg:px-[9px] lg:py-0.5 lg:text-sm" aria-label={`País: ${p.code}`}>{p.code}</span>}
+              </div>
+              <h3 class="m-0 text-[19px] leading-[1.15] font-extrabold lg:text-[21px]">{p.name}</h3>
+              {p.institution && <p class="m-0 text-sm font-bold text-violet lg:text-base">{p.institution}</p>}
+              <span class={`self-start rounded-full px-2.5 py-1 font-mono text-[11px] font-semibold tracking-[.08em] ${CHIP[p.mode].cls}`}>{CHIP[p.mode].label}</span>
+            </div>
+            <div class="relative mt-auto flex items-center justify-between border-t-2 border-dashed border-lav px-[15px] pt-2.5 pb-3 lg:px-[18px] lg:pt-3 lg:pb-3.5">
+              <span class="absolute -top-2.5 -left-2.5 hidden size-[18px] rounded-full bg-[#5A5AB0] lg:block" aria-hidden="true"></span>
+              <span class="absolute -top-2.5 -right-2.5 hidden size-[18px] rounded-full bg-[#5A5AB0] lg:block" aria-hidden="true"></span>
+              <div>
+                <div class="font-mono text-[10px] tracking-[.14em] text-ink-2 uppercase lg:text-[11px]">Sale</div>
+                <time datetime={p.time} class="font-mono text-[17px] font-semibold lg:text-xl">{p.time}</time>
+              </div>
+              <div class="h-6 w-[70px] bg-[repeating-linear-gradient(90deg,#1D2152_0_2px,transparent_2px_4px,#1D2152_4px_7px,transparent_7px_9px,#1D2152_9px_10px,transparent_10px_13px)] lg:h-[30px] lg:w-24" aria-hidden="true"></div>
+            </div>
+          </article>
+        </li>
+      ))}
+    </ul>
+    <p class="m-0 mt-2.5 flex items-center gap-3 px-5 font-mono text-[11px] tracking-[.14em] text-paper/75 uppercase md:px-8 lg:hidden">
+      <span>Desliza para ver a los {publicos.length} ponentes</span>
+      <svg width="34" height="14" viewBox="0 0 34 14" fill="none" stroke="#FFE36B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h30M26 2l6 5-6 5"></path></svg>
+    </p>
+  </div>
+</section>

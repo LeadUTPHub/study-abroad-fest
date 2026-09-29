@@ -1,4 +1,4 @@
-// ADVERTENCIA — contenido protegido (CLAUDE.md, regla 10).
+// ADVERTENCIA. Contenido protegido. CLAUDE.md, regla 10.
 // Este archivo SOLO se importa desde código de servidor (mi-calendario.astro
 // con `export const prerender = false`, o api/*). Nunca debe llegar a una
 // página prerenderizada, a public/ ni al JavaScript de cliente.

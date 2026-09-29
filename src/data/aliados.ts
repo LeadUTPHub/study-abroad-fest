@@ -1,6 +1,6 @@
 import { AliadoSchema, type Aliado } from "./schema";
 
-// Confirmado (Embajada de Japón fuera hasta nuevo aviso — CLAUDE.md, regla 4).
+// Confirmado. La Embajada de Japón queda fuera hasta nuevo aviso. CLAUDE.md, regla 4.
 const aliadosRaw: Aliado[] = [
   { nombre: "UTP Internacional", logo: "Utplogonuevo.svg.webp", estado: "confirmado" },
   { nombre: "EducationUSA", estado: "confirmado" },

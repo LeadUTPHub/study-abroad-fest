@@ -7,7 +7,7 @@ import { navLinks } from "../data/site";
 import logoLead from "../assets/marca/logo-lead.png";
 
 const linkBase =
-  "inline-flex items-center gap-1.5 whitespace-nowrap rounded-md px-2.5 py-2 font-inter text-[13.44px] leading-tight transition-colors duration-200";
+  "relative inline-flex items-center gap-1.5 whitespace-nowrap rounded-md px-2.5 py-2 font-inter text-[13.44px] leading-tight transition-colors duration-200";
 ---
 
 <header class="pointer-events-none fixed inset-x-0 top-3 z-50 px-3 lg:top-5 lg:px-6" data-site-nav>
@@ -30,7 +30,6 @@ const linkBase =
     <nav aria-label="Navegación principal" class="hidden items-center gap-0.5 lg:flex">
       {navLinks.map((l) => (
         <a href={l.href} data-nav-link class={`${linkBase} font-medium text-white/80 hover:bg-white/6 hover:text-white aria-[current=true]:bg-white/8 aria-[current=true]:font-semibold aria-[current=true]:text-white`}>
-          <span class="nav-dot hidden size-[5px] rounded-full bg-active" aria-hidden="true"></span>
           {l.label}
         </a>
       ))}
@@ -76,8 +75,31 @@ const linkBase =
 </header>
 
 <style>
-  [data-nav-link][aria-current="true"] .nav-dot {
-    display: block;
+  [data-site-nav] {
+    transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  [data-site-nav].nav-hidden {
+    transform: translateY(calc(-100% - 24px));
+  }
+
+  [data-nav-link]::after {
+    content: "";
+    position: absolute;
+    right: 10px;
+    bottom: 4px;
+    left: 10px;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--color-active);
+    opacity: 0;
+    transform: scaleX(0.35);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  [data-nav-link][aria-current="true"]::after {
+    opacity: 1;
+    transform: scaleX(1);
   }
 </style>
 
@@ -104,7 +126,7 @@ const linkBase =
       else if (returnFocus) toggle.focus();
     };
 
-    toggle.addEventListener("click", () => setOpen(menu.hidden));
+    toggle.addEventListener("click", () => setOpen(Boolean(menu.hidden)));
     menu.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => setOpen(false)));
 
     header.addEventListener("keydown", (e) => {
@@ -137,6 +159,34 @@ const linkBase =
   }
 
   // Enlace activo según la sección visible (aria-current, sin depender del color).
+  // La navbar se aparta al bajar y vuelve al llevar el cursor a la franja superior.
+  let lastScrollY = window.scrollY;
+  let navHidden = false;
+
+  const setNavHidden = (hidden: boolean) => {
+    if (navHidden === hidden) return;
+    navHidden = hidden;
+    header?.classList.toggle("nav-hidden", hidden);
+  };
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      const currentScrollY = window.scrollY;
+      const scrollingDown = currentScrollY > lastScrollY + 4;
+
+      if (currentScrollY <= 24) setNavHidden(false);
+      else if (scrollingDown && currentScrollY > 120) setNavHidden(true);
+
+      lastScrollY = currentScrollY;
+    },
+    { passive: true },
+  );
+
+  document.addEventListener("mousemove", (event) => {
+    if (event.clientY <= 88) setNavHidden(false);
+  });
+
   const links = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-nav-link]"));
   const targets = links
     .map((a) => ({ a, el: document.querySelector(a.getAttribute("href") ?? "") }))

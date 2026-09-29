@@ -30,9 +30,6 @@
     "tailwindcss": "^4.3.3",
     "zod": "^4.6.5"
   },
-  "allowScripts": {
-    "esbuild": true
-  },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "@types/qrcode": "^1.5.6",

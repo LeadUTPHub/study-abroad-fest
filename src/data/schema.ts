@@ -148,7 +148,7 @@ export type Aliado = z.infer<typeof AliadoSchema>;
 // El nombre de la convocatoria y la institución son públicos. Las fechas,
 // el enlace oficial y "dónde preguntar" solo se muestran si estado es
 // "confirmado" (fechas y enlace son, además, contenido protegido: nunca
-// van en public/, páginas prerenderizadas ni JS de cliente — CLAUDE.md
+// van en public/, páginas prerenderizadas ni JS de cliente. CLAUDE.md
 // regla 10).
 export const PostulacionSchema = z
   .object({
@@ -181,7 +181,7 @@ export const PostulacionSchema = z
 export type Postulacion = z.infer<typeof PostulacionSchema>;
 
 // ---------------------------------------------------------------------------
-// Tips (src/data/tips.ts) — SOLO se importa desde código de servidor
+// Tips (src/data/tips.ts). SOLO se importa desde código de servidor
 // ---------------------------------------------------------------------------
 export const TipSchema = z
   .object({

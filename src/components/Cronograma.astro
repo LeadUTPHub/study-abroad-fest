@@ -123,7 +123,7 @@ const rangoHoras = (inicio: string | null, fin: string | null) =>
                     <Pin variant="ghost" size={48} />
                   </div>
                   <p class="m-0 rounded-full bg-paper-2 px-5 py-2.5 text-sm font-bold text-ink-2">
-                    {parada.bloque.titulo} · {parada.bloque.horaInicio}–{parada.bloque.horaFin}
+                    {parada.bloque.titulo} · {parada.bloque.horaInicio} a {parada.bloque.horaFin}
                   </p>
                 </div>
               );
@@ -150,7 +150,7 @@ const rangoHoras = (inicio: string | null, fin: string | null) =>
                     {parada.items.map((b) => (
                       <li class="flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-lav/60 pt-3 first:border-t-0 first:pt-0">
                         <span class="font-mono text-sm font-semibold text-ink-2">
-                          {b.horaInicio}–{b.horaFin}
+                          {b.horaInicio} a {b.horaFin}
                         </span>
                         <span class="font-extrabold text-ink">{b.titulo}</span>
                         {b.quien && <span class="text-sm text-ink-2">{b.quien}</span>}

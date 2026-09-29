@@ -67,3 +67,13 @@ export const footerColumns = z.array(FooterColumnSchema).parse([
 
 // TODO(confirmar): URL real de "Contacto". Sin ella no se muestra el enlace.
 export const supportItems = z.array(FooterItemSchema).parse([{ label: "Canjear mi código", href: canjeHref }]);
+
+// Pasos del pasaporte (PLAN.md, sección 2). El paso 2 usa el número de puertas.
+export const passportSteps = z
+  .array(z.object({ title: z.string(), text: z.string() }))
+  .length(3)
+  .parse([
+    { title: "Recoge tu pasaporte", text: "Al ingresar al evento." },
+    { title: "Junta los 4 sellos", text: "Uno por cada puerta." },
+    { title: "Canjea tu código", text: "Y descarga tu calendario." },
+  ]);

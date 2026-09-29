@@ -17,7 +17,7 @@ import {
 //
 // Un solo bloque queda "por-confirmar": la cápsula de Erasmus+, porque
 // el nombre del ponente todavía se está reconfirmando ("Guillermo
-// Gonzalo" vs. "Guillermo Alfaro" — PLAN.md, sección 8).
+// Gonzalo" frente a "Guillermo Alfaro". PLAN.md, sección 8.
 //
 // La fuente ya no da un nombre de persona para el bloque de Fulbright
 // (antes decía "EducationUSA · Nikole Meza"): queda solo la

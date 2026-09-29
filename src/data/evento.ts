@@ -5,7 +5,7 @@ const evento: Evento = EventoSchema.parse({
   fecha: "2026-10-10",
   horaInicio: "14:00",
   horaFin: "18:00",
-  lugar: "Convention Center UTP",
+  lugar: "Centro de convenciones UTP",
   direccion: "Jr. Hernán Velarde 260, Lima",
   zonaHoraria: "America/Lima",
   gratuito: true,

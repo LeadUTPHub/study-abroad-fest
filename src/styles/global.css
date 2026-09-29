@@ -30,6 +30,10 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background: var(--color-sky);
     color: var(--color-ink);
@@ -191,7 +195,7 @@
 /* Animaciones del concepto Viaje. Copiadas del catálogo visual aprobado. */
 @keyframes v-drift { from { transform: translateX(0); } to { transform: translateX(46px); } }
 @keyframes v-float { 0%, 100% { transform: rotate(2.5deg) translateY(0); } 50% { transform: rotate(1deg) translateY(-12px); } }
-@keyframes v-dash { to { stroke-dashoffset: -40; } }
+@keyframes v-dash { to { stroke-dashoffset: -28; } }
 @keyframes v-spin { to { transform: rotate(360deg); } }
 @keyframes v-flip { 0% { transform: perspective(220px) rotateX(-90deg); opacity: .001; } 55% { transform: perspective(220px) rotateX(14deg); opacity: 1; } 100% { transform: none; opacity: 1; } }
 @keyframes v-pop { 0% { opacity: .001; transform: translateY(22px) rotate(-2deg) scale(.96); } 70% { transform: translateY(-4px) rotate(.4deg) scale(1.01); } 100% { opacity: 1; transform: none; } }
@@ -210,7 +214,7 @@
 .v-float { animation: v-float 7s ease-in-out infinite; }
 .v-drift { animation: v-drift 11s ease-in-out infinite alternate; }
 .v-drift-b { animation: v-drift 15s ease-in-out infinite alternate-reverse; }
-.v-dash { stroke-dasharray: 14 14; animation: v-dash 1.4s linear infinite; }
+.v-dash { stroke-dasharray: 14 14; stroke-dashoffset: 0; animation: v-dash 1.4s linear infinite; }
 .v-spin { transform-origin: 75px 75px; animation: v-spin 26s linear infinite; }
 .v-flip { display: inline-block; transform-origin: 50% 0; animation: v-flip .7s cubic-bezier(.2, .8, .2, 1) both; }
 .v-pop { animation: v-pop .8s cubic-bezier(.2, .8, .2, 1) both; }

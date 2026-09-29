@@ -1,0 +1,53 @@
+---
+// 04 · Puertas de embarque: los 4 stands que sellan el pasaporte, más los
+// aliados del programa. La Embajada de Japón no aparece (CLAUDE.md, regla 4).
+import { allies, gates } from "../../data/schedule";
+
+const COLOR = { violet: "#6258BB", magenta: "#AC0BAD", road: "#525F97", "sky-deep": "#2F86C4" } as const;
+const abiertas = gates.filter((g) => g.estado === "confirmado");
+---
+
+<section id="stands" class="relative scroll-mt-24 pt-10 text-paper" aria-labelledby="stands-title">
+  <div class="mx-auto w-full max-w-[1200px] px-5 md:px-8 lg:px-10 xl:px-0">
+    <div class="mb-[26px] flex flex-col gap-3 lg:mb-10 lg:gap-3.5" data-motion-stop data-motion-delay="0">
+      <span class="font-mono text-xs font-semibold tracking-[.16em] text-yellow uppercase lg:text-[13px]">04 · Puertas de embarque</span>
+      <h2 id="stands-title" class="m-0 font-display text-[50px] leading-none font-normal [text-shadow:0_4px_0_rgb(29_33_82/0.22)] lg:text-[72px] lg:[text-shadow:0_5px_0_rgb(29_33_82/0.22)]">Cuatro puertas, todo el vuelo</h2>
+      <p class="m-0 max-w-[56ch] text-[17px] leading-[1.45] font-semibold text-paper/92 lg:text-xl lg:text-paper/90">
+        Aquí resuelves tus dudas oficiales sobre requisitos y convocatorias. Cada puerta te sella el pasaporte.
+      </p>
+    </div>
+
+    <ul class="m-0 grid list-none grid-cols-2 gap-3.5 p-0 lg:grid-cols-4 lg:gap-6">
+      {abiertas.map((g) => (
+        <li>
+          <article class="v-gate h-full overflow-hidden rounded-[18px] bg-paper text-ink shadow-[0_6px_0_rgb(29_33_82/0.24),0_14px_24px_-12px_rgb(8_10_45/0.6)] lg:rounded-[22px] lg:shadow-[0_8px_0_rgb(29_33_82/0.24),0_20px_34px_-14px_rgb(8_10_45/0.6)]" data-motion-stop data-motion-delay={`${140 + g.n * 90}`}>
+            <div class="flex items-end justify-between bg-[#12164A] px-3.5 pt-3 pb-3.5 text-paper lg:px-[22px] lg:pt-[18px] lg:pb-5">
+              <div>
+                <div class="font-mono text-[10px] font-semibold tracking-[.16em] text-paper/65 uppercase lg:text-xs lg:tracking-[.18em]">Puerta</div>
+                <div class="font-display text-[58px] leading-[.9] text-yellow lg:text-[84px]">{g.n}</div>
+              </div>
+              <svg class="mb-1.5 size-7 lg:size-11" viewBox="0 0 24 24" fill="none" stroke="#FDFEFC" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+            </div>
+            <div class="flex min-h-[132px] flex-col gap-3 p-3.5 lg:min-h-[172px] lg:gap-4 lg:p-[22px]">
+              <h3 class="m-0 text-[17px] leading-[1.15] font-extrabold lg:text-[23px]">{g.name}</h3>
+              <div class="mt-auto flex items-center gap-2 lg:gap-3">
+                <svg class="size-[34px] shrink-0 lg:size-[54px]" viewBox="0 0 54 54" aria-hidden="true">
+                  <circle cx="27" cy="27" r="24" fill="none" stroke={COLOR[g.color]} stroke-width="3" stroke-dasharray="5 4"></circle>
+                  <path d="M17 28l7 7 13-15" fill="none" stroke={COLOR[g.color]} stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+                <span class="text-xs leading-tight font-bold text-ink-2 lg:text-[15px] lg:leading-[1.3]">Sello para tu pasaporte</span>
+              </div>
+            </div>
+          </article>
+        </li>
+      ))}
+    </ul>
+
+    <div class="mt-[26px] flex flex-col gap-2.5 lg:mt-[34px] lg:flex-row lg:flex-wrap lg:items-center lg:gap-4">
+      <span class="font-mono text-[11px] font-semibold tracking-[.16em] text-paper/70 uppercase lg:text-xs">Con aliados del programa</span>
+      <ul class="m-0 flex list-none flex-wrap gap-2 p-0 lg:gap-4">
+        {allies.map((a) => <li class="rounded-full border-[1.5px] border-paper/40 bg-paper/14 px-3.5 py-[7px] text-sm font-extrabold lg:px-[18px] lg:py-2 lg:text-base">{a}</li>)}
+      </ul>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,74 @@
+---
+// 05 · Pasaporte SAF. Pasaporte con sellos que caen en bucle, tarjeta de
+// código y los 3 pasos. El contenido protegido NO está aquí: solo la mecánica
+// pública (CLAUDE.md, regla 10). "Ya tengo mi código" va a la ruta de canje.
+import evento from "../../data/evento";
+import { gates } from "../../data/schedule";
+import { canjeHref, passportSteps } from "../../data/site";
+import { lumaUrl } from "../../lib/luma";
+import Cta from "./Cta.astro";
+
+// Fecha del sello como "10.10.26".
+const [y = "", m = "", d = ""] = evento.fecha.split("-");
+const fechaSello = `${d}.${m}.${y.slice(2)}`;
+const rot = ["-rotate-[1.2deg]", "rotate-1", "-rotate-[.8deg]"];
+const cell = "grid place-items-center rounded-xl border-[1.5px] border-lav lg:rounded-[14px]";
+const sellos = gates.map((g) => g.standId);
+---
+
+<section id="calendario" class="relative scroll-mt-24 pt-10 text-paper lg:pt-[60px]" aria-labelledby="calendario-title">
+  <div class="v-star absolute top-10 left-10 size-[5px] rounded-full bg-paper lg:top-[90px] lg:left-[90px] lg:size-1.5" aria-hidden="true"></div>
+  <div class="v-star absolute top-[90px] left-80 size-1 rounded-full bg-paper [animation-delay:1.4s] lg:top-[60px] lg:left-[700px]" aria-hidden="true"></div>
+  <div class="v-star absolute top-[120px] left-[1280px] hidden size-[5px] rounded-full bg-paper [animation-delay:2s] lg:block" aria-hidden="true"></div>
+
+  <div class="mx-auto grid w-full max-w-[1200px] items-center gap-[34px] px-5 md:px-8 lg:grid-cols-[minmax(0,1fr)_580px] lg:gap-[70px] lg:px-10 xl:px-0">
+    <div class="flex flex-col gap-4 lg:gap-[22px]" data-motion-stop data-motion-delay="0">
+      <span class="self-start font-mono text-xs font-semibold tracking-[.16em] text-yellow uppercase lg:text-[13px]">05 · Pasaporte SAF</span>
+      <span class="inline-flex items-center gap-[7px] self-start rounded-full bg-paper/14 px-3 py-[7px] font-mono text-[11px] font-semibold tracking-[.12em] uppercase lg:gap-2 lg:px-3.5 lg:py-2 lg:text-[13px] lg:tracking-[.14em]">
+        <svg class="size-3.5 lg:size-4" viewBox="0 0 24 24" fill="none" stroke="#FFE36B" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>
+        Exclusivo para asistentes
+      </span>
+      <h2 id="calendario-title" class="m-0 font-display text-[46px] leading-none font-normal [text-shadow:0_4px_0_rgb(29_33_82/0.22)] lg:text-[70px] lg:[text-shadow:0_5px_0_rgb(29_33_82/0.22)]">Tu Calendario de becas se gana en el evento</h2>
+      <p class="m-0 max-w-[40ch] text-lg leading-[1.4] font-bold text-paper/92 lg:text-[21px]">
+        Fechas de cierre, web oficial y tips de cada stand para cada convocatoria. Solo para quienes vienen el 10 de octubre.
+      </p>
+      <ol class="m-0 flex list-none flex-col gap-2.5 p-0 lg:mt-1.5 lg:grid lg:grid-cols-3 lg:gap-3.5">
+        {passportSteps.map((s, i) => (
+          <li class={`flex items-center gap-3.5 rounded-2xl bg-paper px-4 py-3.5 text-ink shadow-[0_5px_0_rgb(8_10_45/0.3)] lg:flex-col lg:items-start lg:gap-2 lg:rounded-[18px] lg:p-[18px] lg:shadow-[0_6px_0_rgb(8_10_45/0.3)] ${rot[i]}`}>
+            <span class="font-display text-[30px] leading-none text-violet" aria-hidden="true">{i + 1}</span>
+            <div><b class="text-base lg:text-[17px]">{s.title}</b><div class="text-[13px] text-ink-2 lg:mt-2 lg:text-sm">{s.text}</div></div>
+          </li>
+        ))}
+      </ol>
+      <div class="mt-1 flex flex-col gap-3 lg:mt-1.5 lg:flex-row lg:items-center lg:gap-3.5">
+        <Cta href={lumaUrl("calendario")} class="min-h-[54px] text-xl shadow-[0_5px_0_rgb(8_10_45/0.3)] lg:min-h-0 lg:px-7 lg:pt-[15px] lg:pb-[13px] lg:text-[21px]">Inscríbete para ir</Cta>
+        <Cta href={canjeHref} variant="outline" class="min-h-[50px] text-base lg:min-h-0 lg:px-[22px] lg:py-3.5 lg:text-[17px]">Ya tengo mi código</Cta>
+      </div>
+    </div>
+
+    <div class="relative h-[430px] lg:h-[600px]" aria-hidden="true" data-motion-stop data-motion-delay="180">
+      <div class="absolute top-0 left-1 flex h-[350px] w-[342px] -rotate-3 flex-col gap-2.5 rounded-[20px] bg-paper p-[18px] text-ink shadow-[0_8px_0_rgb(8_10_45/0.3),0_24px_36px_-14px_rgb(8_10_45/0.6)] lg:top-5 lg:left-5 lg:h-[420px] lg:w-[520px] lg:-rotate-4 lg:gap-3.5 lg:rounded-[22px] lg:p-[26px] lg:shadow-[0_10px_0_rgb(8_10_45/0.3),0_30px_48px_-16px_rgb(8_10_45/0.6)]">
+        <div class="flex items-end justify-between"><span class="font-display text-2xl lg:text-[30px]">Pasaporte</span><span class="font-mono text-[10px] text-ink-2 lg:text-[11px]">SAF 2026 · {gates.length} SELLOS</span></div>
+        <div class="grid grow grid-cols-2 grid-rows-2 gap-2.5 lg:gap-3.5">
+          {sellos.includes("utp-internacional") && (
+            <div class={cell}><div class="v-stamp grid size-[84px] place-items-center rounded-full border-[3.5px] border-violet text-center font-display text-base leading-none text-violet [--r:-12deg] lg:size-28 lg:border-4 lg:text-xl">UTP<br /><span class="font-mono text-[8px] lg:text-[10px]">{fechaSello}</span></div></div>
+          )}
+          {sellos.includes("educationusa") && (
+            <div class={cell}><div class="v-stamp grid h-[68px] w-[104px] place-items-center rounded-[10px] border-[3.5px] border-magenta text-center font-display text-sm leading-[1.1] text-magenta [--r:8deg] [animation-delay:.9s] lg:h-[88px] lg:w-[132px] lg:rounded-xl lg:border-4 lg:text-[17px]">Education<br />USA</div></div>
+          )}
+          {sellos.includes("apebemo") && (
+            <div class={cell}><div class="v-stamp grid place-items-center [--r:-6deg] [animation-delay:1.8s]"><svg class="h-[84px] w-24 lg:h-[104px] lg:w-[120px]" viewBox="0 0 120 104"><polygon points="60,6 114,98 6,98" fill="none" stroke="#525F97" stroke-width="5"></polygon><text x="60" y="78" text-anchor="middle" font-family="Lilita One, sans-serif" font-size="17" fill="#525F97">APEBEMO</text></svg></div></div>
+          )}
+          {sellos.includes("migajeando-becas") && (
+            <div class={cell}><div class="v-stamp grid size-[84px] place-items-center rounded-[14px] border-[3.5px] border-[#22709F] text-center font-display text-[13px] leading-[1.1] text-[#22709F] [--r:7deg] [animation-delay:2.7s] lg:size-28 lg:rounded-[18px] lg:border-4 lg:text-base">Migajeando<br />Becas</div></div>
+          )}
+        </div>
+      </div>
+      <div class="absolute right-0.5 bottom-1.5 flex w-[250px] rotate-3 flex-col gap-1.5 rounded-2xl border-4 border-paper bg-brand-gradient px-4 py-3.5 text-paper shadow-[0_7px_0_rgb(8_10_45/0.3)] lg:right-0 lg:bottom-6 lg:w-[300px] lg:gap-2 lg:rounded-[18px] lg:border-[5px] lg:px-5 lg:py-[18px] lg:shadow-[0_8px_0_rgb(8_10_45/0.3)]">
+        <span class="font-mono text-[10px] tracking-[.14em] uppercase lg:text-[11px]">Tu código</span>
+        <span class="font-mono text-[22px] font-semibold tracking-[.06em] lg:text-[26px]">SAF-····-····</span>
+        <span class="text-xs font-bold lg:text-[13px]">Calendario y tips desbloqueados</span>
+      </div>
+    </div>
+  </div>
+</section>

@@ -3,32 +3,27 @@ import Base from "../layouts/Base.astro";
 import SiteNav from "../components/SiteNav.astro";
 import Hero from "../components/viaje/Hero.astro";
 import Cronograma from "../components/viaje/Route.astro";
-import Ponentes from "../components/Ponentes.astro";
-import Stands from "../components/Stands.astro";
-import PasaporteSeccion from "../components/PasaporteSeccion.astro";
-import PaseAbordaje from "../components/PaseAbordaje.astro";
-import Faq from "../components/Faq.astro";
-import CtaFinal from "../components/CtaFinal.astro";
+import Ponentes from "../components/viaje/Speakers.astro";
+import Stands from "../components/viaje/Gates.astro";
+import Pasaporte from "../components/viaje/Passport.astro";
+import Llegar from "../components/viaje/Arrive.astro";
+import CtaFinal from "../components/viaje/Landing.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import DockMovil from "../components/DockMovil.astro";
-import RoadDivider from "../components/ui/RoadDivider.astro";
 ---
 
 <Base
   title="Study Abroad Fest 2026"
-  description="Becas, intercambios y universidades del mundo en una sola tarde. Sábado 10 de octubre, Convention Center UTP, Lima."
+  description="Becas, intercambios y universidades del mundo en una sola tarde. Sábado 10 de octubre, Centro de convenciones UTP, Lima."
 >
   <SiteNav />
-  <main>
+  <main class="bg-[linear-gradient(180deg,#64ABE0_0%,#625EAA_37%,#8C55A5_62%,#2A2468_100%)]">
     <Hero />
-    <RoadDivider />
     <Cronograma />
     <Ponentes />
     <Stands />
-    <PasaporteSeccion />
-    <PaseAbordaje>
-      <Faq />
-    </PaseAbordaje>
+    <Pasaporte />
+    <Llegar />
     <CtaFinal />
   </main>
   <SiteFooter />
@@ -36,3 +31,9 @@ import RoadDivider from "../components/ui/RoadDivider.astro";
   <div class="h-[68px] lg:hidden" aria-hidden="true"></div>
   <DockMovil />
 </Base>
+
+<script>
+  import { armMotionStops } from "../lib/motion";
+
+  armMotionStops();
+</script>
