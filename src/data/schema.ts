@@ -266,6 +266,8 @@ export const SpeakerSchema = z.object({
   mode: SpeakerModeSchema,
   /** Hora de la actividad en el cronograma (tarjeta "Sale"). */
   time: HoraSchema,
+  /** Ruta relativa dentro de src/assets/ponentes/. Ausente = placeholder. */
+  imagen: z.string().optional(),
   estado: EstadoSchema,
 });
 export type Speaker = z.infer<typeof SpeakerSchema>;

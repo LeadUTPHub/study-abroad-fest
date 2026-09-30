@@ -89,18 +89,19 @@ export const intermission: ScheduleBreak = ScheduleBreakSchema.parse({
 // personal (regla 5).
 // ---------------------------------------------------------------------------
 const speakersRaw: Speaker[] = [
-  { id: "fernando-injoque", initials: "FI", code: "US", name: "Fernando Injoque", institution: "Purdue University", mode: "vlog-zoom", time: "14:10", estado: "confirmado" },
+  { id: "fernando-injoque", initials: "FI", code: "US", name: "Fernando Injoque", institution: "Purdue University", mode: "vlog-zoom", time: "14:10", estado: "confirmado", imagen: "fernando-injoque.jpg" },
   // TODO(confirmar): modalidad de Ivanna. El diseño la muestra como "Experiencia personal".
-  { id: "ivanna", initials: "I", code: "US", name: "Ivanna", institution: "Purdue University", mode: "vlog-zoom", time: "14:15", estado: "confirmado" },
+  { id: "ivanna", initials: "I", code: "US", name: "Ivanna", institution: "Purdue University", mode: "vlog-zoom", time: "14:15", estado: "confirmado", imagen: "ivanna.png" },
   // TODO(confirmar): modalidad del bloque UC Berkeley.
-  { id: "leslie-sanchez", initials: "LS", code: "US", name: "Leslie Sánchez", institution: "UC Berkeley", mode: "experiencia", time: "14:55", estado: "confirmado" },
+  { id: "leslie-sanchez", initials: "LS", code: "US", name: "Leslie Sánchez", institution: "UC Berkeley", mode: "experiencia", time: "14:55", estado: "confirmado", imagen: "leslie-sanchez.png" },
   { id: "diego-mendoza", initials: "DM", code: "US", name: "Diego Mendoza", institution: "UC Berkeley", mode: "experiencia", time: "14:55", estado: "confirmado" },
   { id: "mila", initials: "M", code: "JP", name: "Mila", institution: "Desde Japón", mode: "vlog-zoom", time: "15:55", estado: "confirmado" },
-  // TODO(confirmar): "Guillermo Gonzalo" frente a "Guillermo Alfaro". Por-confirmar: no se publica hasta resolverlo.
-  { id: "guillermo-gonzalo", initials: "GG", code: "EU", name: "Guillermo Gonzalo", institution: "Erasmus+", mode: "vlog-zoom", time: "16:40", estado: "por-confirmar" },
+  { id: "guillermo-gonzalo", initials: "GG", code: "EU", name: "Guillermo Gonzalo", institution: "Erasmus+", mode: "vlog-zoom", time: "16:40", estado: "confirmado", imagen: "guillermo-gonzalo.png" },
   { id: "raquel-sanchez", initials: "RS", code: "EU", name: "Raquel Sánchez", institution: "Conexión Erasmus Mundus", mode: "zoom", time: "17:05", estado: "confirmado" },
   // TODO(confirmar): el diseño usa el código "MUN", que no es un país. Sin sello hasta definirlo.
   { id: "raul-jauregui", initials: "RJ", code: null, name: "Raúl Jauregui", institution: "Migajeando Becas", mode: "experiencia", time: "17:20", estado: "confirmado" },
+  // TODO(confirmar): si Lizbeth sigue participando.
+  { id: "lizbeth-davila", initials: "LD", code: "CN", name: "Lizbeth Dávila", institution: "ELAP · SIAS", mode: "experiencia", time: "14:00", estado: "por-confirmar", imagen: "lizbeth-davila.JPG" },
 ];
 
 export const speakers = speakersRaw.map((s) => SpeakerSchema.parse(s));

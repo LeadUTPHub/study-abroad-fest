@@ -21,6 +21,7 @@ const ponentesRaw: Ponente[] = [
     codigoPais: "US",
     meta: "Estados Unidos",
     grupo: "internacional",
+    imagen: "fernando-injoque.jpg",
     estado: "confirmado",
   },
   {
@@ -30,6 +31,7 @@ const ponentesRaw: Ponente[] = [
     codigoPais: "US",
     meta: "Estados Unidos",
     grupo: "internacional",
+    imagen: "ivanna.png",
     estado: "confirmado",
   },
   {
@@ -47,11 +49,12 @@ const ponentesRaw: Ponente[] = [
     // Reemplaza a "Guillermo Alfaro" (PLAN.md, sección 8: pendiente de
     // reconfirmar cuál de los dos nombres es correcto).
     nombre: "Guillermo Gonzalo",
-    institucion: "Erasmus",
+    institucion: "Erasmus+",
     codigoPais: "EU",
     meta: "Europa",
     grupo: "internacional",
-    estado: "por-confirmar",
+    imagen: "guillermo-gonzalo.png",
+    estado: "confirmado",
   },
   {
     id: "raquel-sanchez",
@@ -70,6 +73,7 @@ const ponentesRaw: Ponente[] = [
     codigoPais: "US",
     meta: "Beca culminada",
     grupo: "panel",
+    imagen: "leslie-sanchez.png",
     estado: "confirmado",
   },
   {
@@ -92,6 +96,7 @@ const ponentesRaw: Ponente[] = [
     grupo: "panel",
     // Ya no aparece en el cronograma confirmado; pendiente de confirmar si
     // sigue participando (PLAN.md, sección 8). No se borra su ficha.
+    imagen: "lizbeth-davila.JPG",
     estado: "por-confirmar",
   },
 ];
